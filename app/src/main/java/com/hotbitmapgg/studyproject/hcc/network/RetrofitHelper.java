@@ -2,7 +2,7 @@ package com.hotbitmapgg.studyproject.hcc.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.studyproject.hcc.base.StudyApp;
-import com.hotbitmapgg.studyproject.hcc.model.GankResult;
+import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 
 
 public class RetrofitHelper
@@ -23,30 +22,11 @@ public class RetrofitHelper
 
     public static final String BASE_GANK_URL = "http://gank.io/api/";
 
-    private OkHttpClient mOkHttpClient;
+    private static OkHttpClient mOkHttpClient;
 
-    private final GankApi gankApi;
-
-    public static RetrofitHelper builder()
+    static
     {
-
-        return new RetrofitHelper();
-    }
-
-    private RetrofitHelper()
-    {
-
         initOkHttpClient();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_GANK_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        //zhuangBiApi = retrofit.create(ZhuangBiApi.class);
-        gankApi = retrofit.create(GankApi.class);
     }
 
     public static GankApi getGankApi()
@@ -54,7 +34,7 @@ public class RetrofitHelper
 
         Retrofit mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_GANK_URL)
-                .client(new OkHttpClient())
+                .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -65,11 +45,30 @@ public class RetrofitHelper
     }
 
 
+    public static ZhuangBiApi getZhuangBiApi()
+    {
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_ZHUANGBI_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ZhuangBiApi zhuangBiApi = retrofit.create(ZhuangBiApi.class);
+
+        return zhuangBiApi;
+    }
+
+
     /**
      * 初始化OKHttpClient
      */
-    private void initOkHttpClient()
+    private static void initOkHttpClient()
     {
+
+        LogUtil.all("初始化OkHttpClient");
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -99,9 +98,9 @@ public class RetrofitHelper
 //        return zhuangBiApi.search(key);
 //    }
 
-    public Observable<GankResult> getGankBeautyList(int num, int page)
-    {
-
-        return gankApi.getBeauties(num, page);
-    }
+//    public Observable<GankResult> getGankBeautyList(int num, int page)
+//    {
+//
+//        return gankApi.getBeauties(num, page);
+//    }
 }

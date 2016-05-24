@@ -98,7 +98,7 @@ public class CacheData
 
     public void loadDataFormNetWork()
     {
-        RetrofitHelper.builder().getGankBeautyList(50, 1)
+        RetrofitHelper.getGankApi().getBeauties(50, 1)
                 .subscribeOn(Schedulers.io())
                 .map(new Func1<GankResult, List<Item>>()
                 {

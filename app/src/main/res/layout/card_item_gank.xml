@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="200dp"
-                                    android:padding="20dp"
-                                    app:cardCornerRadius="4dp"
-                                    app:cardElevation="2dp"
+<LinearLayout
+    android:id="@+id/item_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="1dp"
+    android:layout_marginRight="1dp"
+    android:layout_marginTop="2dp"
+    android:background="@drawable/bg_card"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:visibility="invisible">
 
-
-    >
-
-    <FrameLayout
+    <com.hotbitmapgg.studyproject.hcc.widget.RatioImageView
+        android:id="@+id/item_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
 
-        <ImageView
-            android:id="@+id/item_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/item_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:padding="20dp"
-            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"/>
 
-            />
+    </LinearLayout>
 
+</LinearLayout>
 
-    </FrameLayout>
-
-</android.support.v7.widget.CardView>
