@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
+
+    <!--    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.hotbitmapgg.rxzhihu.widget.CustomProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:text="98分"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+
+            />
+
+
+    </FrameLayout> -->
+
+
+    <!--    <com.hotbitmapgg.rxzhihu.widget.TableView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            />-->
+
+    <!--    <com.hotbitmapgg.rxzhihu.widget.Bezaer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/> -->
+
+    <!--    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+
+    </android.support.v4.widget.NestedScrollView> -->
+
+    <com.hotbitmapgg.studyproject.hcc.widget.LoveLikeLayout
+        android:id="@+id/love"
+        android:layout_width="300dp"
+        android:layout_height="200dp"/>
+
+
+</RelativeLayout>
