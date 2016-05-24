@@ -7,10 +7,14 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.ZhuangbiAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.model.ZhuangBiBean;
+import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 
 import java.util.List;
 
 import butterknife.Bind;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class ZhuangBiFragment extends LazyFragment
 {
@@ -36,27 +40,27 @@ public class ZhuangBiFragment extends LazyFragment
 
     private void getZhuangBiList()
     {
-//        RetrofitHelper.builder().getZhuangBi("装逼")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Action1<List<ZhuangBiBean>>()
-//                {
-//                    @Override
-//                    public void call(List<ZhuangBiBean> zhuangBiBeans)
-//                    {
-//                        if (zhuangBiBeans != null && zhuangBiBeans.size() > 0)
-//                        {
-//                            finishGetZhuangBiList(zhuangBiBeans);
-//                        }
-//                    }
-//                }, new Action1<Throwable>()
-//                {
-//                    @Override
-//                    public void call(Throwable throwable)
-//                    {
-//
-//                    }
-//                });
+        RetrofitHelper.getZhuangBiApi().search("帅气")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<ZhuangBiBean>>()
+                {
+                    @Override
+                    public void call(List<ZhuangBiBean> zhuangBiBeans)
+                    {
+                        if (zhuangBiBeans != null && zhuangBiBeans.size() > 0)
+                        {
+                            finishGetZhuangBiList(zhuangBiBeans);
+                        }
+                    }
+                }, new Action1<Throwable>()
+                {
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                    }
+                });
     }
 
     private void finishGetZhuangBiList(List<ZhuangBiBean> zhuangBiBeans)

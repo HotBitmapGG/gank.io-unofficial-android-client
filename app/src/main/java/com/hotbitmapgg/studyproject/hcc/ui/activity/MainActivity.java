@@ -107,7 +107,7 @@ public class MainActivity extends AbsBaseActivity
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_home:
-
+                          addFragment(gankBeautyFragment);
                         break;
                     case R.id.nav_messages:
                         startActivity(new Intent(MainActivity.this, TestActivity.class));
@@ -120,7 +120,7 @@ public class MainActivity extends AbsBaseActivity
                         startActivity(new Intent(MainActivity.this, RecycleViewDemoActivity.class));
                         break;
                     case R.id.nav_article:
-
+                        addFragment(zhuangBiFragment);
                     case R.id.nav_video:
                         break;
                     case R.id.nav_about:
