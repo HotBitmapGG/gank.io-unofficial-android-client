@@ -203,7 +203,15 @@ public class GankBeautyFragment extends LazyFragment
                     {
 
                         LogUtil.all("数据加载失败");
-                        mSwipeRefreshLayout.setRefreshing(false);
+                        mSwipeRefreshLayout.post(new Runnable()
+                        {
+
+                            @Override
+                            public void run()
+                            {
+                               mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 });
     }

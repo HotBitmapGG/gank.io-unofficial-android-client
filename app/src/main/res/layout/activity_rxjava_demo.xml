@@ -66,6 +66,28 @@
                 android:hint="请输入手机号"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"/>
+
+            <Button
+                android:id="@+id/button_test"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/cardview_light_background"
+                android:padding="10dp"
+                android:text="按钮防抖测试"
+                android:elevation="3dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"/>
+
+
         </LinearLayout>
 
 

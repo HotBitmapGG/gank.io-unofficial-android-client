@@ -1,27 +1,36 @@
 package com.hotbitmapgg.studyproject.hcc.rxdemo;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.ACache;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func3;
 import rx.schedulers.Schedulers;
@@ -49,6 +58,12 @@ public class RxJavaSampleActivity extends AbsBaseActivity
 
     @Bind(R.id.edit_text_3)
     EditText mEditText_3;
+
+    @Bind(R.id.text_date)
+    TextView mDate;
+
+    @Bind(R.id.button_test)
+    Button mTest;
 
     @Override
     public int getLayoutId()
@@ -210,9 +225,110 @@ public class RxJavaSampleActivity extends AbsBaseActivity
                 });
 
 
+        /**
+         * 使用timer做定时操作。当有“x秒后执行y操作”类似的需求的时候，想到使用timer
+         *
+         * 2秒后输出日志“hello world”，然后结束
+         */
+
+        Observable.timer(2, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>()
+                {
+                    @Override
+                    public void call(Long aLong)
+                    {
+                        Snackbar.make(mRootlayout, "2秒后执行的操作", Snackbar.LENGTH_SHORT).show();
+                    }
+                });
 
 
+        /**
+         * 使用interval做周期性操作。当有“每隔xx秒后执行yy操作”类似的需求的时候，
+         * 想到使用interval
+         *
+         * 显示当前系统时间 1秒刷新一次
+         */
 
+
+        Observable.interval(1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>()
+                {
+                    @Override
+                    public void call(Long aLong)
+                    {
+                        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+                        String time = format.format(new Date());
+                        mDate.setText(time);
+                    }
+                });
+
+
+        /**
+         * 为按钮添加防抖功能 使用throttleFirst防止按钮重复点击
+         *
+         * debounce也能达到同样的效果
+         */
+
+        RxView.clicks(mTest)
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>()
+                {
+                    @Override
+                    public void call(Void aVoid)
+                    {
+                        LogUtil.all("按钮防抖测试点击" + SystemClock.currentThreadTimeMillis());
+                    }
+                });
+
+
+        /**
+         * 使用schedulePeriodically做轮询请求
+         */
+
+        Observable.create(new Observable.OnSubscribe<String>()
+        {
+            @Override
+            public void call(final Subscriber<? super String> subscriber)
+            {
+                Schedulers.newThread().createWorker().schedulePeriodically(new Action0()
+                {
+                    @Override
+                    public void call()
+                    {
+                        subscriber.onNext("轮询请求事件" + SystemClock.currentThreadTimeMillis());
+                    }
+                }, 3000, 1000, TimeUnit.MILLISECONDS);
+            }
+        }).subscribe(new Action1<String>()
+        {
+            @Override
+            public void call(String s)
+            {
+                LogUtil.all("内容:" + s);
+            }
+        });
+
+
+        /**
+         * 使用RxJava进行数据 集合的遍历
+         */
+
+        List<String> strs = Arrays.asList("1", "2", "3", "4", "5");
+
+        int[] ints = new int[]{1, 2, 3, 4, 5, 6};
+
+        Observable.from(strs)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>()
+                {
+                    @Override
+                    public void call(String s)
+                    {
+                        LogUtil.all(s);
+                    }
+                });
 
     }
 

@@ -93,14 +93,4 @@ public class RetrofitHelper
         }
     }
 
-//    public Observable<List<ZhuangBiBean>> getZhuangBi(String key)
-//    {
-//        return zhuangBiApi.search(key);
-//    }
-
-//    public Observable<GankResult> getGankBeautyList(int num, int page)
-//    {
-//
-//        return gankApi.getBeauties(num, page);
-//    }
 }

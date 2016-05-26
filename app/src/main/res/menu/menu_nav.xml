@@ -9,7 +9,7 @@
         <item
             android:id="@+id/nav_messages"
             android:icon="@mipmap/ic_event"
-            android:title="自定义控件系列"/>
+            android:title="CustomWidget系列"/>
         <item
             android:id="@+id/nav_my_focus"
             android:icon="@mipmap/ic_headset"
@@ -17,10 +17,10 @@
         <item
             android:id="@+id/nav_foucs_me"
             android:icon="@mipmap/ic_forum"
-            android:title="RecycleView系列"/>
+            android:title="MaterialDesign系列"/>
     </group>
 
-    <item android:title="收藏夹">
+    <item android:title="个人练习">
         <menu>
             <item
                 android:id="@+id/nav_article"
