@@ -19,7 +19,6 @@ import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
-import com.hotbitmapgg.studyproject.hcc.widget.LoveVideoView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,8 +64,6 @@ public class GankFragment extends LazyFragment
     private StaggeredGridLayoutManager mLayoutManager;
 
     private String type;
-
-    private LoveVideoView mVideoView;
 
 
     public static GankFragment newInstance(String dataType)

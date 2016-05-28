@@ -9,23 +9,23 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.ZhuangbiAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.model.ExpressionPackage;
+import com.hotbitmapgg.studyproject.hcc.network.ExpressionPackageApi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
-import com.hotbitmapgg.studyproject.hcc.network.ZhuangBiApi;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
-import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
@@ -36,7 +36,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -49,10 +48,6 @@ public class ExpressionPackageFragment extends LazyFragment
 
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
-
-
-    @Bind(R.id.search_btn)
-    Button mSearch;
 
     @Bind(R.id.edit)
     EditText mQueryEdit;
@@ -78,7 +73,7 @@ public class ExpressionPackageFragment extends LazyFragment
     public int getLayoutId()
     {
 
-        return R.layout.fragment_zhuangbi;
+        return R.layout.fragment_expression_package;
     }
 
     @Override
@@ -117,32 +112,35 @@ public class ExpressionPackageFragment extends LazyFragment
                         content = textViewTextChangeEvent.text().toString();
                     }
                 });
-    }
 
 
-    @OnClick(R.id.search_btn)
-    void searchFace()
-    {
-
-        if (!TextUtils.isEmpty(content))
+        mQueryEdit.setOnEditorActionListener(new TextView.OnEditorActionListener()
         {
-            //加载数据
-            showProgress();
-            //隐藏键盘
-            hideKeyBord();
-            //清空输入内容
-            mQueryEdit.setText("");
-        }
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            {
+
+                if(actionId == EditorInfo.IME_ACTION_SEARCH)
+                {
+                    //加载数据
+                    showProgress();
+                    //隐藏键盘
+                    hideKeyBord();
+                    //清空输入内容
+                    mQueryEdit.setText("");
+                }
+                return false;
+            }
+        });
     }
 
     private void getZhuangBiList(String text)
     {
 
-        LogUtil.all(text + "开始请求");
+        ExpressionPackageApi expressionPackageApi = RetrofitHelper.getExpressionPackageApi();
 
-        ZhuangBiApi zhuangBiApi = RetrofitHelper.getZhuangBiApi();
-
-        zhuangBiApi.search(text)
+        expressionPackageApi.search(text)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<ExpressionPackage>>()
@@ -387,6 +385,7 @@ public class ExpressionPackageFragment extends LazyFragment
         {
             mCompositeSubscription.unsubscribe();
         }
+        datas.clear();
         super.onDestroy();
     }
 }

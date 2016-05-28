@@ -45,7 +45,7 @@ public class RetrofitHelper
     }
 
 
-    public static ZhuangBiApi getZhuangBiApi()
+    public static ExpressionPackageApi getExpressionPackageApi()
     {
 
 
@@ -56,9 +56,9 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ZhuangBiApi zhuangBiApi = retrofit.create(ZhuangBiApi.class);
+        ExpressionPackageApi expressionPackageApi = retrofit.create(ExpressionPackageApi.class);
 
-        return zhuangBiApi;
+        return expressionPackageApi;
     }
 
 

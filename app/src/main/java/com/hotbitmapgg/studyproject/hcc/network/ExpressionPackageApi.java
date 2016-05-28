@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
-public interface ZhuangBiApi
+public interface ExpressionPackageApi
 {
 
     @GET("search")
