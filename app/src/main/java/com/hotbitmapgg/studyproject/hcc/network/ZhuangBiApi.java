@@ -1,7 +1,7 @@
 package com.hotbitmapgg.studyproject.hcc.network;
 
 
-import com.hotbitmapgg.studyproject.hcc.model.ZhuangBiBean;
+import com.hotbitmapgg.studyproject.hcc.model.ExpressionPackage;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface ZhuangBiApi
 {
 
     @GET("search")
-    Observable<List<ZhuangBiBean>> search(@Query("q") String query);
+    Observable<List<ExpressionPackage>> search(@Query("q") String query);
 }

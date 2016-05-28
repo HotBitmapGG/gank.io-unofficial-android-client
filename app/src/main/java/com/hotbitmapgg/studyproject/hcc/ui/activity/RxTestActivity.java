@@ -182,18 +182,18 @@ public class RxTestActivity extends RxAppCompatActivity
 //        gankApi.getAndroidDatas(10, 1)
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
-//                .map(new Func1<GankAndroid, List<GankAndroid.AndroidInfo>>()
+//                .map(new Func1<Gank, List<Gank.AndroidInfo>>()
 //                {
 //                    @Override
-//                    public List<GankAndroid.AndroidInfo> call(GankAndroid gankAndroid)
+//                    public List<Gank.AndroidInfo> call(Gank gankAndroid)
 //                    {
 //                        return gankAndroid.results;
 //                    }
 //                })
-//                .subscribe(new Action1<List<GankAndroid.AndroidInfo>>()
+//                .subscribe(new Action1<List<Gank.AndroidInfo>>()
 //                {
 //                    @Override
-//                    public void call(List<GankAndroid.AndroidInfo> androidInfos)
+//                    public void call(List<Gank.AndroidInfo> androidInfos)
 //                    {
 //                        LogUtil.all(androidInfos.size() + "");
 //                    }
@@ -216,20 +216,20 @@ public class RxTestActivity extends RxAppCompatActivity
 //
 //        Subscription subscribe = Observable.zip(gankApi.getBeauties(10, 1),
 //                gankApi.getAndroidDatas(10, 1),
-//                new Func2<GankResult, GankAndroid, List<ZipItem>>()
+//                new Func2<GankResult, Gank, List<ZipItem>>()
 //                {
 //                    @Override
-//                    public List<ZipItem> call(GankResult gankResult, GankAndroid gankAndroid)
+//                    public List<ZipItem> call(GankResult gankResult, Gank gankAndroid)
 //                    {
 //                        List<ZipItem> zipItems = new ArrayList<ZipItem>();
 //                        int size = gankResult.beautys.size();
 //                        List<GankResult.GankBeautyBean> beautys = gankResult.beautys;
-//                        List<GankAndroid.AndroidInfo> results = gankAndroid.results;
+//                        List<Gank.AndroidInfo> results = gankAndroid.results;
 //                        ZipItem zipItem;
 //                        for (int i = 0; i < size; i++)
 //                        {
 //                            GankResult.GankBeautyBean gankBeautyBean = beautys.get(i);
-//                            GankAndroid.AndroidInfo androidInfo = results.get(i);
+//                            Gank.AndroidInfo androidInfo = results.get(i);
 //
 //                            zipItem = new ZipItem();
 //                            zipItem.desc = androidInfo.desc;

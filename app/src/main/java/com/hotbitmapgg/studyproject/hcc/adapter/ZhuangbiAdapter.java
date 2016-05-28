@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.model.ZhuangBiBean;
+import com.hotbitmapgg.studyproject.hcc.model.ExpressionPackage;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -23,9 +23,9 @@ import butterknife.ButterKnife;
  */
 public class ZhuangbiAdapter extends AbsRecyclerViewAdapter
 {
-    private List<ZhuangBiBean> datas = new ArrayList<>();
+    private List<ExpressionPackage> datas = new ArrayList<>();
 
-    public ZhuangbiAdapter(RecyclerView recyclerView, List<ZhuangBiBean> datas)
+    public ZhuangbiAdapter(RecyclerView recyclerView, List<ExpressionPackage> datas)
     {
         super(recyclerView);
         this.datas = datas;

@@ -1,5 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -8,14 +9,17 @@ import android.view.ViewTreeObserver;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
-import com.hotbitmapgg.studyproject.hcc.model.GankAndroid;
+import com.hotbitmapgg.studyproject.hcc.model.Gank;
 import com.hotbitmapgg.studyproject.hcc.model.GankResult;
 import com.hotbitmapgg.studyproject.hcc.model.Item;
 import com.hotbitmapgg.studyproject.hcc.model.ZipItem;
 import com.hotbitmapgg.studyproject.hcc.network.GankApi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.widget.LoveVideoView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +35,7 @@ import rx.functions.Func1;
 import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
-public class GankBeautyFragment extends LazyFragment
+public class GankFragment extends LazyFragment
 {
 
     @Bind(R.id.recycle)
@@ -43,6 +47,8 @@ public class GankBeautyFragment extends LazyFragment
     private final static String TIME_FORMAT_1 = "yyyy-MM-dd'T'HH:mm:ss.SS'Z'";
 
     private final static String TIME_FORMAT_2 = "yy/MM/dd HH:mm:ss";
+
+    private final static String EXTRA_TYPE = "type";
 
     private int pageNum = 30;
 
@@ -58,11 +64,20 @@ public class GankBeautyFragment extends LazyFragment
 
     private StaggeredGridLayoutManager mLayoutManager;
 
+    private String type;
 
-    public static GankBeautyFragment newInstance()
+    private LoveVideoView mVideoView;
+
+
+    public static GankFragment newInstance(String dataType)
     {
 
-        return new GankBeautyFragment();
+        GankFragment gankFragment = new GankFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_TYPE, dataType);
+        gankFragment.setArguments(bundle);
+
+        return gankFragment;
     }
 
 
@@ -76,6 +91,8 @@ public class GankBeautyFragment extends LazyFragment
     @Override
     public void initViews()
     {
+
+        type = getArguments().getString(EXTRA_TYPE);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
@@ -156,26 +173,27 @@ public class GankBeautyFragment extends LazyFragment
                         return items;
                     }
                 })
-                .zipWith(gankApi.getAndroidDatas(pageNum, page), new Func2<List<Item>,GankAndroid,List<ZipItem>>()
+                .zipWith(gankApi.getGankDatas(type, pageNum, page), new Func2<List<Item>,Gank,List<ZipItem>>()
                 {
 
                     @Override
-                    public List<ZipItem> call(List<Item> items, GankAndroid gankAndroid)
+                    public List<ZipItem> call(List<Item> items, Gank gank)
                     {
 
                         List<ZipItem> zipItems = new ArrayList<ZipItem>();
                         ZipItem zipItem;
-                        List<GankAndroid.AndroidInfo> results = gankAndroid.results;
+                        List<Gank.AndroidInfo> results = gank.results;
 
                         for (int i = 0; i < items.size(); i++)
                         {
                             zipItem = new ZipItem();
                             Item item = items.get(i);
-                            GankAndroid.AndroidInfo androidInfo = results.get(i);
+                            Gank.AndroidInfo androidInfo = results.get(i);
                             zipItem.imageUrl = item.imageUrl;
                             zipItem.desc = androidInfo.desc;
                             zipItem.description = item.description;
                             zipItem.who = androidInfo.who;
+                            zipItem.url = androidInfo.url;
 
                             zipItems.add(zipItem);
                         }
@@ -209,7 +227,8 @@ public class GankBeautyFragment extends LazyFragment
                             @Override
                             public void run()
                             {
-                               mSwipeRefreshLayout.setRefreshing(false);
+
+                                mSwipeRefreshLayout.setRefreshing(false);
                             }
                         });
                     }
@@ -235,6 +254,16 @@ public class GankBeautyFragment extends LazyFragment
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
+                ZipItem zipItem = datas.get(position);
+
+                if (!type.equals("休息视频"))
+                {
+
+                    WebActivity.start(getActivity(), zipItem.url, zipItem.desc);
+                } else
+                {
+                    VideoWebActivity.launch(getActivity(), zipItem.url);
+                }
             }
         });
     }

@@ -17,9 +17,9 @@ import android.view.MenuItem;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.recycleview.RecycleViewDemoActivity;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.GankBeautyFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.ZhuangBiFragment;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 
 import butterknife.Bind;
 
@@ -38,9 +38,9 @@ public class MainActivity extends AbsBaseActivity
 
     private HomeFragment homeFragment;
 
-    private ZhuangBiFragment zhuangBiFragment;
+    private ExpressionPackageFragment expressionPackageFragment;
 
-    private GankBeautyFragment gankBeautyFragment;
+    private RxjavaDemoFragment rxjavaDemoFragment;
 
     @Override
     public int getLayoutId()
@@ -56,10 +56,10 @@ public class MainActivity extends AbsBaseActivity
             setupDrawerContent(mNavigationView);
         }
 
-        zhuangBiFragment = ZhuangBiFragment.newInstance();
-        gankBeautyFragment = GankBeautyFragment.newInstance();
+        expressionPackageFragment = ExpressionPackageFragment.newInstance();
         homeFragment = HomeFragment.newInstance();
-        addFragment(gankBeautyFragment);
+        rxjavaDemoFragment = RxjavaDemoFragment.newInstance();
+        addFragment(homeFragment);
     }
 
     @Override
@@ -107,20 +107,20 @@ public class MainActivity extends AbsBaseActivity
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_home:
-                          addFragment(gankBeautyFragment);
+                          addFragment(homeFragment);
                         break;
                     case R.id.nav_messages:
                         startActivity(new Intent(MainActivity.this, TestActivity.class));
                         break;
                     case R.id.nav_my_focus:
-                        addFragment(homeFragment);
+                        addFragment(rxjavaDemoFragment);
                         //startActivity(new Intent(MainActivity.this, RxTestActivity.class));
                         break;
                     case R.id.nav_foucs_me:
                         startActivity(new Intent(MainActivity.this, RecycleViewDemoActivity.class));
                         break;
                     case R.id.nav_article:
-                        addFragment(zhuangBiFragment);
+                        addFragment(expressionPackageFragment);
                     case R.id.nav_video:
                         break;
                     case R.id.nav_about:
@@ -143,8 +143,7 @@ public class MainActivity extends AbsBaseActivity
     {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // DailyListFragment dailyListFragment = DailyListFragment.newInstance();
-        fragmentTransaction.replace(R.id.conotent, fragment);
+        fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.commit();
     }
 }

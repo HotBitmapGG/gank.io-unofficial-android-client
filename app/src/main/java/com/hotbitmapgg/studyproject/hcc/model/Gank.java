@@ -2,7 +2,7 @@ package com.hotbitmapgg.studyproject.hcc.model;
 
 import java.util.List;
 
-public class GankAndroid
+public class Gank
 {
 
     public boolean error;
@@ -29,5 +29,6 @@ public class GankAndroid
         public boolean used;
 
         public String who;
+
     }
 }

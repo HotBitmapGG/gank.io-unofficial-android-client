@@ -1,6 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.model;
 
-public class ZhuangBiBean
+public class ExpressionPackage
 {
     public String description;
     

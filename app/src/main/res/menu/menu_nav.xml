@@ -5,38 +5,38 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@mipmap/ic_dashboard"
-            android:title="主页"/>
+            android:title="Gank.io"/>
         <item
             android:id="@+id/nav_messages"
             android:icon="@mipmap/ic_event"
-            android:title="CustomWidget系列"/>
+            android:title="CustomWidget"/>
         <item
             android:id="@+id/nav_my_focus"
             android:icon="@mipmap/ic_headset"
-            android:title="Rxjava系列"/>
+            android:title="Rxjava"/>
         <item
             android:id="@+id/nav_foucs_me"
             android:icon="@mipmap/ic_forum"
-            android:title="MaterialDesign系列"/>
+            android:title="MaterialDesign"/>
     </group>
 
-    <item android:title="个人练习">
+    <item android:title="Rank">
         <menu>
             <item
                 android:id="@+id/nav_article"
                 android:checkable="true"
                 android:icon="@mipmap/ic_dashboard"
-                android:title="综合"/>
+                android:title="表情包搜索"/>
             <item
                 android:id="@+id/nav_video"
                 android:checkable="true"
                 android:icon="@mipmap/ic_forum"
-                android:title="练习"/>
+                android:title="每日练习"/>
             <item
                 android:id="@+id/nav_about"
                 android:checkable="true"
                 android:icon="@mipmap/ic_about"
-                android:title="关于"/>
+                android:title="关于我"/>
         </menu>
     </item>
 
