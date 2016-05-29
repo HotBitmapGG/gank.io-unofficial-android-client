@@ -40,6 +40,7 @@ public class WebActivity extends AbsBaseActivity
 
     private String url, title;
 
+
     @Override
     public int getLayoutId()
     {

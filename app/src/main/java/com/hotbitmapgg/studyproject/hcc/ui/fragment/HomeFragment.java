@@ -31,7 +31,7 @@ public class HomeFragment extends LazyFragment
     ViewPager mViewPager;
 
 
-    private List<String> titles = Arrays.asList("Android", "iOS", "前端", "拓展资源", "休息视频");
+    private List<String> titles = Arrays.asList("all","Android", "iOS", "前端", "拓展资源", "休息视频","瞎推荐");
 
 
     public static HomeFragment newInstance()

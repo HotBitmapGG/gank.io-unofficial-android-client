@@ -20,6 +20,7 @@ public class VideoWebActivity extends AbsBaseActivity
 
     private String url;
 
+
     @Override
     public int getLayoutId()
     {

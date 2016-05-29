@@ -37,6 +37,10 @@
         <activity
             android:name=".hcc.rxdemo.RxJavaSampleActivity"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".hcc.rxdemo.RxJavaDemoActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".hcc.ui.activity.WebActivity"
             android:launchMode="singleTask"

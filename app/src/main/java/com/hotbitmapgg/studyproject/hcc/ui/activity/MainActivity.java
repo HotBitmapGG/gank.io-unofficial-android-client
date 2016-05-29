@@ -47,6 +47,7 @@ public class MainActivity extends AbsBaseActivity
 
     private int index;
 
+
     @Override
     public int getLayoutId()
     {
@@ -129,10 +130,12 @@ public class MainActivity extends AbsBaseActivity
                         mToolbar.setTitle("Gank.io");
                         mDrawerLayout.closeDrawers();
                         return true;
+
                     case R.id.nav_messages:
                         startActivity(new Intent(MainActivity.this, TestActivity.class));
                         mDrawerLayout.closeDrawers();
                         return true;
+
                     case R.id.nav_my_focus:
                         index = 1;
                         addFragment(fragments[1]);
@@ -140,10 +143,12 @@ public class MainActivity extends AbsBaseActivity
                         mToolbar.setTitle("RxJava");
                         mDrawerLayout.closeDrawers();
                         return true;
+
                     case R.id.nav_foucs_me:
                         startActivity(new Intent(MainActivity.this, RecycleViewDemoActivity.class));
                         mDrawerLayout.closeDrawers();
                         return true;
+
                     case R.id.nav_article:
                         index = 2;
                         addFragment(fragments[2]);
@@ -151,10 +156,13 @@ public class MainActivity extends AbsBaseActivity
                         mToolbar.setTitle("AqualandFace");
                         mDrawerLayout.closeDrawers();
                         return true;
+
                     case R.id.nav_video:
                         break;
+
                     case R.id.nav_about:
                         break;
+
                     default:
                         break;
                 }

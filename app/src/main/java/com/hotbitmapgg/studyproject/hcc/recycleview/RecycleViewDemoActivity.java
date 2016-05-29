@@ -36,6 +36,7 @@ public class RecycleViewDemoActivity extends AbsBaseActivity
 
     private List<Fragment> fragments = new ArrayList<>();
 
+
     @Override
     public int getLayoutId()
     {

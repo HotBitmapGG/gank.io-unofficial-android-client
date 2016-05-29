@@ -28,7 +28,6 @@ import butterknife.Bind;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func3;
 import rx.schedulers.Schedulers;
@@ -62,6 +61,7 @@ public class RxJavaSampleActivity extends AbsBaseActivity
 
     @Bind(R.id.button_test)
     Button mTest;
+
 
     @Override
     public int getLayoutId()
@@ -277,6 +277,12 @@ public class RxJavaSampleActivity extends AbsBaseActivity
                     public void call(Void aVoid)
                     {
                         LogUtil.all("按钮防抖测试点击" + SystemClock.currentThreadTimeMillis());
+                        //RxBus.getInstance().post("hcc");
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("str" ,"hcc");
+//                        RxBus2.getInstance().post(bundle);
+//
+//                        startActivity(new Intent(RxJavaSampleActivity.this , RxJavaDemoActivity.class));
                     }
                 });
 
@@ -284,29 +290,29 @@ public class RxJavaSampleActivity extends AbsBaseActivity
         /**
          * 使用schedulePeriodically做轮询请求
          */
-
-        Observable.create(new Observable.OnSubscribe<String>()
-        {
-            @Override
-            public void call(final Subscriber<? super String> subscriber)
-            {
-                Schedulers.newThread().createWorker().schedulePeriodically(new Action0()
-                {
-                    @Override
-                    public void call()
-                    {
-                        subscriber.onNext("轮询请求事件" + SystemClock.currentThreadTimeMillis());
-                    }
-                }, 3000, 1000, TimeUnit.MILLISECONDS);
-            }
-        }).subscribe(new Action1<String>()
-        {
-            @Override
-            public void call(String s)
-            {
-                LogUtil.all("内容:" + s);
-            }
-        });
+//
+//        Observable.create(new Observable.OnSubscribe<String>()
+//        {
+//            @Override
+//            public void call(final Subscriber<? super String> subscriber)
+//            {
+//                Schedulers.newThread().createWorker().schedulePeriodically(new Action0()
+//                {
+//                    @Override
+//                    public void call()
+//                    {
+//                        subscriber.onNext("轮询请求事件" + SystemClock.currentThreadTimeMillis());
+//                    }
+//                }, 3000, 1000, TimeUnit.MILLISECONDS);
+//            }
+//        }).subscribe(new Action1<String>()
+//        {
+//            @Override
+//            public void call(String s)
+//            {
+//                LogUtil.all("内容:" + s);
+//            }
+//        });
 
 
         /**

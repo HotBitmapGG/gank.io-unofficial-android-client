@@ -9,7 +9,12 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 import rx.subjects.Subject;
 
-
+/**
+ * Rxbus
+ * 如果项目中已使用Rxjava
+ * 可以使用Rxbus这种思想来替换掉EventBus 或者 Otto
+ * 这类事件总线的开源库,  毕竟65535方法数还是很容易达到的
+ */
 public class RxBus
 {
 

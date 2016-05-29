@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+               android:background="@color/gray_light"
               android:orientation="vertical">
 
     <com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView
@@ -15,29 +16,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <!--设置水波纹效果
+             ?android:attr/selectableItemBackground
+             ?android:attr/selectableItemBackgroundBorderless -->
+
+            <RelativeLayout
                 android:id="@+id/btn_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RxjavaDemo"/>
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/selectableItemBackground">
 
+                <ImageView
+                    android:id="@+id/iv_circle"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_event"/>
 
-            <Button
-                android:id="@+id/btn_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="widget"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_circle"
+                    android:text="RxJava例子"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"/>
 
-
-            <Button
-                android:id="@+id/btn_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Java8"/>
-
+                <ImageView
+                    android:id="@+id/circle_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/ic_arrow"/>
+            </RelativeLayout>
 
 
         </LinearLayout>

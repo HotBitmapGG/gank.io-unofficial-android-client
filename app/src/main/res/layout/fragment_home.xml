@@ -19,7 +19,7 @@
         app:tl_indicator_corner_radius="1.5dp"
         app:tl_indicator_height="3dp"
         app:tl_indicator_width="30dp"
-        app:tl_tab_space_equal="true"/>
+        app:tl_tab_space_equal="false"/>
 
 
     <android.support.v4.view.ViewPager

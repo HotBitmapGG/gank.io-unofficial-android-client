@@ -1,7 +1,7 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
 import android.content.Intent;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
@@ -19,7 +19,7 @@ public class RxjavaDemoFragment extends LazyFragment
 
 
     @Bind(R.id.btn_1)
-    Button mRxjavaBtn;
+    RelativeLayout mRxjavaBtn;
 
     public static RxjavaDemoFragment newInstance()
     {
