@@ -77,6 +77,7 @@ public class MainActivity extends AbsBaseActivity
     public void initToolBar()
     {
 
+        mToolbar.setTitle("Gank.io");
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
