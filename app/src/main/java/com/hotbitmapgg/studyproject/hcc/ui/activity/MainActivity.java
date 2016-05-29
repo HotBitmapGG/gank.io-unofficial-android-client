@@ -1,7 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +16,9 @@ import android.view.MenuItem;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.recycleview.RecycleViewDemoActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 
 import butterknife.Bind;
 
@@ -42,15 +41,23 @@ public class MainActivity extends AbsBaseActivity
 
     private RxjavaDemoFragment rxjavaDemoFragment;
 
+    private Fragment[] fragments;
+
+    private int currentTabIndex;
+
+    private int index;
+
     @Override
     public int getLayoutId()
     {
+
         return R.layout.activity_main;
     }
 
     @Override
     public void initViews(Bundle savedInstanceState)
     {
+
         if (mNavigationView != null)
         {
             setupDrawerContent(mNavigationView);
@@ -59,12 +66,16 @@ public class MainActivity extends AbsBaseActivity
         expressionPackageFragment = ExpressionPackageFragment.newInstance();
         homeFragment = HomeFragment.newInstance();
         rxjavaDemoFragment = RxjavaDemoFragment.newInstance();
-        addFragment(homeFragment);
+
+        fragments = new Fragment[]{homeFragment, rxjavaDemoFragment, expressionPackageFragment};
+
+        getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
     }
 
     @Override
     public void initToolBar()
     {
+
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
@@ -79,6 +90,7 @@ public class MainActivity extends AbsBaseActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -86,6 +98,7 @@ public class MainActivity extends AbsBaseActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+
         switch (item.getItemId())
         {
             case android.R.id.home:
@@ -99,28 +112,45 @@ public class MainActivity extends AbsBaseActivity
 
     private void setupDrawerContent(NavigationView navigationView)
     {
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
         {
+
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem)
             {
+
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_home:
-                          addFragment(homeFragment);
-                        break;
+                        index = 0;
+                        addFragment(fragments[0]);
+                        menuItem.setChecked(true);
+                        mToolbar.setTitle("Gank.io");
+                        mDrawerLayout.closeDrawers();
+                        return true;
                     case R.id.nav_messages:
                         startActivity(new Intent(MainActivity.this, TestActivity.class));
-                        break;
+                        mDrawerLayout.closeDrawers();
+                        return true;
                     case R.id.nav_my_focus:
-                        addFragment(rxjavaDemoFragment);
-                        //startActivity(new Intent(MainActivity.this, RxTestActivity.class));
-                        break;
+                        index = 1;
+                        addFragment(fragments[1]);
+                        menuItem.setChecked(true);
+                        mToolbar.setTitle("RxJava");
+                        mDrawerLayout.closeDrawers();
+                        return true;
                     case R.id.nav_foucs_me:
                         startActivity(new Intent(MainActivity.this, RecycleViewDemoActivity.class));
-                        break;
+                        mDrawerLayout.closeDrawers();
+                        return true;
                     case R.id.nav_article:
-                        addFragment(expressionPackageFragment);
+                        index = 2;
+                        addFragment(fragments[2]);
+                        menuItem.setChecked(true);
+                        mToolbar.setTitle("AqualandFace");
+                        mDrawerLayout.closeDrawers();
+                        return true;
                     case R.id.nav_video:
                         break;
                     case R.id.nav_about:
@@ -128,22 +158,22 @@ public class MainActivity extends AbsBaseActivity
                     default:
                         break;
                 }
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
                 return true;
             }
         });
     }
 
 
-    /**
-     * 添加Fragment
-     */
     public void addFragment(Fragment fragment)
     {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content, fragment);
-        fragmentTransaction.commit();
+
+        FragmentTransaction trx = getFragmentManager().beginTransaction();
+        trx.hide(fragments[currentTabIndex]);
+        if (!fragments[index].isAdded())
+        {
+            trx.add(R.id.content, fragments[index]);
+        }
+        trx.show(fragments[index]).commit();
+        currentTabIndex = index;
     }
 }

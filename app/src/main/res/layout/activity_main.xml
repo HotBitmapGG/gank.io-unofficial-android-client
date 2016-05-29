@@ -43,6 +43,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
+        android:scrollbars="none"
+        android:overScrollMode="never"
         app:menu="@menu/menu_nav"/>
 
 

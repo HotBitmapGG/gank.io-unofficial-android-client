@@ -20,9 +20,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -251,18 +249,18 @@ public class RxJavaSampleActivity extends AbsBaseActivity
          */
 
 
-        Observable.interval(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Long>()
-                {
-                    @Override
-                    public void call(Long aLong)
-                    {
-                        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
-                        String time = format.format(new Date());
-                        mDate.setText(time);
-                    }
-                });
+//        Observable.interval(1, TimeUnit.SECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<Long>()
+//                {
+//                    @Override
+//                    public void call(Long aLong)
+//                    {
+//                        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+//                        String time = format.format(new Date());
+//                        mDate.setText(time);
+//                    }
+//                });
 
 
         /**
