@@ -22,6 +22,8 @@ public class RetrofitHelper
 
     public static final String BASE_GANK_URL = "http://gank.io/api/";
 
+    public static final String BASE_HUABAN_URL = "http://route.showapi.com/";
+
     private static OkHttpClient mOkHttpClient;
 
     static
@@ -62,6 +64,20 @@ public class RetrofitHelper
     }
 
 
+    public static HuaBanMeiziApi getHuaBanMeiziApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_HUABAN_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        HuaBanMeiziApi huaBanMeiziApi = retrofit.create(HuaBanMeiziApi.class);
+
+        return huaBanMeiziApi;
+    }
+
     /**
      * 初始化OKHttpClient
      */
@@ -92,5 +108,4 @@ public class RetrofitHelper
             }
         }
     }
-
 }

@@ -30,7 +30,7 @@
                 android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
-                    android:id="@+id/iv_circle"
+                    android:id="@+id/iv_circle_1"
                     android:layout_width="38dp"
                     android:layout_height="38dp"
                     android:layout_alignParentLeft="true"
@@ -44,13 +44,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/iv_circle"
+                    android:layout_toRightOf="@+id/iv_circle_1"
                     android:text="RxJava例子"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"/>
 
                 <ImageView
-                    android:id="@+id/circle_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/ic_arrow"/>
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/btn_2"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="10dp"
+                android:background="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/iv_circle_2"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_event"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_circle_2"
+                    android:text="花瓣妹子示例"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"/>
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

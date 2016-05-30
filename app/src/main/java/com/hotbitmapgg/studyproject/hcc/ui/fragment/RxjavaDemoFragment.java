@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.rxdemo.RxJavaSampleActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.HuaBanMeiziActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView;
 
 import butterknife.Bind;
@@ -20,6 +21,9 @@ public class RxjavaDemoFragment extends LazyFragment
 
     @Bind(R.id.btn_1)
     RelativeLayout mRxjavaBtn;
+
+    @Bind(R.id.btn_2)
+    RelativeLayout mHuaBanMeiziBtn;
 
     public static RxjavaDemoFragment newInstance()
     {
@@ -42,5 +46,11 @@ public class RxjavaDemoFragment extends LazyFragment
     void startRxjavaDemo()
     {
         startActivity(new Intent(getActivity() , RxJavaSampleActivity.class));
+    }
+
+    @OnClick(R.id.btn_2)
+    void startHuaBanMeizi()
+    {
+        startActivity(new Intent(getActivity() , HuaBanMeiziActivity.class));
     }
 }

@@ -51,6 +51,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentStatusBar"/>
 
+        <activity
+            android:name=".hcc.ui.activity.HuaBanMeiziActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 
