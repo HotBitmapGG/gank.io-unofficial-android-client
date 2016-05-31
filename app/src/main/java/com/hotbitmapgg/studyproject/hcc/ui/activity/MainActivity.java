@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.recycleview.RecycleViewDemoActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.CustomWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
@@ -47,6 +48,8 @@ public class MainActivity extends AbsBaseActivity
 
     private int index;
 
+    private CustomWidgetFragment customWidgetFragment;
+
 
     @Override
     public int getLayoutId()
@@ -67,8 +70,9 @@ public class MainActivity extends AbsBaseActivity
         expressionPackageFragment = ExpressionPackageFragment.newInstance();
         homeFragment = HomeFragment.newInstance();
         rxjavaDemoFragment = RxjavaDemoFragment.newInstance();
+        customWidgetFragment = CustomWidgetFragment.newInstance();
 
-        fragments = new Fragment[]{homeFragment, rxjavaDemoFragment, expressionPackageFragment};
+        fragments = new Fragment[]{homeFragment, customWidgetFragment, rxjavaDemoFragment, expressionPackageFragment};
 
         getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
     }
@@ -133,13 +137,16 @@ public class MainActivity extends AbsBaseActivity
                         return true;
 
                     case R.id.nav_messages:
-                        startActivity(new Intent(MainActivity.this, TestActivity.class));
+                        index = 1;
+                        addFragment(fragments[1]);
+                        mToolbar.setTitle("CustomWidget");
+                        menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;
 
                     case R.id.nav_my_focus:
-                        index = 1;
-                        addFragment(fragments[1]);
+                        index = 2;
+                        addFragment(fragments[2]);
                         menuItem.setChecked(true);
                         mToolbar.setTitle("RxJava");
                         mDrawerLayout.closeDrawers();
@@ -151,15 +158,12 @@ public class MainActivity extends AbsBaseActivity
                         return true;
 
                     case R.id.nav_article:
-                        index = 2;
-                        addFragment(fragments[2]);
+                        index = 3;
+                        addFragment(fragments[3]);
                         menuItem.setChecked(true);
                         mToolbar.setTitle("AqualandFace");
                         mDrawerLayout.closeDrawers();
                         return true;
-
-                    case R.id.nav_video:
-                        break;
 
                     case R.id.nav_about:
                         break;

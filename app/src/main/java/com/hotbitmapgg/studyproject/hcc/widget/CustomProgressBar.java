@@ -53,7 +53,7 @@ public class CustomProgressBar extends View
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Style.STROKE);
-        mPaint.setColor(Color.WHITE);
+        mPaint.setColor(Color.RED);
     }
 
     @Override

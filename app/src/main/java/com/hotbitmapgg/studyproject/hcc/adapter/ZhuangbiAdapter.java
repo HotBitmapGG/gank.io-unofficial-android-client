@@ -44,7 +44,7 @@ public class ZhuangbiAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            Glide.with(getContext()).load(datas.get(position).image_url).placeholder(R.mipmap.placeholder_image).into(itemViewHolder.mImg);
+            Glide.with(getContext()).load(datas.get(position).image_url).placeholder(R.drawable.placeholder_image).into(itemViewHolder.mImg);
             itemViewHolder.mTv.setText(datas.get(position).description);
         }
 

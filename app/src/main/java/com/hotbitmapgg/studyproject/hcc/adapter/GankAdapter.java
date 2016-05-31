@@ -53,7 +53,7 @@ public class GankAdapter extends AbsRecyclerViewAdapter
                     .load(datas.get(position).imageUrl)
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.mipmap.placeholder_image)
+                    .placeholder(R.drawable.placeholder_image)
                     .into(itemViewHolder.ratioImageView)
                     .getSize(new SizeReadyCallback()
                     {

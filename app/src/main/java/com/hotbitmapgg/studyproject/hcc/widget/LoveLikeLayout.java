@@ -85,9 +85,9 @@ public class LoveLikeLayout extends RelativeLayout
     {
         //初始化爱心图片
         drawables = new Drawable[3];
-        Drawable red = getResources().getDrawable(R.mipmap.pl_red);
-        Drawable yellow = getResources().getDrawable(R.mipmap.pl_yellow);
-        Drawable blue = getResources().getDrawable(R.mipmap.pl_blue);
+        Drawable red = getResources().getDrawable(R.drawable.pl_red);
+        Drawable yellow = getResources().getDrawable(R.drawable.pl_yellow);
+        Drawable blue = getResources().getDrawable(R.drawable.pl_blue);
         drawables[0] = red;
         drawables[1] = yellow;
         drawables[2] = blue;

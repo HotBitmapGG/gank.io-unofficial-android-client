@@ -26,10 +26,10 @@
         </activity>
 
         <activity
-            android:name=".hcc.ui.activity.TestActivity"
+            android:name=".hcc.widget_demo.LoveActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".hcc.ui.activity.RxTestActivity"
+            android:name=".hcc.rxdemo.RxTestActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".hcc.recycleview.RecycleViewDemoActivity"
@@ -53,6 +53,21 @@
 
         <activity
             android:name=".hcc.ui.activity.HuaBanMeiziActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".hcc.rxjava_operator.RxJavaOperatorActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".hcc.widget_demo.CircleProgressBarActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".hcc.widget_demo.BezaerActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".hcc.widget_demo.TableActivity"
             android:screenOrientation="portrait"/>
 
     </application>

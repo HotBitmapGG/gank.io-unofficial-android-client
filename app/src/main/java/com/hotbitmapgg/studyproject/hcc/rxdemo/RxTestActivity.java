@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.ui.activity;
+package com.hotbitmapgg.studyproject.hcc.rxdemo;
 
 import android.os.Bundle;
 
