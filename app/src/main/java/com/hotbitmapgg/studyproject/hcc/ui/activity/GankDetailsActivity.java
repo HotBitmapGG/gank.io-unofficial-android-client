@@ -3,13 +3,18 @@ package com.hotbitmapgg.studyproject.hcc.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.ClipboardUtils;
@@ -25,7 +30,7 @@ import butterknife.Bind;
 /**
  * gank.IO详情web页面
  */
-public class WebActivity extends AbsBaseActivity
+public class GankDetailsActivity extends AbsBaseActivity
 {
 
     @Bind(R.id.circle_progress)
@@ -37,23 +42,44 @@ public class WebActivity extends AbsBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
+    @Bind(R.id.detail_image)
+    ImageView mImageView;
+
+    @Bind(R.id.detail_title)
+    TextView mTitle;
+
+    @Bind(R.id.detail_source)
+    TextView mSource;
+
     private static final String KEY_URL = "key_url";
 
     private static final String KEY_TITLE = "key_title";
 
+    private static final String KEY_IMG = "key_img";
+
+    private static final String KEY_USER = "key_user";
+
+    public static final String TRANSIT_PIC = "picture";
+
     private String url, title;
+
+    private String imgUrl;
+
+    private String user;
 
 
     @Override
     public int getLayoutId()
     {
 
-        return R.layout.activity_web;
+        return R.layout.activity_gank_details;
     }
 
     @Override
     public void initViews(Bundle savedInstanceState)
     {
+
+        ViewCompat.setTransitionName(mImageView, TRANSIT_PIC);
 
         Intent intent = getIntent();
         if (intent != null)
@@ -106,7 +132,7 @@ public class WebActivity extends AbsBaseActivity
         switch (itemId)
         {
             case android.R.id.home:
-                onBackPressed();
+                finish();
                 return true;
 
             case R.id.action_share:
@@ -114,8 +140,8 @@ public class WebActivity extends AbsBaseActivity
                 return true;
 
             case R.id.action_copy:
-                ClipboardUtils.setText(WebActivity.this , url);
-                SnackbarUtil.showMessage(mCommonWebView , "已复制到剪贴板");
+                ClipboardUtils.setText(GankDetailsActivity.this, url);
+                SnackbarUtil.showMessage(mCommonWebView, "已复制到剪贴板");
                 return true;
         }
 
@@ -136,6 +162,17 @@ public class WebActivity extends AbsBaseActivity
 
         url = intent.getStringExtra(KEY_URL);
         title = intent.getStringExtra(KEY_TITLE);
+        imgUrl = intent.getStringExtra(KEY_IMG);
+        user = intent.getStringExtra(KEY_USER);
+
+        Glide.with(GankDetailsActivity.this)
+                .load(imgUrl)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(mImageView);
+
+        mTitle.setText(title);
+        mSource.setText("by: " + user);
 
         if (TextUtils.isEmpty(url))
         {
@@ -150,22 +187,29 @@ public class WebActivity extends AbsBaseActivity
         mCommonWebView.addJavascriptInterface(jsHandler, "JsHandler");
     }
 
-    public static boolean start(Activity activity, String url, String title)
+    public static Intent start(Activity activity, String url, String title, String imgUrl, String user)
     {
 
         Intent intent = new Intent();
-        intent.setClass(activity, WebActivity.class);
+        intent.setClass(activity, GankDetailsActivity.class);
         intent.putExtra(KEY_URL, url);
         intent.putExtra(KEY_TITLE, title);
-        activity.startActivity(intent);
+        intent.putExtra(KEY_IMG, imgUrl);
+        intent.putExtra(KEY_USER, user);
+        // activity.startActivity(intent);
 
-        return true;
+        return intent;
     }
 
     public static boolean start(Activity activity, String url)
     {
 
-        return start(activity, url, null);
+        Intent intent = new Intent();
+        intent.setClass(activity, GankDetailsActivity.class);
+        intent.putExtra(KEY_URL, url);
+        activity.startActivity(intent);
+
+        return true;
     }
 
 
@@ -186,4 +230,5 @@ public class WebActivity extends AbsBaseActivity
         intent.putExtra(Intent.EXTRA_TEXT, "来自「Gank.IO」的分享:" + url);
         startActivity(Intent.createChooser(intent, title));
     }
+
 }

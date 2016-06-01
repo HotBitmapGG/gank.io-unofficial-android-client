@@ -70,6 +70,11 @@
             android:name=".hcc.widget_demo.TableActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".hcc.ui.activity.GankDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.StatusBar"/>
+
     </application>
 
 </manifest>

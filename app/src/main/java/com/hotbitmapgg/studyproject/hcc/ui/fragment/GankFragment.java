@@ -1,6 +1,9 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -16,8 +19,8 @@ import com.hotbitmapgg.studyproject.hcc.model.ZipItem;
 import com.hotbitmapgg.studyproject.hcc.network.GankApi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.GankDetailsActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
-import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import java.text.ParseException;
@@ -256,7 +259,25 @@ public class GankFragment extends LazyFragment
                 if (!type.equals("休息视频"))
                 {
 
-                    WebActivity.start(getActivity(), zipItem.url, zipItem.desc);
+                    //GankDetailsActivity.start(getActivity(), zipItem.url, zipItem.desc,zipItem.imageUrl,zipItem.who);
+
+
+                    Intent intent = GankDetailsActivity.start(getActivity(),zipItem.url, zipItem.desc,zipItem.imageUrl,zipItem.who);
+                    ActivityOptionsCompat mActivityOptionsCompat;
+                    if (Build.VERSION.SDK_INT >= 21)
+                    {
+                        mActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                getActivity(), holder.getParentView().findViewById(R.id.item_img), GankDetailsActivity.TRANSIT_PIC);
+                    } else
+                    {
+                        mActivityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
+                                holder.getParentView().findViewById(R.id.item_img), 0, 0,
+                                holder.getParentView().findViewById(R.id.item_img).getWidth(),
+                                holder.getParentView().findViewById(R.id.item_img).getHeight());
+                    }
+
+                    startActivity(intent, mActivityOptionsCompat.toBundle());
+
                 } else
                 {
                     VideoWebActivity.launch(getActivity(), zipItem.url);

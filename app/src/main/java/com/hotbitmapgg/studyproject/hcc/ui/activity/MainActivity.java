@@ -81,7 +81,7 @@ public class MainActivity extends AbsBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("Gank.io");
+        mToolbar.setTitle("Gank.IO");
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
@@ -132,7 +132,7 @@ public class MainActivity extends AbsBaseActivity
                         index = 0;
                         addFragment(fragments[0]);
                         menuItem.setChecked(true);
-                        mToolbar.setTitle("Gank.io");
+                        mToolbar.setTitle("Gank.IO");
                         mDrawerLayout.closeDrawers();
                         return true;
 
