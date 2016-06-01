@@ -9,14 +9,15 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.ClipboardUtils;
 import com.hotbitmapgg.studyproject.hcc.utils.JsHandler;
-import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleProgressView;
+import com.hotbitmapgg.studyproject.hcc.widget.CommonWebChromeClient;
 import com.hotbitmapgg.studyproject.hcc.widget.CommonWebView;
 import com.hotbitmapgg.studyproject.hcc.widget.CommonWebViewClient;
 
@@ -30,6 +31,9 @@ public class WebActivity extends AbsBaseActivity
 
     @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
+
+    @Bind(R.id.progress_bar)
+    ProgressBar mBar;
 
     @Bind(R.id.web_view)
     CommonWebView mCommonWebView;
@@ -61,19 +65,9 @@ public class WebActivity extends AbsBaseActivity
 
         initWebSetting();
 
-        CommonWebViewClient mCommonWebViewClient = new CommonWebViewClient(this);
-        mCommonWebViewClient.setOnPageFinish(new CommonWebViewClient.OnPageFinish()
-        {
-
-            @Override
-            public void isFinish()
-            {
-
-                LogUtil.all("页面加载完毕");
-                hideProgress();
-            }
-        });
-        mCommonWebView.setWebViewClient(mCommonWebViewClient);
+        hideProgress();
+        mCommonWebView.setWebChromeClient(new CommonWebChromeClient(mBar, mCircleProgressView));
+        mCommonWebView.setWebViewClient(new CommonWebViewClient(WebActivity.this));
         mCommonWebView.loadUrl(url);
     }
 
@@ -114,8 +108,8 @@ public class WebActivity extends AbsBaseActivity
                 return true;
 
             case R.id.action_copy:
-                ClipboardUtils.setText(WebActivity.this , url);
-                SnackbarUtil.showMessage(mCommonWebView , "已复制到剪贴板");
+                ClipboardUtils.setText(WebActivity.this, url);
+                SnackbarUtil.showMessage(mCommonWebView, "已复制到剪贴板");
                 return true;
         }
 

@@ -85,7 +85,9 @@
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:scrollbars="vertical"
+        android:transitionGroup="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -99,6 +101,8 @@
                 android:overScrollMode="never"/>
 
             <include layout="@layout/layout_loading"/>
+
+            <include layout="@layout/layout_web_progress_bar"/>
 
         </FrameLayout>
 

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,9 +20,9 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.ClipboardUtils;
 import com.hotbitmapgg.studyproject.hcc.utils.JsHandler;
-import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleProgressView;
+import com.hotbitmapgg.studyproject.hcc.widget.CommonWebChromeClient;
 import com.hotbitmapgg.studyproject.hcc.widget.CommonWebView;
 import com.hotbitmapgg.studyproject.hcc.widget.CommonWebViewClient;
 
@@ -35,6 +36,9 @@ public class GankDetailsActivity extends AbsBaseActivity
 
     @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
+
+    @Bind(R.id.progress_bar)
+    ProgressBar mProgressBar;
 
     @Bind(R.id.web_view)
     CommonWebView mCommonWebView;
@@ -87,19 +91,9 @@ public class GankDetailsActivity extends AbsBaseActivity
 
         initWebSetting();
 
-        CommonWebViewClient mCommonWebViewClient = new CommonWebViewClient(this);
-        mCommonWebViewClient.setOnPageFinish(new CommonWebViewClient.OnPageFinish()
-        {
-
-            @Override
-            public void isFinish()
-            {
-
-                LogUtil.all("页面加载完毕");
-                hideProgress();
-            }
-        });
-        mCommonWebView.setWebViewClient(mCommonWebViewClient);
+        mProgressBar.setVisibility(View.GONE);
+        mCommonWebView.setWebChromeClient(new CommonWebChromeClient(mProgressBar, mCircleProgressView));
+        mCommonWebView.setWebViewClient(new CommonWebViewClient(GankDetailsActivity.this));
         mCommonWebView.loadUrl(url);
     }
 
@@ -132,7 +126,7 @@ public class GankDetailsActivity extends AbsBaseActivity
         switch (itemId)
         {
             case android.R.id.home:
-                finish();
+                onBackPressed();
                 return true;
 
             case R.id.action_share:
@@ -230,5 +224,4 @@ public class GankDetailsActivity extends AbsBaseActivity
         intent.putExtra(Intent.EXTRA_TEXT, "来自「Gank.IO」的分享:" + url);
         startActivity(Intent.createChooser(intent, title));
     }
-
 }

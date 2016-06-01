@@ -14,14 +14,6 @@ public class CommonWebViewClient extends android.webkit.WebViewClient
 
     private Activity mActivity;
 
-    private OnPageFinish onPageFinish;
-
-    public void setOnPageFinish(OnPageFinish onPageFinish)
-    {
-
-        this.onPageFinish = onPageFinish;
-    }
-
     public CommonWebViewClient(Activity activity)
     {
 
@@ -77,10 +69,6 @@ public class CommonWebViewClient extends android.webkit.WebViewClient
     public void onPageFinished(WebView view, String url)
     {
 
-        if (onPageFinish != null)
-        {
-            onPageFinish.isFinish();
-        }
         super.onPageFinished(view, url);
     }
 
@@ -91,10 +79,4 @@ public class CommonWebViewClient extends android.webkit.WebViewClient
         super.onReceivedError(view, errorCode, description, failingUrl);
     }
 
-
-    public interface OnPageFinish
-    {
-
-        void isFinish();
-    }
 }
