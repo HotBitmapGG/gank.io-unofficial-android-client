@@ -14,19 +14,14 @@ Gank.IO客户端+各种好玩的API+日常练习代码，感兴趣的请Star一�
 
 ## 截图
 
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_1.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/01.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_2.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/02.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_3.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/03.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_4.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/04.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_5.jpg?raw=true)
-
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_6.jpg?raw=true)
-
-![](https://github.com/HotBitmapGG/RxZhiHu/blob/https--github.com/HotBitmapGG/RxZhiHuDaily/screenphoto/photo_8.jpg?raw=true)
 
 ##声明
 本项目所使用API均来自 知乎日报 API 分析
