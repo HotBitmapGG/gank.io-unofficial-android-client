@@ -22,6 +22,8 @@ import butterknife.ButterKnife;
  * 该页面不要继承AppCompatActivity
  * 会导致界面启动卡顿
  * AppCompatActivity会默认去加载主题的原因.
+ * <p/>
+ * 启动界面图片资源来自专栏App,感谢分享~
  */
 public class EntryActivity extends Activity
 {

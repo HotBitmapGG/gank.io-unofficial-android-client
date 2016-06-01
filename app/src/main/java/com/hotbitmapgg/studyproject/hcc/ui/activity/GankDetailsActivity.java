@@ -30,6 +30,15 @@ import butterknife.Bind;
 
 /**
  * gank.IO详情web页面
+ * <p/>
+ * Tips:做这个界面遇到个问题,设置界面共享元素动画时候
+ * Actiivty的跳转,退出界面崩溃,原因是WebView所在父View
+ * NestedScrollView没有设置android:transitionGroup="true"属性
+ * <p/>
+ * StackOverFlow的答案:
+ * Switching the ScrollView's transitionGroup from false (the default value)
+ * to true makes it work because then the ScrollView is being faded in.
+ * The ScrollView has a maximum size, while its contents can be enormous.
  */
 public class GankDetailsActivity extends AbsBaseActivity
 {
