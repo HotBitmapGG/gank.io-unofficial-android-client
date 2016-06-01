@@ -24,6 +24,11 @@ Rxjava:Rxjava实际应用的demo,Rxjava操作符大全,数据均来自RxJavaDocs
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/04.jpg?raw=true)
 
+## Other
+
+* 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
+* 高仿BiliBili客户端:https://github.com/HotBitmapGG/OhMyBiliBili
+* Gank.IO客户端 :https://github.com/HotBitmapGG/StudyProject
 
 ## License
 
