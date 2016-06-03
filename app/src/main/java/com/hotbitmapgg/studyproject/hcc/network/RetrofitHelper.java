@@ -1,7 +1,7 @@
 package com.hotbitmapgg.studyproject.hcc.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.hotbitmapgg.studyproject.hcc.base.StudyApp;
+import com.hotbitmapgg.studyproject.hcc.StudyApp;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import java.io.File;

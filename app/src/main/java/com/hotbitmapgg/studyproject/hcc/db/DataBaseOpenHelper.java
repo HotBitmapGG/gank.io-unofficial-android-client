@@ -2,7 +2,7 @@ package com.hotbitmapgg.studyproject.hcc.db;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.hotbitmapgg.studyproject.hcc.base.StudyApp;
+import com.hotbitmapgg.studyproject.hcc.StudyApp;
 import com.hotbitmapgg.studyproject.hcc.model.Item;
 
 import java.io.File;

@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".hcc.base.StudyApp"
+        android:name=".hcc.StudyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_photo"
         android:label="@string/app_name"
@@ -78,6 +78,10 @@
             android:name=".hcc.ui.activity.GankDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar"/>
+
+        <activity
+            android:name=".hcc.ui.activity.HuaBanMeiziDetailsActivity"
+            android:screenOrientation="portrait"/>
 
 
     </application>

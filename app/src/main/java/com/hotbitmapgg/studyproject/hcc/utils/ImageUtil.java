@@ -53,7 +53,7 @@ public class ImageUtil
             public Observable<Uri> call(Bitmap bitmap)
             {
 
-                File appDir = new File(Environment.getExternalStorageDirectory(), "pic");
+                File appDir = new File(Environment.getExternalStorageDirectory(), "gank_io");
                 if (!appDir.exists())
                 {
                     appDir.mkdir();

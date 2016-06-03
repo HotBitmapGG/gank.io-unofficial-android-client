@@ -1,25 +1,50 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
-import com.hotbitmapgg.studyproject.hcc.model.HuaBanMeizi;
-import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
-import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.HuaBanMeiziSimpleFragment;
 
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.ResponseBody;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import butterknife.Bind;
 
+/**
+ * 花瓣妹子接口对应type:
+ * 大胸妹=34
+ * 小清新=35
+ * 文艺范=36
+ * 性感妹=37
+ * 大长腿=38
+ * 黑丝袜=39
+ * 小翘臀=40
+ */
 public class HuaBanMeiziActivity extends AbsBaseActivity
 {
+
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @Bind(R.id.sliding_tabs)
+    SlidingTabLayout mSlidingTabLayout;
+
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
+
+    private List<String> titles = Arrays.asList("大胸妹", "小清新", "文艺范", "性感妹", "大长腿", "黑丝袜", "小翘臀");
+
+    private List<Integer> cids = Arrays.asList(34, 35, 36, 37, 38, 39, 40);
+
 
     @Override
     public int getLayoutId()
@@ -32,47 +57,60 @@ public class HuaBanMeiziActivity extends AbsBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        RetrofitHelper.getHuaBanMeiziApi()
-                .getHuaBanMeizi("10","1", ConstantUtil.APP_ID,"34",ConstantUtil.APP_SIGN)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResponseBody>()
-                {
-
-                    @Override
-                    public void call(ResponseBody responseBody)
-                    {
-
-                        try
-                        {
-                            String response = responseBody.string();
-                            if(!TextUtils.isEmpty(response))
-                            {
-                                HuaBanMeizi meizi = HuaBanMeizi.createFromJson(response);
-                                if (meizi != null)
-                                {
-                                    List<HuaBanMeizi.MeiziInfo> infos = meizi.infos;
-                                }
-                            }
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-                        LogUtil.all(throwable.getMessage());
-                    }
-                });
+        mViewPager.setAdapter(new HuaBanMeiziPageAdapter(getFragmentManager()));
+        mSlidingTabLayout.setViewPager(mViewPager);
     }
 
     @Override
     public void initToolBar()
     {
 
+        mToolbar.setTitle("没时间解释了,赶紧上车");
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+        {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private class HuaBanMeiziPageAdapter extends FragmentPagerAdapter
+    {
+
+        public HuaBanMeiziPageAdapter(FragmentManager fm)
+        {
+
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position)
+        {
+
+            return HuaBanMeiziSimpleFragment.newInstance(cids.get(position), position);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+        {
+
+            return titles.get(position);
+        }
+
+        @Override
+        public int getCount()
+        {
+
+            return titles.size();
+        }
     }
 }

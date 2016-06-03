@@ -26,7 +26,7 @@ public class HuaBanMeizi
     @SerializedName("showapi_res_body")
     public JsonObject list;
 
-    public List<MeiziInfo> infos;
+    public List<HuaBanMeiziInfo> infos;
 
 
     /**
@@ -49,7 +49,7 @@ public class HuaBanMeizi
             Map.Entry<String,JsonElement> element = iterator.next();
             try
             {
-                result.infos.add(new Gson().fromJson(element.getValue(), MeiziInfo.class));
+                result.infos.add(new Gson().fromJson(element.getValue(), HuaBanMeiziInfo.class));
             } catch (Exception e)
             {
 
@@ -59,16 +59,5 @@ public class HuaBanMeizi
         result.list = null;
 
         return result;
-    }
-
-
-    public class MeiziInfo
-    {
-
-        public String thumb;
-
-        public String title;
-
-        public String url;
     }
 }
