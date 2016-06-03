@@ -166,6 +166,7 @@ public class MainActivity extends AbsBaseActivity
                         return true;
 
                     case R.id.nav_about:
+                        startActivity(new Intent(MainActivity.this , HotBitmapGGActivity.class));
                         break;
 
                     default:

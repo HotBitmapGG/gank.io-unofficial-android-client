@@ -83,6 +83,11 @@
             android:name=".hcc.ui.activity.HuaBanMeiziDetailsActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".hcc.ui.activity.HotBitmapGGActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.StatusBar"/>
+
 
     </application>
 

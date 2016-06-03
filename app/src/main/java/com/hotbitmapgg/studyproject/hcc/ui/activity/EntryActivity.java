@@ -13,9 +13,13 @@ import android.widget.ImageView;
 import com.hotbitmapgg.studyproject.R;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Tips:App启动页面
@@ -36,6 +40,7 @@ public class EntryActivity extends Activity
     private static final float SCALE_END = 1.13F;
 
     private static final int[] IMAGES = {
+            R.drawable.ic_hotbitmapgg,
             R.drawable.splash0,
             R.drawable.splash1,
             R.drawable.splash2,
@@ -65,7 +70,19 @@ public class EntryActivity extends Activity
 
         Random random = new Random(SystemClock.elapsedRealtime());
         mSplashImage.setImageResource(IMAGES[random.nextInt(IMAGES.length)]);
-        startAnim();
+
+        Observable.timer(1000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>()
+                {
+
+                    @Override
+                    public void call(Long aLong)
+                    {
+                        startAnim();
+                    }
+                });
+
     }
 
     private void startAnim()
