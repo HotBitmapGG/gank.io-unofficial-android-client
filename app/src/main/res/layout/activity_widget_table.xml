@@ -7,7 +7,7 @@
     <include layout="@layout/layout_toolbar"/>
 
 
-    <com.hotbitmapgg.studyproject.hcc.widget.TableView
+    <com.hotbitmapgg.studyproject.hcc.widget.tablayout.TableView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_centerInParent="true"/>

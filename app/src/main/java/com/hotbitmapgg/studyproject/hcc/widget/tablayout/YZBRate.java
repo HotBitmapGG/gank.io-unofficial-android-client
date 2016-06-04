@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.widget;
+package com.hotbitmapgg.studyproject.hcc.widget.tablayout;
 
 
 public class YZBRate

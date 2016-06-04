@@ -22,9 +22,9 @@ import com.hotbitmapgg.studyproject.hcc.utils.ClipboardUtils;
 import com.hotbitmapgg.studyproject.hcc.utils.JsHandler;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleProgressView;
-import com.hotbitmapgg.studyproject.hcc.widget.CommonWebChromeClient;
-import com.hotbitmapgg.studyproject.hcc.widget.CommonWebView;
-import com.hotbitmapgg.studyproject.hcc.widget.CommonWebViewClient;
+import com.hotbitmapgg.studyproject.hcc.widget.web.CommonWebChromeClient;
+import com.hotbitmapgg.studyproject.hcc.widget.web.CommonWebView;
+import com.hotbitmapgg.studyproject.hcc.widget.web.CommonWebViewClient;
 
 import butterknife.Bind;
 

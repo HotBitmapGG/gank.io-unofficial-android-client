@@ -12,7 +12,7 @@ import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.model.HuaBanMeiziInfo;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.studyproject.hcc.widget.RatioImageView;
+import com.hotbitmapgg.studyproject.hcc.widget.image.RatioImageView;
 
 import java.util.ArrayList;
 import java.util.List;

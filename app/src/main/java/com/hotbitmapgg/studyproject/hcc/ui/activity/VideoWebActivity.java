@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.widget.LoveVideoView;
+import com.hotbitmapgg.studyproject.hcc.widget.web.LoveVideoView;
 
 import butterknife.Bind;
 

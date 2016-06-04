@@ -21,12 +21,10 @@ import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.GankDetailsActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
+import com.hotbitmapgg.studyproject.hcc.utils.GankMeiziDateUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -45,10 +43,6 @@ public class GankFragment extends LazyFragment
 
     @Bind(R.id.swipe_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
-
-    private final static String TIME_FORMAT_1 = "yyyy-MM-dd'T'HH:mm:ss.SS'Z'";
-
-    private final static String TIME_FORMAT_2 = "yy/MM/dd HH:mm:ss";
 
     private final static String EXTRA_TYPE = "type";
 
@@ -151,24 +145,17 @@ public class GankFragment extends LazyFragment
                     {
 
                         List<GankResult.GankBeautyBean> beautys = gankResult.beautys;
-                        List<Item> items = new ArrayList<Item>(beautys.size());
-                        SimpleDateFormat inputFormat = new SimpleDateFormat(TIME_FORMAT_1);
-                        SimpleDateFormat outputFormat = new SimpleDateFormat(TIME_FORMAT_2);
+                        List<Item> items = new ArrayList<>(beautys.size());
                         int size = beautys.size();
+                        Item item;
                         for (int i = 0; i < size; i++)
                         {
-                            try
-                            {
-                                Item item = new Item();
-                                Date date = inputFormat.parse(beautys.get(i).createdAt);
-                                String format = outputFormat.format(date);
-                                item.description = format;
-                                item.imageUrl = beautys.get(i).url;
-                                items.add(item);
-                            } catch (ParseException e)
-                            {
-                                e.printStackTrace();
-                            }
+
+                            item = new Item();
+                            String time = GankMeiziDateUtil.convertTime(beautys.get(i).createdAt);
+                            item.description = time;
+                            item.imageUrl = beautys.get(i).url;
+                            items.add(item);
                         }
                         return items;
                     }
@@ -180,7 +167,7 @@ public class GankFragment extends LazyFragment
                     public List<ZipItem> call(List<Item> items, Gank gank)
                     {
 
-                        List<ZipItem> zipItems = new ArrayList<ZipItem>();
+                        List<ZipItem> zipItems = new ArrayList<>();
                         ZipItem zipItem;
                         List<Gank.AndroidInfo> results = gank.results;
 
@@ -259,10 +246,7 @@ public class GankFragment extends LazyFragment
                 if (!type.equals("休息视频"))
                 {
 
-                    //GankDetailsActivity.start(getActivity(), zipItem.url, zipItem.desc,zipItem.imageUrl,zipItem.who);
-
-
-                    Intent intent = GankDetailsActivity.start(getActivity(),zipItem.url, zipItem.desc,zipItem.imageUrl,zipItem.who);
+                    Intent intent = GankDetailsActivity.start(getActivity(), zipItem.url, zipItem.desc, zipItem.imageUrl, zipItem.who);
                     ActivityOptionsCompat mActivityOptionsCompat;
                     if (Build.VERSION.SDK_INT >= 21)
                     {
@@ -277,7 +261,6 @@ public class GankFragment extends LazyFragment
                     }
 
                     startActivity(intent, mActivityOptionsCompat.toBundle());
-
                 } else
                 {
                     VideoWebActivity.launch(getActivity(), zipItem.url);

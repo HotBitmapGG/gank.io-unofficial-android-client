@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.widget;
+package com.hotbitmapgg.studyproject.hcc.widget.web;
 
 import android.app.Activity;
 import android.graphics.Bitmap;

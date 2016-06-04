@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.widget;
+package com.hotbitmapgg.studyproject.hcc.widget.image;
 
 import android.annotation.TargetApi;
 import android.content.Context;

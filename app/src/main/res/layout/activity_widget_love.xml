@@ -7,7 +7,7 @@
     <include layout="@layout/layout_toolbar"/>
 
 
-    <com.hotbitmapgg.studyproject.hcc.widget.LoveLikeLayout
+    <com.hotbitmapgg.studyproject.hcc.widget.lovelayout.LoveLikeLayout
         android:id="@+id/love"
         android:layout_width="match_parent"
         android:layout_height="200dp"

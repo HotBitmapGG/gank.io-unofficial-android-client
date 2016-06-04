@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.widget;
+package com.hotbitmapgg.studyproject.hcc.widget.web;
 
 import android.content.Context;
 import android.media.MediaPlayer;

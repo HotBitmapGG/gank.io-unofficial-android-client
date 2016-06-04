@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.widget;
+package com.hotbitmapgg.studyproject.hcc.widget_demo;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,22 +11,22 @@ import android.view.View;
  * <p/>
  * View的绘制流程练习代码
  */
-public class TestView extends View
+public class CommonView extends View
 {
 
     private Paint mPaint;
 
-    public TestView(Context context)
+    public CommonView(Context context)
     {
         this(context, null);
     }
 
-    public TestView(Context context, AttributeSet attrs)
+    public CommonView(Context context, AttributeSet attrs)
     {
         this(context, attrs, 0);
     }
 
-    public TestView(Context context, AttributeSet attrs, int defStyleAttr)
+    public CommonView(Context context, AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
 

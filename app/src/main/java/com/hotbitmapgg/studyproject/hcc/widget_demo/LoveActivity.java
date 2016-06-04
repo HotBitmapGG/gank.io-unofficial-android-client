@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.widget.LoveLikeLayout;
+import com.hotbitmapgg.studyproject.hcc.widget.lovelayout.LoveLikeLayout;
 
 import butterknife.Bind;
 
