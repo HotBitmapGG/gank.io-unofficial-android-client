@@ -24,7 +24,7 @@
             android:id="@+id/nav_article"
             android:checkable="true"
             android:icon="@drawable/ic_discuss"
-            android:title="表情包搜索"/>
+            android:title="AqualandFace"/>
     </group>
 
     <item android:title="About">

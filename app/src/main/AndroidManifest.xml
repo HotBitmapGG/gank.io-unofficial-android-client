@@ -114,6 +114,15 @@
             android:name=".hcc.widget_demo.SlideGankMeiziActivity"
             android:screenOrientation="portrait"/>
 
+        <!--安卓开发艺术探索读书笔记-->
+        <activity
+            android:name=".hcc.android_develop_art_explore.AndroidDevelopActivity"
+            android:screenOrientation="portrait"/>
+
+        <!-- EffectiveJava读书笔记-->
+        <activity
+            android:name=".hcc.effective_java.EffectiveJavaNoteActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

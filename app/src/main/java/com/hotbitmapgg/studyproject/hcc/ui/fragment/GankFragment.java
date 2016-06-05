@@ -23,6 +23,7 @@ import com.hotbitmapgg.studyproject.hcc.ui.activity.GankDetailsActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.GankMeiziDateUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +109,8 @@ public class GankFragment extends LazyFragment
             public void onRefresh()
             {
 
-                mSwipeRefreshLayout.setRefreshing(false);
+                startGetBeautysByMap();
+                //mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -208,6 +210,7 @@ public class GankFragment extends LazyFragment
                     {
 
                         LogUtil.all("数据加载失败");
+                        SnackbarUtil.showMessage(mRecyclerView,"数据加载失败,下拉刷新重新加载!");
                         mSwipeRefreshLayout.post(new Runnable()
                         {
 

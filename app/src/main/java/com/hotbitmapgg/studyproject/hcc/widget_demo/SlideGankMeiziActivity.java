@@ -12,6 +12,7 @@ import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.model.GankResult;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleProgressView;
 import com.hotbitmapgg.studyproject.hcc.widget.slidecard.CardDataItem;
 import com.hotbitmapgg.studyproject.hcc.widget.slidecard.CardSlidePanel;
@@ -132,7 +133,7 @@ public class SlideGankMeiziActivity extends AbsBaseActivity
                     {
 
                         LogUtil.all("数据加载失败");
-                        hideProgress();
+                        showError();
                     }
                 });
     }
@@ -194,5 +195,14 @@ public class SlideGankMeiziActivity extends AbsBaseActivity
         mCircleProgressView.stopSpinning();
         mCircleProgressView.setVisibility(View.GONE);
         mRootLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void showError()
+    {
+
+        mCircleProgressView.stopSpinning();
+        mCircleProgressView.setVisibility(View.GONE);
+        mRootLayout.setVisibility(View.GONE);
+        SnackbarUtil.showMessage(mRootLayout, "出错了,请重新加载~~!");
     }
 }

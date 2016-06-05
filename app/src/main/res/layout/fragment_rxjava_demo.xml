@@ -18,146 +18,45 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--设置水波纹效果
-             ?android:attr/selectableItemBackground
-             ?android:attr/selectableItemBackgroundBorderless -->
-
-
-            <android.support.v7.widget.CardView
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="4dp">
-
-                <RelativeLayout
-                    android:id="@+id/btn_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="?android:attr/selectableItemBackground">
-
-                    <ImageView
-                        android:id="@+id/iv_circle_1"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="20dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_article_hot"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/iv_circle_1"
-                        android:text="RxJava例子"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/ic_arrow"/>
-                </RelativeLayout>
+                app:name="花瓣妹子示例"/>
 
 
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="4dp">
+                android:layout_marginTop="20dp"
+                app:name="RxJava示例"/>
 
-                <RelativeLayout
-                    android:id="@+id/btn_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="?android:attr/selectableItemBackground">
-
-                    <ImageView
-                        android:id="@+id/iv_circle_2"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="20dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_article_hot"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/iv_circle_2"
-                        android:text="花瓣妹子示例"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/ic_arrow"/>
-                </RelativeLayout>
+            <include layout="@layout/layout_line_view"/>
 
 
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="4dp">
+                app:name="RxJava操作符大全"/>
 
-                <RelativeLayout
-                    android:id="@+id/btn_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="?android:attr/selectableItemBackground">
 
-                    <ImageView
-                        android:id="@+id/iv_circle_3"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="20dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_article_hot"/>
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:name="安卓开发艺术探索读书笔记"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/iv_circle_3"
-                        android:text="RxJava操作符大全"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"/>
+            <include layout="@layout/layout_line_view"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginRight="15dp"
-                        android:src="@drawable/ic_arrow"/>
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="EffectiveJava读书笔记"/>
 
 
         </LinearLayout>

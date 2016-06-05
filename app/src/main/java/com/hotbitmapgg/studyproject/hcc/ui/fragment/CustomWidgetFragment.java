@@ -8,6 +8,7 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.WidgetAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.recycleview.DividerItemDecoration;
 import com.hotbitmapgg.studyproject.hcc.widget_demo.SlideGankMeiziActivity;
 import com.hotbitmapgg.studyproject.hcc.widget_demo.BezaerActivity;
 import com.hotbitmapgg.studyproject.hcc.widget_demo.CircleProgressBarActivity;
@@ -48,6 +49,7 @@ public class CustomWidgetFragment extends LazyFragment
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity() , DividerItemDecoration.VERTICAL_LIST));
         WidgetAdapter mAdapter = new WidgetAdapter(mRecyclerView, names);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()

@@ -1,13 +1,15 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
 import android.content.Intent;
-import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.studyproject.R;
+import com.hotbitmapgg.studyproject.hcc.android_develop_art_explore.AndroidDevelopActivity;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.effective_java.EffectiveJavaNoteActivity;
 import com.hotbitmapgg.studyproject.hcc.rxdemo.RxJavaSampleActivity;
 import com.hotbitmapgg.studyproject.hcc.rxjava_operator.RxJavaOperatorActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.HuaBanMeiziActivity;
+import com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView;
 import com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView;
 
 import butterknife.Bind;
@@ -19,24 +21,31 @@ public class RxjavaDemoFragment extends LazyFragment
     @Bind(R.id.sping_scroll)
     SpringScrollView mScrollView;
 
-
     @Bind(R.id.btn_1)
-    RelativeLayout mRxjavaBtn;
+    ItemArrowCardView mHuaBanMeizi;
 
     @Bind(R.id.btn_2)
-    RelativeLayout mHuaBanMeiziBtn;
+    ItemArrowCardView mRxjavaSample;
 
     @Bind(R.id.btn_3)
-    RelativeLayout mRxJavaOperator;
+    ItemArrowCardView mRxJavaOperator;
+
+    @Bind(R.id.btn_4)
+    ItemArrowCardView mAndroidDevelopArtExplore;
+
+    @Bind(R.id.btn_5)
+    ItemArrowCardView mEffectiveJava;
 
     public static RxjavaDemoFragment newInstance()
     {
+
         return new RxjavaDemoFragment();
     }
 
     @Override
     public int getLayoutId()
     {
+
         return R.layout.fragment_rxjava_demo;
     }
 
@@ -47,20 +56,38 @@ public class RxjavaDemoFragment extends LazyFragment
     }
 
     @OnClick(R.id.btn_1)
-    void startRxjavaDemo()
+    void startHuaBanMeizi()
     {
-        startActivity(new Intent(getActivity() , RxJavaSampleActivity.class));
+
+        startActivity(new Intent(getActivity(), HuaBanMeiziActivity.class));
     }
 
     @OnClick(R.id.btn_2)
-    void startHuaBanMeizi()
+    void startRxJavaSample()
     {
-        startActivity(new Intent(getActivity() , HuaBanMeiziActivity.class));
+
+        startActivity(new Intent(getActivity(), RxJavaSampleActivity.class));
     }
 
+
     @OnClick(R.id.btn_3)
-    void startOperator()
+    void startRxJavaOperator()
     {
-        startActivity(new Intent(getActivity() , RxJavaOperatorActivity.class));
+
+        startActivity(new Intent(getActivity(), RxJavaOperatorActivity.class));
+    }
+
+    @OnClick(R.id.btn_4)
+    void startAndroidDevelopArtExplore()
+    {
+
+        startActivity(new Intent(getActivity(), AndroidDevelopActivity.class));
+    }
+
+    @OnClick(R.id.btn_5)
+    void startEffectiveJava()
+    {
+
+        startActivity(new Intent(getActivity(), EffectiveJavaNoteActivity.class));
     }
 }
