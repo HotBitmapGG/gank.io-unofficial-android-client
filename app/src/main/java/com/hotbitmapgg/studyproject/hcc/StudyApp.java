@@ -3,6 +3,11 @@ package com.hotbitmapgg.studyproject.hcc;
 import android.app.Application;
 import android.content.Context;
 
+import io.realm.DynamicRealm;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
+
 public class StudyApp extends Application
 {
 
@@ -14,17 +19,18 @@ public class StudyApp extends Application
 
         super.onCreate();
         mAppContext = this;
-//        RealmConfiguration configuration = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().schemaVersion(4).migration(new RealmMigration()
-//        {
-//
-//            @Override
-//            public void migrate(DynamicRealm realm, long oldVersion, long newVersion)
-//            {
-//
-//            }
-//        }).build();
-//
-//        Realm.setDefaultConfiguration(configuration);
+        // 配置Realm数据库
+        RealmConfiguration configuration = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().schemaVersion(4).migration(new RealmMigration()
+        {
+
+            @Override
+            public void migrate(DynamicRealm realm, long oldVersion, long newVersion)
+            {
+
+            }
+        }).build();
+
+        Realm.setDefaultConfiguration(configuration);
     }
 
 

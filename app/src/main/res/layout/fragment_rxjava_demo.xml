@@ -59,6 +59,21 @@
                 app:name="EffectiveJava读书笔记"/>
 
 
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:name="豆瓣妹子示例"/>
+
+            <include layout="@layout/layout_line_view"/>
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="Gank妹子示例"/>
+
+
         </LinearLayout>
 
 

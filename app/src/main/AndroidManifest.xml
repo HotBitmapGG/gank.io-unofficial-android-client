@@ -124,6 +124,17 @@
             android:name=".hcc.effective_java.EffectiveJavaNoteActivity"
             android:screenOrientation="portrait"/>
 
+        <!-- 豆瓣妹子界面-->
+        <activity
+            android:name=".hcc.ui.activity.DoubanMeiziActivity"
+            android:screenOrientation="portrait"/>
+
+        <!-- 豆瓣妹子详情界面-->
+        <activity
+            android:name=".hcc.ui.activity.DoubanMeiziPagerActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Meizi"/>
     </application>
 
 </manifest>

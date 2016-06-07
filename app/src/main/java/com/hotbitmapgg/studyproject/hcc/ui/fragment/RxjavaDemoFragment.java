@@ -8,6 +8,7 @@ import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.effective_java.EffectiveJavaNoteActivity;
 import com.hotbitmapgg.studyproject.hcc.rxdemo.RxJavaSampleActivity;
 import com.hotbitmapgg.studyproject.hcc.rxjava_operator.RxJavaOperatorActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.DoubanMeiziActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.HuaBanMeiziActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView;
 import com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView;
@@ -35,6 +36,9 @@ public class RxjavaDemoFragment extends LazyFragment
 
     @Bind(R.id.btn_5)
     ItemArrowCardView mEffectiveJava;
+
+    @Bind(R.id.btn_6)
+    ItemArrowCardView mDoubanMeizi;
 
     public static RxjavaDemoFragment newInstance()
     {
@@ -89,5 +93,12 @@ public class RxjavaDemoFragment extends LazyFragment
     {
 
         startActivity(new Intent(getActivity(), EffectiveJavaNoteActivity.class));
+    }
+
+    @OnClick(R.id.btn_6)
+    void startDoubanMeizi()
+    {
+
+        startActivity(new Intent(getActivity(), DoubanMeiziActivity.class));
     }
 }

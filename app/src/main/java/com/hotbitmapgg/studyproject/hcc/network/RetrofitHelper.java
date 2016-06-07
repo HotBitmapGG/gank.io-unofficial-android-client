@@ -24,6 +24,8 @@ public class RetrofitHelper
 
     public static final String BASE_HUABAN_URL = "http://route.showapi.com/";
 
+    public static final String BASE_DOUBAN_URL = "http://www.dbmeinv.com/dbgroup/";
+
     private static OkHttpClient mOkHttpClient;
 
     static
@@ -76,6 +78,17 @@ public class RetrofitHelper
         HuaBanMeiziApi huaBanMeiziApi = retrofit.create(HuaBanMeiziApi.class);
 
         return huaBanMeiziApi;
+    }
+
+    public static DoubanMeizhiApi getDoubanMeiziApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_DOUBAN_URL)
+                .client(new OkHttpClient())
+                .build();
+
+        return retrofit.create(DoubanMeizhiApi.class);
     }
 
     /**
