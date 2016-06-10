@@ -40,24 +40,6 @@ public class MeiziCache
         return mCache;
     }
 
-
-//    public void putHuaBanMeizi(Context context, int type, List<HuaBanMeiziInfo> infos)
-//    {
-//
-//        Realm realm = Realm.getInstance(context);
-//        realm.beginTransaction();
-//        for (HuaBanMeiziInfo info : infos)
-//        {
-//            LogUtil.all("111");
-//            info.setType(type);
-//            realm.copyFromRealm(info);
-//        }
-//
-//        realm.commitTransaction();
-//        realm.close();
-//    }
-
-
     public void putDoubanMeiziCache(Context context, int type, Response<ResponseBody> response)
     {
 

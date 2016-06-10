@@ -47,6 +47,14 @@ public class VideoWebActivity extends AbsBaseActivity
 
     }
 
+    @Override
+    protected void onPause()
+    {
+
+        mLoveVideoView.reload();
+        super.onPause();
+    }
+
     public static void launch(Activity activity, String url)
     {
 

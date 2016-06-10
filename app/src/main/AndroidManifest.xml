@@ -92,12 +92,6 @@
             android:name=".hcc.widget_demo.TableActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Gank.io详情界面-->
-        <activity
-            android:name=".hcc.ui.activity.GankDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.StatusBar" />
-
         <!-- 花瓣妹子详情界面-->
         <activity
             android:name=".hcc.ui.activity.HuaBanMeiziDetailsActivity"

@@ -1,28 +1,23 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.model.Gank;
-import com.hotbitmapgg.studyproject.hcc.model.GankResult;
-import com.hotbitmapgg.studyproject.hcc.model.Item;
-import com.hotbitmapgg.studyproject.hcc.model.ZipItem;
-import com.hotbitmapgg.studyproject.hcc.network.GankApi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.studyproject.hcc.ui.activity.GankDetailsActivity;
+import com.hotbitmapgg.studyproject.hcc.recycleview.loadmore.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.studyproject.hcc.recycleview.loadmore.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
-import com.hotbitmapgg.studyproject.hcc.utils.GankMeiziDateUtil;
-import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 
 import java.util.ArrayList;
@@ -30,10 +25,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func1;
-import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 public class GankFragment extends LazyFragment
@@ -51,17 +44,17 @@ public class GankFragment extends LazyFragment
 
     private int page = 1;
 
-    private static final int PRELOAD_SIZE = 6;
-
-    private List<ZipItem> datas = new ArrayList<>();
+    private List<Gank.GankInfo> infos = new ArrayList<>();
 
     private GankAdapter mAdapter;
 
-    private boolean mIsLoadMore = true;
-
-    private StaggeredGridLayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
 
     private String type;
+
+    private View footLayout;
+
+    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
 
     public static GankFragment newInstance(String dataType)
@@ -110,96 +103,68 @@ public class GankFragment extends LazyFragment
             {
 
                 startGetBeautysByMap();
-                //mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new GankAdapter(mRecyclerView, datas);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addOnScrollListener(OnLoadMoreListener());
+        mAdapter = new GankAdapter(mRecyclerView, infos);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        createFootLayout();
+        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLayoutManager)
+        {
+
+            @Override
+            public void onLoadMore(int currentPage)
+            {
+                page++;
+                startGetBeautysByMap();
+            }
+        });
+
+
     }
 
 
     private void startGetBeautysByMap()
     {
 
-        GankApi gankApi = RetrofitHelper.getGankApi();
-
-        RetrofitHelper.getGankApi().getBeauties(pageNum, page)
-                .doOnSubscribe(new Action0()
+        RetrofitHelper.getGankApi()
+                .getGankDatas(type, pageNum, page)
+                .filter(new Func1<Gank,Boolean>()
                 {
 
                     @Override
-                    public void call()
+                    public Boolean call(Gank gank)
                     {
 
-                        mSwipeRefreshLayout.setRefreshing(true);
+                        return !gank.error;
                     }
                 })
-                .map(new Func1<GankResult,List<Item>>()
+                .map(new Func1<Gank,List<Gank.GankInfo>>()
                 {
 
                     @Override
-                    public List<Item> call(GankResult gankResult)
+                    public List<Gank.GankInfo> call(Gank gank)
                     {
 
-                        List<GankResult.GankBeautyBean> beautys = gankResult.beautys;
-                        List<Item> items = new ArrayList<>(beautys.size());
-                        int size = beautys.size();
-                        Item item;
-                        for (int i = 0; i < size; i++)
-                        {
-
-                            item = new Item();
-                            String time = GankMeiziDateUtil.convertTime(beautys.get(i).createdAt);
-                            item.description = time;
-                            item.imageUrl = beautys.get(i).url;
-                            items.add(item);
-                        }
-                        return items;
-                    }
-                })
-                .zipWith(gankApi.getGankDatas(type, pageNum, page), new Func2<List<Item>,Gank,List<ZipItem>>()
-                {
-
-                    @Override
-                    public List<ZipItem> call(List<Item> items, Gank gank)
-                    {
-
-                        List<ZipItem> zipItems = new ArrayList<>();
-                        ZipItem zipItem;
-                        List<Gank.AndroidInfo> results = gank.results;
-
-                        for (int i = 0; i < items.size(); i++)
-                        {
-                            zipItem = new ZipItem();
-                            Item item = items.get(i);
-                            Gank.AndroidInfo androidInfo = results.get(i);
-                            zipItem.imageUrl = item.imageUrl;
-                            zipItem.desc = androidInfo.desc;
-                            zipItem.description = item.description;
-                            zipItem.who = androidInfo.who;
-                            zipItem.url = androidInfo.url;
-
-                            zipItems.add(zipItem);
-                        }
-
-                        return zipItems;
+                        return gank.results;
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<ZipItem>>()
+                .subscribe(new Action1<List<Gank.GankInfo>>()
                 {
 
                     @Override
-                    public void call(List<ZipItem> zipItems)
+                    public void call(List<Gank.GankInfo> gankInfos)
                     {
 
-                        datas.addAll(zipItems);
+                        if(gankInfos.size() < pageNum)
+                         footLayout.setVisibility(View.GONE);
+                        infos.addAll(gankInfos);
                         finishTask();
                     }
                 }, new Action1<Throwable>()
@@ -208,9 +173,8 @@ public class GankFragment extends LazyFragment
                     @Override
                     public void call(Throwable throwable)
                     {
-
-                        LogUtil.all("数据加载失败");
-                        SnackbarUtil.showMessage(mRecyclerView,"数据加载失败,下拉刷新重新加载!");
+                        footLayout.setVisibility(View.GONE);
+                        SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,下拉刷新重新加载!");
                         mSwipeRefreshLayout.post(new Runnable()
                         {
 
@@ -244,59 +208,26 @@ public class GankFragment extends LazyFragment
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                ZipItem zipItem = datas.get(position);
+                Gank.GankInfo gankInfo = infos.get(position);
 
                 if (!type.equals("休息视频"))
                 {
 
-                    Intent intent = GankDetailsActivity.start(getActivity(), zipItem.url, zipItem.desc, zipItem.imageUrl, zipItem.who);
-                    ActivityOptionsCompat mActivityOptionsCompat;
-                    if (Build.VERSION.SDK_INT >= 21)
-                    {
-                        mActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                                getActivity(), holder.getParentView().findViewById(R.id.item_img), GankDetailsActivity.TRANSIT_PIC);
-                    } else
-                    {
-                        mActivityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
-                                holder.getParentView().findViewById(R.id.item_img), 0, 0,
-                                holder.getParentView().findViewById(R.id.item_img).getWidth(),
-                                holder.getParentView().findViewById(R.id.item_img).getHeight());
-                    }
-
-                    startActivity(intent, mActivityOptionsCompat.toBundle());
+                    WebActivity.start(getActivity() ,gankInfo.url , gankInfo.desc);
                 } else
                 {
-                    VideoWebActivity.launch(getActivity(), zipItem.url);
+                    VideoWebActivity.launch(getActivity(), gankInfo.url);
                 }
             }
         });
     }
 
-    RecyclerView.OnScrollListener OnLoadMoreListener()
+
+    private void createFootLayout()
     {
 
-        return new RecyclerView.OnScrollListener()
-        {
-
-            @Override
-            public void onScrolled(RecyclerView rv, int dx, int dy)
-            {
-
-                boolean isBottom = mLayoutManager.findLastCompletelyVisibleItemPositions(
-                        new int[2])[1] >= mAdapter.getItemCount() - PRELOAD_SIZE;
-                if (!mSwipeRefreshLayout.isRefreshing() && isBottom)
-                {
-                    if (!mIsLoadMore)
-                    {
-                        mSwipeRefreshLayout.setRefreshing(true);
-                        page++;
-                        startGetBeautysByMap();
-                    } else
-                    {
-                        mIsLoadMore = false;
-                    }
-                }
-            }
-        };
+        footLayout = LayoutInflater.from(getActivity()).inflate(R.layout.load_more_foot_layout, mRecyclerView, false);
+        mHeaderViewRecyclerAdapter.addFooterView(footLayout);
     }
+
 }

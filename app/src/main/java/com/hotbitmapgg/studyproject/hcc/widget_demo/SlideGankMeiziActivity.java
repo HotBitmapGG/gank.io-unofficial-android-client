@@ -9,7 +9,8 @@ import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.model.GankResult;
+import com.hotbitmapgg.studyproject.hcc.model.GankMeiziInfo;
+import com.hotbitmapgg.studyproject.hcc.model.GankMeiziResult;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
@@ -51,7 +52,7 @@ public class SlideGankMeiziActivity extends AbsBaseActivity
     private List<CardDataItem> dataList = new ArrayList<>();
 
     //Gank妹子集合
-    private List<GankResult.GankBeautyBean> meizis = new ArrayList<>();
+    private List<GankMeiziInfo> meizis = new ArrayList<>();
 
     @Override
     public int getLayoutId()
@@ -92,7 +93,7 @@ public class SlideGankMeiziActivity extends AbsBaseActivity
     private void getGankMeizi()
     {
 
-        RetrofitHelper.getGankApi().getBeauties(pageNum, page)
+        RetrofitHelper.getGankMeiziApi().getGankMeizi(pageNum, page)
                 .doOnSubscribe(new Action0()
                 {
 
@@ -103,26 +104,25 @@ public class SlideGankMeiziActivity extends AbsBaseActivity
                         showProgress();
                     }
                 })
-                .map(new Func1<GankResult,List<GankResult.GankBeautyBean>>()
+                .map(new Func1<GankMeiziResult,List<GankMeiziInfo>>()
                 {
 
                     @Override
-                    public List<GankResult.GankBeautyBean> call(GankResult gankResult)
+                    public List<GankMeiziInfo> call(GankMeiziResult gankMeiziResult)
                     {
 
-                        return gankResult.beautys;
+                        return gankMeiziResult.gankMeizis;
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<GankResult.GankBeautyBean>>()
+                .subscribe(new Action1<List<GankMeiziInfo>>()
                 {
 
                     @Override
-                    public void call(List<GankResult.GankBeautyBean> gankBeautyBeen)
+                    public void call(List<GankMeiziInfo> gankMeiziInfos)
                     {
-
-                        meizis.addAll(gankBeautyBeen);
+                        meizis.addAll(gankMeiziInfos);
                         finishTask();
                     }
                 }, new Action1<Throwable>()

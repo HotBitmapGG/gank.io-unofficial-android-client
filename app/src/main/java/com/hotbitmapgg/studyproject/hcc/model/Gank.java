@@ -7,11 +7,12 @@ public class Gank
 
     public boolean error;
 
-    public List<AndroidInfo> results;
+    public List<GankInfo> results;
 
 
-    public class AndroidInfo
+    public class GankInfo
     {
+
         public String _id;
 
         public String createdAt;
@@ -29,6 +30,5 @@ public class Gank
         public boolean used;
 
         public String who;
-
     }
 }
