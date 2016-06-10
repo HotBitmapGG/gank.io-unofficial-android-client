@@ -15,10 +15,10 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.recycleview.RecycleViewDemoActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.CustomWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.MDFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
 
 import butterknife.Bind;
@@ -50,6 +50,8 @@ public class MainActivity extends AbsBaseActivity
 
     private CustomWidgetFragment customWidgetFragment;
 
+    private MDFragment mdFragment;
+
 
     @Override
     public int getLayoutId()
@@ -71,8 +73,9 @@ public class MainActivity extends AbsBaseActivity
         homeFragment = HomeFragment.newInstance();
         rxjavaDemoFragment = RxjavaDemoFragment.newInstance();
         customWidgetFragment = CustomWidgetFragment.newInstance();
+        mdFragment = MDFragment.newInstance();
 
-        fragments = new Fragment[]{homeFragment, customWidgetFragment, rxjavaDemoFragment, expressionPackageFragment};
+        fragments = new Fragment[]{homeFragment, customWidgetFragment, rxjavaDemoFragment, expressionPackageFragment, mdFragment};
 
         getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
     }
@@ -153,7 +156,10 @@ public class MainActivity extends AbsBaseActivity
                         return true;
 
                     case R.id.nav_foucs_me:
-                        startActivity(new Intent(MainActivity.this, RecycleViewDemoActivity.class));
+                        index = 4;
+                        addFragment(fragments[4]);
+                        mToolbar.setTitle("MaterialDesign");
+                        menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         return true;
 
@@ -166,7 +172,7 @@ public class MainActivity extends AbsBaseActivity
                         return true;
 
                     case R.id.nav_about:
-                        startActivity(new Intent(MainActivity.this , HotBitmapGGActivity.class));
+                        startActivity(new Intent(MainActivity.this, HotBitmapGGActivity.class));
                         break;
 
                     default:

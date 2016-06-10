@@ -5,25 +5,25 @@
         <item
             android:id="@+id/nav_home"
             android:checked="true"
-            android:icon="@drawable/ic_dashboard"
+            android:icon="@drawable/ic_favorite_white_24dp"
             android:title="Gank.Io"/>
         <item
             android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_event"
+            android:icon="@drawable/ic_history_more_history"
             android:title="CustomWidget"/>
         <item
             android:id="@+id/nav_my_focus"
-            android:icon="@drawable/ic_headset"
-            android:title="Rxjava"/>
+            android:icon="@drawable/ic_favorite_more"
+            android:title="RxJava"/>
         <item
             android:id="@+id/nav_foucs_me"
-            android:icon="@drawable/ic_forum"
+            android:icon="@drawable/ic_flag_actionbar_icon"
             android:title="MaterialDesign"/>
 
         <item
             android:id="@+id/nav_article"
             android:checkable="true"
-            android:icon="@drawable/ic_discuss"
+            android:icon="@drawable/ic_face"
             android:title="AqualandFace"/>
     </group>
 
@@ -33,7 +33,7 @@
             <item
                 android:id="@+id/nav_about"
                 android:checkable="true"
-                android:icon="@drawable/ic_about"
+                android:icon="@drawable/ic_info_outline"
                 android:title="关于我"/>
         </menu>
     </item>

@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankAdapter;
@@ -81,20 +80,8 @@ public class GankFragment extends LazyFragment
     {
 
         type = getArguments().getString(EXTRA_TYPE);
+        showProgress();
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
-        {
-
-            @Override
-            public void onGlobalLayout()
-            {
-
-                mSwipeRefreshLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                mSwipeRefreshLayout.setRefreshing(true);
-                startGetBeautysByMap();
-            }
-        });
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
 
@@ -120,11 +107,27 @@ public class GankFragment extends LazyFragment
             public void onLoadMore(int currentPage)
             {
                 page++;
+                footLayout.setVisibility(View.VISIBLE);
                 startGetBeautysByMap();
             }
         });
 
 
+    }
+
+    private void showProgress()
+    {
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                mSwipeRefreshLayout.setRefreshing(true);
+                startGetBeautysByMap();
+            }
+        },500);
     }
 
 
@@ -228,6 +231,7 @@ public class GankFragment extends LazyFragment
 
         footLayout = LayoutInflater.from(getActivity()).inflate(R.layout.load_more_foot_layout, mRecyclerView, false);
         mHeaderViewRecyclerAdapter.addFooterView(footLayout);
+        footLayout.setVisibility(View.GONE);
     }
 
 }
