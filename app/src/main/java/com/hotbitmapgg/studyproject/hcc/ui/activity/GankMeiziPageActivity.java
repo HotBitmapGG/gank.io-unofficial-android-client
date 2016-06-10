@@ -10,14 +10,14 @@ import android.support.v4.view.ViewPager;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.model.DoubanMeizi;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.DoubanMeiziDetailsFragment;
+import com.hotbitmapgg.studyproject.hcc.model.GankMeizi;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.GankMeiziDetailsFragment;
 
 import butterknife.Bind;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class DoubanMeiziPagerActivity extends AbsBaseActivity
+public class GankMeiziPageActivity extends AbsBaseActivity
 {
 
     @Bind(R.id.view_pager)
@@ -25,15 +25,11 @@ public class DoubanMeiziPagerActivity extends AbsBaseActivity
 
     private static final String EXTRA_INDEX = "extra_index";
 
-    private static final String EXTRA_TYPE = "extra_type";
-
     private int currenIndex;
 
     private Realm realm;
 
-    private int type;
-
-    private RealmResults<DoubanMeizi> doubanMeizis;
+    private RealmResults<GankMeizi> gankMeizis;
 
 
     @Override
@@ -51,13 +47,10 @@ public class DoubanMeiziPagerActivity extends AbsBaseActivity
         if (intent != null)
         {
             currenIndex = intent.getIntExtra(EXTRA_INDEX, -1);
-            type = intent.getIntExtra(EXTRA_TYPE, -1);
         }
 
         realm = Realm.getDefaultInstance();
-        doubanMeizis = realm.where(DoubanMeizi.class)
-                .equalTo("type", type)
-                .findAll();
+        gankMeizis = realm.where(GankMeizi.class).findAll();
 
         mViewPager.setAdapter(new MeiziPagerAdapter(getFragmentManager()));
     }
@@ -76,13 +69,12 @@ public class DoubanMeiziPagerActivity extends AbsBaseActivity
         mViewPager.setCurrentItem(currenIndex);
     }
 
-    public static void luanch(Activity activity, int index , int type)
+    public static void luanch(Activity activity, int index)
     {
 
-        Intent mIntent = new Intent(activity, DoubanMeiziPagerActivity.class);
+        Intent mIntent = new Intent(activity, GankMeiziPageActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mIntent.putExtra(EXTRA_INDEX, index);
-        mIntent.putExtra(EXTRA_TYPE, type);
         activity.startActivity(mIntent);
     }
 
@@ -100,9 +92,7 @@ public class DoubanMeiziPagerActivity extends AbsBaseActivity
         public Fragment getItem(int position)
         {
 
-            return DoubanMeiziDetailsFragment.
-                    newInstance(doubanMeizis.get(position).getUrl()
-                    , doubanMeizis.get(position).getTitle());
+            return GankMeiziDetailsFragment.newInstance(gankMeizis.get(position).getUrl(), gankMeizis.get(position).getDesc());
         }
 
 
@@ -110,7 +100,7 @@ public class DoubanMeiziPagerActivity extends AbsBaseActivity
         public int getCount()
         {
 
-            return doubanMeizis.size();
+            return gankMeizis.size();
         }
     }
 }

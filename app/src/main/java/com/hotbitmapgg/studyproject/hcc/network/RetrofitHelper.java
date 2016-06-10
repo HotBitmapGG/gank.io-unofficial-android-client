@@ -33,6 +33,11 @@ public class RetrofitHelper
         initOkHttpClient();
     }
 
+    /**
+     * Gank干货Api
+     *
+     * @return
+     */
     public static GankApi getGankApi()
     {
 
@@ -49,6 +54,32 @@ public class RetrofitHelper
     }
 
 
+    /**
+     * Gank妹子Api
+     *
+     * @return
+     */
+    public static GankMeiziApi getGankMeiziApi()
+    {
+
+        Retrofit mRetrofit = new Retrofit.Builder()
+                .baseUrl(BASE_GANK_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GankMeiziApi gankMeiziApi = mRetrofit.create(GankMeiziApi.class);
+
+        return gankMeiziApi;
+    }
+
+
+    /**
+     * 表情包搜索Api
+     *
+     * @return
+     */
     public static ExpressionPackageApi getExpressionPackageApi()
     {
 
@@ -66,6 +97,11 @@ public class RetrofitHelper
     }
 
 
+    /**
+     * 花瓣Api
+     *
+     * @return
+     */
     public static HuaBanMeiziApi getHuaBanMeiziApi()
     {
 
@@ -80,6 +116,11 @@ public class RetrofitHelper
         return huaBanMeiziApi;
     }
 
+    /**
+     * 豆瓣Api
+     *
+     * @return
+     */
     public static DoubanMeizhiApi getDoubanMeiziApi()
     {
 

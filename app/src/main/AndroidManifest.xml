@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.hotbitmapgg.studyproject"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hotbitmapgg.studyproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".hcc.StudyApp"
@@ -20,121 +20,133 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!-- 主界面-->
         <activity
             android:name=".hcc.ui.activity.MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 爱心点赞界面-->
         <activity
             android:name=".hcc.widget_demo.LoveActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- Rxjava练习界面-->
         <activity
             android:name=".hcc.rxdemo.RxTestActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- RecycleView练习界面-->
         <activity
             android:name=".hcc.recycleview.RecycleViewDemoActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- Rxjava例子界面-->
         <activity
             android:name=".hcc.rxdemo.RxJavaSampleActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- RxjavaDemo展示界面-->
         <activity
             android:name=".hcc.rxdemo.RxJavaDemoActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 浏览器界面-->
         <activity
             android:name=".hcc.ui.activity.WebActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 视频播放web界面-->
         <activity
             android:name=".hcc.ui.activity.VideoWebActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.TransparentStatusBar"/>
+            android:theme="@style/AppTheme.TransparentStatusBar" />
 
         <!-- 花瓣妹子界面-->
         <activity
             android:name=".hcc.ui.activity.HuaBanMeiziActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- Rxjava操作符界面-->
         <activity
             android:name=".hcc.rxjava_operator.RxJavaOperatorActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 自定义进度条展示界面-->
         <activity
             android:name=".hcc.widget_demo.CircleProgressBarActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 贝塞尔曲线展示界面-->
         <activity
             android:name=".hcc.widget_demo.BezaerActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 表格布局展示界面-->
         <activity
             android:name=".hcc.widget_demo.TableActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- Gank.io详情界面-->
         <activity
             android:name=".hcc.ui.activity.GankDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.StatusBar"/>
+            android:theme="@style/AppTheme.StatusBar" />
 
         <!-- 花瓣妹子详情界面-->
         <activity
             android:name=".hcc.ui.activity.HuaBanMeiziDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 个人信息界面-->
         <activity
             android:name=".hcc.ui.activity.HotBitmapGGActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.StatusBar"/>
+            android:theme="@style/AppTheme.StatusBar" />
 
         <!-- 仿探探界面-->
         <activity
             android:name=".hcc.widget_demo.SlideGankMeiziActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--安卓开发艺术探索读书笔记-->
         <activity
             android:name=".hcc.android_develop_art_explore.AndroidDevelopActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- EffectiveJava读书笔记-->
         <activity
             android:name=".hcc.effective_java.EffectiveJavaNoteActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 豆瓣妹子界面-->
         <activity
             android:name=".hcc.ui.activity.DoubanMeiziActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 豆瓣妹子详情界面-->
         <activity
-            android:name=".hcc.ui.activity.DoubanMeiziPagerActivity"
-            android:screenOrientation="portrait"
+            android:name=".hcc.ui.activity.DoubanMeiziPageActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Meizi"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Meizi" />
+
+        <!--gank妹子界面-->
+        <activity
+            android:name=".hcc.ui.activity.GankMeiziActivity"
+            android:screenOrientation="portrait" />
+
+        <!--gank妹子大图浏览界面-->
+        <activity
+            android:name=".hcc.ui.activity.GankMeiziPageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Meizi" />
     </application>
 
 </manifest>

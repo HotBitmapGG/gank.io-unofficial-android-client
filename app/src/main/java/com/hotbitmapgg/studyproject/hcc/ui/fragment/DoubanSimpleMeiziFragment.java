@@ -13,7 +13,7 @@ import com.hotbitmapgg.studyproject.hcc.db.MeiziCache;
 import com.hotbitmapgg.studyproject.hcc.model.DoubanMeizi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.studyproject.hcc.ui.activity.DoubanMeiziPagerActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.DoubanMeiziPageActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import butterknife.Bind;
@@ -189,7 +189,7 @@ public class DoubanSimpleMeiziFragment extends LazyFragment
             @Override
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
-                DoubanMeiziPagerActivity.luanch(getActivity(), position, type);
+                DoubanMeiziPageActivity.luanch(getActivity(), position, type);
             }
         });
     }
