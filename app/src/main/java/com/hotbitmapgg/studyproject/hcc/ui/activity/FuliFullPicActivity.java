@@ -22,6 +22,7 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.ImmersiveUtil;
 import com.jakewharton.rxbinding.view.RxMenuItem;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
@@ -227,6 +228,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     @Override
                     public void call(Uri uri)
                     {
+
                         File appDir = new File(Environment.getExternalStorageDirectory(), ConstantUtil.FILE_DIR);
                         String msg = String.format("图片已保存至 %s 文件夹", appDir.getAbsolutePath());
                         Toast.makeText(FuliFullPicActivity.this, msg, Toast.LENGTH_SHORT).show();
@@ -237,6 +239,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     @Override
                     public void call(Throwable throwable)
                     {
+
                         Toast.makeText(FuliFullPicActivity.this, "保存失败,请重试", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -383,12 +386,25 @@ public class FuliFullPicActivity extends AbsBaseActivity
     protected void hideOrShowToolbar()
     {
 
-        mAppBarLayout.animate()
-                .translationY(isHide ? 0 : -mAppBarLayout.getHeight())
-                .setInterpolator(new DecelerateInterpolator(2))
-                .start();
-
-        isHide = !isHide;
+        if (isHide)
+        {
+            //显示
+            ImmersiveUtil.exit(this);
+            mAppBarLayout.animate()
+                    .translationY(0)
+                    .setInterpolator(new DecelerateInterpolator(2))
+                    .start();
+            isHide = false;
+        } else
+        {
+            //隐藏
+            ImmersiveUtil.enter(this);
+            mAppBarLayout.animate()
+                    .translationY(-mAppBarLayout.getHeight())
+                    .setInterpolator(new DecelerateInterpolator(2))
+                    .start();
+            isHide = true;
+        }
     }
 
 

@@ -146,7 +146,7 @@
         <activity
             android:name=".hcc.ui.activity.FuliFullPicActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Meizi" />
+            android:theme="@style/AppTheme.StatusBar" />
     </application>
 
 </manifest>
