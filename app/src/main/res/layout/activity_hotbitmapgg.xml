@@ -1,11 +1,12 @@
 <android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
-                                                 xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
@@ -46,7 +47,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -68,8 +69,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:padding="8dp">
 
                 <TextView
@@ -78,13 +79,13 @@
                     android:layout_marginTop="40dp"
                     android:text="HotBitmapGG"
                     android:textColor="@color/font_normal"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="120dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@android:color/darker_gray" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +93,7 @@
                     android:layout_marginTop="30dp"
                     android:autoLink="web"
                     android:text="GitHub:https://github.com/HotBitmapGG"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
 
                 <TextView
@@ -101,12 +102,26 @@
                     android:layout_marginTop="30dp"
                     android:autoLink="web"
                     android:text="新浪微博:http://m.weibo.cn/users/3223089177/qq"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_favorite_white_24dp"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="4dp"
+        android:clickable="true"
+        app:layout_anchor="@id/app_bar_layout"
+        app:layout_anchorGravity="bottom|right|end"
+        app:pressedTranslationZ="4dp"
+        app:rippleColor="@color/colorPrimaryDark" />
 
 </android.support.design.widget.CoordinatorLayout>
