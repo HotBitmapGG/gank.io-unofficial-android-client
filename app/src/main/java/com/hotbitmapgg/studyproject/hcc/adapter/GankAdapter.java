@@ -4,8 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.model.Gank;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
@@ -48,6 +51,22 @@ public class GankAdapter extends AbsRecyclerViewAdapter
             String date = gankInfo.publishedAt.replace('T', ' ').replace('Z', ' ');
             String time = DateUtils.friendlyTime(date);
             itemViewHolder.mTime.setText(time);
+            if(gankInfo.type.equals("福利"))
+            {
+                 itemViewHolder.mDesc.setVisibility(View.GONE);
+                itemViewHolder.mImage.setVisibility(View.VISIBLE);
+                Glide.with(getContext())
+                        .load(gankInfo.url)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .centerCrop()
+                        .placeholder(R.drawable.placeholder_image)
+                        .into(itemViewHolder.mImage);
+            }
+            else
+            {
+                itemViewHolder.mDesc.setVisibility(View.VISIBLE);
+                itemViewHolder.mImage.setVisibility(View.GONE);
+            }
         }
 
         super.onBindViewHolder(holder, position);
@@ -70,6 +89,8 @@ public class GankAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTime;
 
+        public ImageView mImage;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -77,6 +98,7 @@ public class GankAdapter extends AbsRecyclerViewAdapter
             mDesc = $(R.id.item_desc);
             mWho = $(R.id.item_who);
             mTime = $(R.id.item_time);
+            mImage = $(R.id.item_image);
         }
     }
 }

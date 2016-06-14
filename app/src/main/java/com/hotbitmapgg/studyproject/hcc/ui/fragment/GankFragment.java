@@ -1,6 +1,9 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +18,7 @@ import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.recycleview.loadmore.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.studyproject.hcc.recycleview.loadmore.HeaderViewRecyclerAdapter;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.FuliFullPicActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.VideoWebActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
@@ -106,17 +110,17 @@ public class GankFragment extends LazyFragment
             @Override
             public void onLoadMore(int currentPage)
             {
+
                 page++;
                 footLayout.setVisibility(View.VISIBLE);
                 startGetBeautysByMap();
             }
         });
-
-
     }
 
     private void showProgress()
     {
+
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.postDelayed(new Runnable()
         {
@@ -124,10 +128,11 @@ public class GankFragment extends LazyFragment
             @Override
             public void run()
             {
+
                 mSwipeRefreshLayout.setRefreshing(true);
                 startGetBeautysByMap();
             }
-        },500);
+        }, 500);
     }
 
 
@@ -165,8 +170,8 @@ public class GankFragment extends LazyFragment
                     public void call(List<Gank.GankInfo> gankInfos)
                     {
 
-                        if(gankInfos.size() < pageNum)
-                         footLayout.setVisibility(View.GONE);
+                        if (gankInfos.size() < pageNum)
+                            footLayout.setVisibility(View.GONE);
                         infos.addAll(gankInfos);
                         finishTask();
                     }
@@ -176,6 +181,7 @@ public class GankFragment extends LazyFragment
                     @Override
                     public void call(Throwable throwable)
                     {
+
                         footLayout.setVisibility(View.GONE);
                         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,下拉刷新重新加载!");
                         mSwipeRefreshLayout.post(new Runnable()
@@ -213,16 +219,41 @@ public class GankFragment extends LazyFragment
 
                 Gank.GankInfo gankInfo = infos.get(position);
 
-                if (!type.equals("休息视频"))
+
+                if (gankInfo.type.equals("休息视频"))
                 {
 
-                    WebActivity.start(getActivity() ,gankInfo.url , gankInfo.desc);
+                    VideoWebActivity.launch(getActivity(), gankInfo.url);
+                } else if (gankInfo.type.equals("福利"))
+                {
+                    startFuliActivity(gankInfo, holder);
                 } else
                 {
-                    VideoWebActivity.launch(getActivity(), gankInfo.url);
+
+                    WebActivity.start(getActivity(), gankInfo.url, gankInfo.desc);
                 }
             }
         });
+    }
+
+    public void startFuliActivity(Gank.GankInfo gankInfo, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+    {
+        //Activity跳转动画 界面共享元素的使用
+        Intent intent = FuliFullPicActivity.LuanchActivity(getActivity(), gankInfo.url, gankInfo.desc);
+        ActivityOptionsCompat mActivityOptionsCompat;
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            mActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    getActivity(), holder.getParentView().findViewById(R.id.item_image), FuliFullPicActivity.TRANSIT_PIC);
+        } else
+        {
+            mActivityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
+                    holder.getParentView().findViewById(R.id.item_image), 0, 0,
+                    holder.getParentView().findViewById(R.id.item_image).getWidth(),
+                    holder.getParentView().findViewById(R.id.item_image).getHeight());
+        }
+
+        startActivity(intent, mActivityOptionsCompat.toBundle());
     }
 
 
@@ -233,5 +264,4 @@ public class GankFragment extends LazyFragment
         mHeaderViewRecyclerAdapter.addFooterView(footLayout);
         footLayout.setVisibility(View.GONE);
     }
-
 }

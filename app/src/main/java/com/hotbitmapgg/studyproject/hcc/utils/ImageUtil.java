@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 
+import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -53,7 +54,7 @@ public class ImageUtil
             public Observable<Uri> call(Bitmap bitmap)
             {
 
-                File appDir = new File(Environment.getExternalStorageDirectory(), "gank_io");
+                File appDir = new File(Environment.getExternalStorageDirectory(), ConstantUtil.FILE_DIR);
                 if (!appDir.exists())
                 {
                     appDir.mkdir();

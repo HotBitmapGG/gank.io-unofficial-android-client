@@ -15,6 +15,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.hotbitmapgg.studyproject.R;
+import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.image.PhotoImageView;
@@ -133,7 +134,7 @@ public class GankMeiziDetailsFragment extends LazyFragment implements RequestLis
                     public void call(Uri uri)
                     {
 
-                        File appDir = new File(Environment.getExternalStorageDirectory(), "rx_zhihu");
+                        File appDir = new File(Environment.getExternalStorageDirectory(), ConstantUtil.FILE_DIR);
                         String msg = String.format("图片已保存至 %s 文件夹", appDir.getAbsolutePath());
                         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                     }

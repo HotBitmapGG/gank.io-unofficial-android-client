@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
 
 import java.io.File;
@@ -237,7 +238,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
                     public void call(Uri uri)
                     {
 
-                        File appDir = new File(Environment.getExternalStorageDirectory(), "gank_io");
+                        File appDir = new File(Environment.getExternalStorageDirectory(), ConstantUtil.FILE_DIR);
                         String msg = String.format("图片已保存至 %s 文件夹", appDir.getAbsolutePath());
                         Toast.makeText(HuaBanMeiziDetailsActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }

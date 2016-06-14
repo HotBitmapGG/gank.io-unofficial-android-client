@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hotbitmapgg.studyproject">
+<manifest package="com.hotbitmapgg.studyproject"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -139,6 +139,12 @@
         <activity
             android:name=".hcc.ui.activity.GankMeiziPageActivity"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Meizi" />
+
+        <!-- 妹子大图单个浏览界面-->
+        <activity
+            android:name=".hcc.ui.activity.FuliFullPicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Meizi" />
     </application>
