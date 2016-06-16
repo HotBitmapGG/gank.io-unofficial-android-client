@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
@@ -22,6 +24,7 @@ import com.hotbitmapgg.studyproject.hcc.ui.fragment.MDFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 
 public class MainActivity extends AbsBaseActivity
@@ -35,6 +38,9 @@ public class MainActivity extends AbsBaseActivity
 
     @Bind(R.id.nav_view)
     NavigationView mNavigationView;
+
+    @Bind(R.id.fab)
+    FloatingActionButton mFloatingActionButton;
 
     private HomeFragment homeFragment;
 
@@ -78,6 +84,7 @@ public class MainActivity extends AbsBaseActivity
         fragments = new Fragment[]{homeFragment, customWidgetFragment, rxjavaDemoFragment, expressionPackageFragment, mdFragment};
 
         getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
+        mFloatingActionButton.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -137,6 +144,7 @@ public class MainActivity extends AbsBaseActivity
                         menuItem.setChecked(true);
                         mToolbar.setTitle("Gank.IO");
                         mDrawerLayout.closeDrawers();
+                        mFloatingActionButton.setVisibility(View.VISIBLE);
                         return true;
 
                     case R.id.nav_messages:
@@ -145,6 +153,7 @@ public class MainActivity extends AbsBaseActivity
                         mToolbar.setTitle("CustomWidget");
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mFloatingActionButton.setVisibility(View.GONE);
                         return true;
 
                     case R.id.nav_my_focus:
@@ -153,6 +162,7 @@ public class MainActivity extends AbsBaseActivity
                         menuItem.setChecked(true);
                         mToolbar.setTitle("RxJava");
                         mDrawerLayout.closeDrawers();
+                        mFloatingActionButton.setVisibility(View.GONE);
                         return true;
 
                     case R.id.nav_foucs_me:
@@ -161,6 +171,7 @@ public class MainActivity extends AbsBaseActivity
                         mToolbar.setTitle("MaterialDesign");
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        mFloatingActionButton.setVisibility(View.GONE);
                         return true;
 
                     case R.id.nav_article:
@@ -169,6 +180,7 @@ public class MainActivity extends AbsBaseActivity
                         menuItem.setChecked(true);
                         mToolbar.setTitle("AqualandFace");
                         mDrawerLayout.closeDrawers();
+                        mFloatingActionButton.setVisibility(View.GONE);
                         return true;
 
                     case R.id.nav_about:
@@ -195,5 +207,12 @@ public class MainActivity extends AbsBaseActivity
         }
         trx.show(fragments[index]).commit();
         currentTabIndex = index;
+    }
+
+    @OnClick(R.id.fab)
+    void startPostGank()
+    {
+
+        startActivity(new Intent(MainActivity.this, GankPostActivity.class));
     }
 }

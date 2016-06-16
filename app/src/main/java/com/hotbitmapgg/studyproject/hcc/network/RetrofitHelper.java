@@ -2,13 +2,19 @@ package com.hotbitmapgg.studyproject.hcc.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.studyproject.hcc.StudyApp;
+import com.hotbitmapgg.studyproject.hcc.model.GankPostBoby;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -21,6 +27,8 @@ public class RetrofitHelper
     public static final String BASE_ZHUANGBI_URL = "http://zhuangbi.info/";
 
     public static final String BASE_GANK_URL = "http://gank.io/api/";
+
+    public static final String BASE_POST_GANK_URL = "https://gank.io/api/add2gank";
 
     public static final String BASE_HUABAN_URL = "http://route.showapi.com/";
 
@@ -51,6 +59,39 @@ public class RetrofitHelper
         GankApi gankApi = mRetrofit.create(GankApi.class);
 
         return gankApi;
+    }
+
+    /**
+     * 提交干货Api
+     *
+     * @return
+     */
+
+    public static String getPostGankResult(GankPostBoby boby)
+    {
+
+        RequestBody requestBody = new FormBody.Builder()
+                .add("url", boby.getUrl())
+                .add("desc", boby.getTitle())
+                .add("who", boby.getName())
+                .add("type", boby.getType())
+                .add("debug", boby.getIsdebug())
+                .build();
+        Request request = new Request.Builder()
+                .url(BASE_POST_GANK_URL)
+                .post(requestBody)
+                .build();
+        try
+        {
+            Response response = mOkHttpClient.newCall(request).execute();
+
+            return response.body().string();
+        } catch (IOException e1)
+        {
+            e1.printStackTrace();
+
+            return null;
+        }
     }
 
 

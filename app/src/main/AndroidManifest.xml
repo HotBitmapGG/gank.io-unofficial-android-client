@@ -147,6 +147,16 @@
             android:name=".hcc.ui.activity.FuliFullPicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
+
+        <!--干货提交界面-->
+        <activity
+            android:name=".hcc.ui.activity.GankPostActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 干货类型选择界面-->
+        <activity
+            android:name=".hcc.ui.activity.GankTypeSelectActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,15 +18,14 @@
         app:tl_indicator_corner_radius="1.5dp"
         app:tl_indicator_height="3dp"
         app:tl_indicator_width="30dp"
-        app:tl_tab_space_equal="false"/>
+        app:tl_tab_space_equal="false" />
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/tab_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:overScrollMode="never" />
 
 
 </LinearLayout>
