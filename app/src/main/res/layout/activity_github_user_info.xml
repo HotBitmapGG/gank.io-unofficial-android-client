@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+
+            <com.hotbitmapgg.studyproject.hcc.widget.CircleImageView
+                android:id="@+id/user_avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/comment_avatar"
+                app:border_color2="@android:color/darker_gray"
+                app:border_width="1dp" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/font_normal"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/user_github_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:autoLink="web"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+
+    </com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView>
+
+</LinearLayout>

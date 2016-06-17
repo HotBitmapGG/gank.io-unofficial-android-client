@@ -163,6 +163,11 @@
         <activity
             android:name=".hcc.ui.activity.GankTypeSelectActivity"
             android:screenOrientation="portrait" />
+
+        <!--用户Github界面-->
+        <activity
+            android:name=".hcc.ui.activity.GithubUserInfoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

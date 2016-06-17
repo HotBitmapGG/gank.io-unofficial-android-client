@@ -30,29 +30,7 @@ public class ApiDebugActivity extends AbsBaseActivity
     @Override
     public void initViews(Bundle savedInstanceState)
     {
-//        RetrofitHelper.getGithubUserApi()
-//                .getGithubUserInfo("HotBitmapGG")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Action1<GithubUser>()
-//                {
-//
-//                    @Override
-//                    public void call(GithubUser githubUser)
-//                    {
-//
-//                        LogUtil.all(githubUser.items.get(0).userName);
-//                    }
-//                }, new Action1<Throwable>()
-//                {
-//
-//                    @Override
-//                    public void call(Throwable throwable)
-//                    {
-//
-//                        LogUtil.all("接口调用失败");
-//                    }
-//                });
+
     }
 
     @Override
