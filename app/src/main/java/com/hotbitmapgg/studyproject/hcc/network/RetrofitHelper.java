@@ -34,6 +34,8 @@ public class RetrofitHelper
 
     public static final String BASE_DOUBAN_URL = "http://www.dbmeinv.com/dbgroup/";
 
+    public static final String BASE_GITHUB_URL = "https://api.github.com/";
+
     private static OkHttpClient mOkHttpClient;
 
     static
@@ -171,6 +173,22 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(DoubanMeizhiApi.class);
+    }
+
+
+    public static GithubUserApi getGithubUserApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_GITHUB_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GithubUserApi githubUserApi = retrofit.create(GithubUserApi.class);
+
+        return githubUserApi;
     }
 
     /**

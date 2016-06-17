@@ -31,6 +31,12 @@
             android:name=".hcc.ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
+
+        <!--Api接口调试界面-->
+        <activity
+            android:name=".hcc.ui.activity.ApiDebugActivity"
+            android:screenOrientation="portrait" />
+
         <!-- 爱心点赞界面-->
         <activity
             android:name=".hcc.widget_demo.LoveActivity"

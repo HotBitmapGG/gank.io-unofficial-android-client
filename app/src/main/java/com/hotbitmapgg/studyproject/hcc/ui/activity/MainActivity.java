@@ -20,7 +20,7 @@ import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.CustomWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.MDFragment;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.MdWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
 
 import butterknife.Bind;
@@ -56,7 +56,7 @@ public class MainActivity extends AbsBaseActivity
 
     private CustomWidgetFragment customWidgetFragment;
 
-    private MDFragment mdFragment;
+    private MdWidgetFragment mdFragment;
 
 
     @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AbsBaseActivity
         homeFragment = HomeFragment.newInstance();
         rxjavaDemoFragment = RxjavaDemoFragment.newInstance();
         customWidgetFragment = CustomWidgetFragment.newInstance();
-        mdFragment = MDFragment.newInstance();
+        mdFragment = MdWidgetFragment.newInstance();
 
         fragments = new Fragment[]{homeFragment, customWidgetFragment, rxjavaDemoFragment, expressionPackageFragment, mdFragment};
 
@@ -119,6 +119,9 @@ public class MainActivity extends AbsBaseActivity
         {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.action_debug:
+                startActivity(new Intent(MainActivity.this, ApiDebugActivity.class));
                 return true;
             default:
                 break;

@@ -9,13 +9,13 @@ import com.hotbitmapgg.studyproject.hcc.recycleview.RecycleViewDemoActivity;
 import butterknife.OnClick;
 
 
-public class MDFragment extends LazyFragment
+public class MdWidgetFragment extends LazyFragment
 {
 
-    public static MDFragment newInstance()
+    public static MdWidgetFragment newInstance()
     {
 
-        return new MDFragment();
+        return new MdWidgetFragment();
     }
 
     @Override
