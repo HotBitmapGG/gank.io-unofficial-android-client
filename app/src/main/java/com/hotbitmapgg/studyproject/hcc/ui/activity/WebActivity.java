@@ -75,12 +75,12 @@ public class WebActivity extends AbsBaseActivity
     public void initToolBar()
     {
 
+        mToolbar.setTitle(title);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(title);
         }
     }
 

@@ -26,13 +26,12 @@
         android:textColor="@android:color/white"
         android:textSize="24sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/actionbar_compat_logo"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="64dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:text="HotBitmapGG"
-        android:textColor="@android:color/white"/>
+        android:layout_centerInParent="true"
+        android:tint="@color/white" />
 </RelativeLayout>

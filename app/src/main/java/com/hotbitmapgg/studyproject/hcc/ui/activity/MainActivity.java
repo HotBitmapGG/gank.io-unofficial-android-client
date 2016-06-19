@@ -11,23 +11,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
+import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
+import com.hotbitmapgg.studyproject.hcc.rxdemo.RxBus2;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.CustomWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.MdWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
+import com.hotbitmapgg.studyproject.hcc.utils.ACache;
+import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.widget.CircleImageView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import rx.functions.Action1;
 
 
-public class MainActivity extends AbsBaseActivity
+public class MainActivity extends AbsBaseActivity implements View.OnClickListener
 {
 
     @Bind(R.id.toolbar)
@@ -41,6 +52,20 @@ public class MainActivity extends AbsBaseActivity
 
     @Bind(R.id.fab)
     FloatingActionButton mFloatingActionButton;
+
+    //    @Nullable
+//    @Bind(R.id.github_user_avatar)
+    CircleImageView mUserAvatar;
+
+    //
+//    @Nullable
+//    @Bind(R.id.github_user_name)
+    TextView mUserName;
+
+    //
+//    @Nullable
+//    @Bind(R.id.github_user_bio)
+    TextView mUserBio;
 
     private HomeFragment homeFragment;
 
@@ -57,6 +82,10 @@ public class MainActivity extends AbsBaseActivity
     private CustomWidgetFragment customWidgetFragment;
 
     private MdWidgetFragment mdFragment;
+
+    private boolean isLogin = false;
+
+    private GitHubUserInfo mUserInfo;
 
 
     @Override
@@ -85,6 +114,33 @@ public class MainActivity extends AbsBaseActivity
 
         getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
         mFloatingActionButton.setVisibility(View.VISIBLE);
+
+
+        RxBus2.getInstance().toObserverable(String.class)
+                .subscribe(new Action1<String>()
+                {
+
+                    @Override
+                    public void call(String s)
+                    {
+
+                        if (!TextUtils.isEmpty(s))
+                        {
+                            LogUtil.all(s);
+                            isLogin = true;
+                            setUserInfo();
+                        }
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("用户登录更新失败");
+                    }
+                });
     }
 
     @Override
@@ -96,6 +152,7 @@ public class MainActivity extends AbsBaseActivity
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
             mActionBar.setDisplayHomeAsUpEnabled(true);
+
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mDrawerToggle.syncState();
@@ -131,6 +188,14 @@ public class MainActivity extends AbsBaseActivity
 
     private void setupDrawerContent(NavigationView navigationView)
     {
+
+        View headerView = navigationView.getHeaderView(0);
+        mUserAvatar = (CircleImageView) headerView.findViewById(R.id.github_user_avatar);
+        mUserName = (TextView) headerView.findViewById(R.id.github_user_name);
+        mUserBio = (TextView) headerView.findViewById(R.id.github_user_bio);
+        mUserAvatar.setOnClickListener(this);
+
+        setUserInfo();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
         {
@@ -217,5 +282,51 @@ public class MainActivity extends AbsBaseActivity
     {
 
         startActivity(new Intent(MainActivity.this, GankPostActivity.class));
+    }
+
+
+    @Override
+    public void onClick(View v)
+    {
+
+        if (v.getId() == R.id.github_user_avatar)
+        {
+            if (isLogin)
+            {
+                startActivity(new Intent(MainActivity.this , GithubUserInfoActivity.class));
+            } else
+            {
+                GitHubLoginWebActivity.luancher(MainActivity.this, ConstantUtil.GITHUB_LOGIN_URL);
+            }
+        }
+    }
+
+    public void setUserInfo()
+    {
+        mUserInfo = (GitHubUserInfo) ACache.get(MainActivity.this).getAsObject(ConstantUtil.CACHE_USER_KEY);
+
+        if (mUserInfo != null)
+        {
+            isLogin = true;
+
+            LogUtil.all(mUserInfo.avatarUrl);
+            Glide.with(MainActivity.this)
+                    .load(mUserInfo.avatarUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(mUserAvatar);
+
+            mUserName.setText(mUserInfo.name);
+            mUserBio.setText(mUserInfo.bio);
+        } else
+        {
+            isLogin = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+
+        super.onDestroy();
     }
 }

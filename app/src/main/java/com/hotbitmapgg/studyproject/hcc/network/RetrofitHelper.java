@@ -36,6 +36,8 @@ public class RetrofitHelper
 
     public static final String BASE_GITHUB_URL = "https://api.github.com/";
 
+    public static final String BASE_GITHUB_LOGIN_URL = "https://github.com/login/oauth/";
+
     private static OkHttpClient mOkHttpClient;
 
     static
@@ -176,7 +178,12 @@ public class RetrofitHelper
     }
 
 
-    public static GithubUserApi getGithubUserApi()
+    /**
+     * GithubApi
+     *
+     * @return
+     */
+    public static GithubApi getGithubApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -186,10 +193,31 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        GithubUserApi githubUserApi = retrofit.create(GithubUserApi.class);
+        GithubApi githubApi = retrofit.create(GithubApi.class);
 
-        return githubUserApi;
+        return githubApi;
     }
+
+    /**
+     * Github登录Api
+     *
+     * @return
+     */
+    public static GithubApi getGithubLoginApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_GITHUB_LOGIN_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GithubApi githubApi = retrofit.create(GithubApi.class);
+
+        return githubApi;
+    }
+
 
     /**
      * 初始化OKHttpClient

@@ -41,6 +41,7 @@ public class EntryActivity extends Activity
 
     private static final int[] IMAGES = {
             R.drawable.ic_hotbitmapgg,
+            R.drawable.ic_mine_bg,
             R.drawable.splash0,
             R.drawable.splash1,
             R.drawable.splash2,

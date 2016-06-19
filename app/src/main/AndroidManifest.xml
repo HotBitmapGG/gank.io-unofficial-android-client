@@ -167,6 +167,13 @@
         <!--用户Github界面-->
         <activity
             android:name=".hcc.ui.activity.GithubUserInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.StatusBar" />
+
+        <!--Github登录授权跳转界面-->
+        <activity
+            android:name=".hcc.ui.activity.GitHubLoginWebActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
     </application>
 

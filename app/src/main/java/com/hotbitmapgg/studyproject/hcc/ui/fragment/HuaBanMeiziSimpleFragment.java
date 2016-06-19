@@ -9,7 +9,7 @@ import android.view.ViewTreeObserver;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.HuaBanMeiziAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
+import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.model.HuaBanMeizi;
 import com.hotbitmapgg.studyproject.hcc.model.HuaBanMeiziInfo;

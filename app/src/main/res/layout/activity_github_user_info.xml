@@ -1,60 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
-    <include layout="@layout/layout_toolbar" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-    <com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_faq"
+                android:fitsSystemWindows="true">
+
+                <com.hotbitmapgg.studyproject.hcc.widget.CircleImageView
+                    android:id="@+id/user_info_avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/user_info_name"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/ic_slide_menu_avatar_no_login" />
+
+
+                <TextView
+                    android:id="@+id/user_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:tl_indicator_color="@color/font_normal"
+            app:tl_indicator_corner_radius="1.5dp"
+            app:tl_indicator_height="3dp"
+            app:tl_indicator_width="50dp"
+            app:tl_tab_space_equal="true"
+            app:tl_textSelectColor="@color/font_normal"
+            app:tl_textUnselectColor="@android:color/darker_gray" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:overScrollMode="never">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center|top"
-            android:orientation="vertical">
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-            <com.hotbitmapgg.studyproject.hcc.widget.CircleImageView
-                android:id="@+id/user_avatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/comment_avatar"
-                app:border_color2="@android:color/darker_gray"
-                app:border_width="1dp" />
+    <!--<android.support.design.widget.FloatingActionButton-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:clickable="true"-->
+    <!--android:src="@drawable/ic_favorite_white_24dp"-->
+    <!--app:backgroundTint="@color/colorPrimary"-->
+    <!--app:elevation="4dp"-->
+    <!--app:layout_anchor="@id/app_bar_layout"-->
+    <!--app:layout_anchorGravity="bottom|right|end"-->
+    <!--app:pressedTranslationZ="4dp"-->
+    <!--app:rippleColor="@color/colorPrimaryDark" />-->
 
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/font_normal"
-                android:textSize="18sp" />
-
-            <View
-                android:layout_width="120dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/darker_gray" />
-
-            <TextView
-                android:id="@+id/user_github_url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:autoLink="web"
-                android:textSize="14sp" />
-
-
-        </LinearLayout>
-
-
-    </com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

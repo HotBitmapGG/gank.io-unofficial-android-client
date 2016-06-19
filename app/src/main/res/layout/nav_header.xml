@@ -10,24 +10,29 @@
               android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
     <com.hotbitmapgg.studyproject.hcc.widget.CircleImageView
+        android:id="@+id/github_user_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="15dp"
-        android:src="@drawable/ic_photo"/>
+        android:clickable="true"
+        android:src="@drawable/ic_slide_menu_avatar_no_login"/>
 
     <TextView
+        android:id="@+id/github_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:text="HotBitmapGG"
+        android:text="立即登录"
+        android:textSize="18sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
     <TextView
+        android:id="@+id/github_user_bio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:text="100332338@qq.com"
+        android:text="使用你的GitHub账号进行登录"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 </LinearLayout>

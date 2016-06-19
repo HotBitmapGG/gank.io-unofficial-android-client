@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 
-import com.hotbitmapgg.studyproject.hcc.base.ConstantUtil;
+import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;

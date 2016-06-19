@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class GithubUser
+public class GitHubQueryUserInfo
 {
 
     @SerializedName("total_count")

@@ -6,4 +6,12 @@
 
     <include layout="@layout/layout_toolbar" />
 
+
+    <Button
+        android:id="@+id/debug_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="登录"
+        android:textSize="18sp" />
+
 </LinearLayout>
