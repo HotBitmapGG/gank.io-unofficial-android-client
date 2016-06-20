@@ -1,5 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,14 +22,16 @@ import android.widget.Toast;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.ZhuangbiAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.ExpressionPackage;
 import com.hotbitmapgg.studyproject.hcc.network.ExpressionPackageApi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.GlideDownloadImageUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,9 +39,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
@@ -121,7 +126,7 @@ public class ExpressionPackageFragment extends LazyFragment
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
             {
 
-                if(actionId == EditorInfo.IME_ACTION_SEARCH)
+                if (actionId == EditorInfo.IME_ACTION_SEARCH)
                 {
                     //加载数据
                     showProgress();
@@ -159,7 +164,7 @@ public class ExpressionPackageFragment extends LazyFragment
                         } else
                         {
                             hideSwipeRefreshLayout();
-                            SnackbarUtil.showMessage(mRecyclerView , "查询失败,没有该关键字的表情包!");
+                            SnackbarUtil.showMessage(mRecyclerView, "查询失败,没有该关键字的表情包!");
                         }
                     }
                 }, new Action1<Throwable>()
@@ -171,7 +176,7 @@ public class ExpressionPackageFragment extends LazyFragment
 
 
                         hideSwipeRefreshLayout();
-                        SnackbarUtil.showMessage(mRecyclerView , "网络连接超时！");
+                        SnackbarUtil.showMessage(mRecyclerView, "网络连接超时！");
                     }
                 });
     }
@@ -258,10 +263,32 @@ public class ExpressionPackageFragment extends LazyFragment
         });
     }
 
-    private void saveImageToGallery(ExpressionPackage expressionPackage)
+    private void saveImageToGallery(final ExpressionPackage expressionPackage)
     {
 
-        Subscription s = ImageUtil.saveImageAndGetPathObservable(getActivity(), expressionPackage.image_url, expressionPackage.description)
+        Subscription s = Observable.just("")
+                .compose(RxPermissions.getInstance(getActivity()).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .observeOn(Schedulers.io())
+                .filter(new Func1<Boolean,Boolean>()
+                {
+
+                    @Override
+                    public Boolean call(Boolean aBoolean)
+                    {
+
+                        return aBoolean;
+                    }
+                })
+                .flatMap(new Func1<Boolean,Observable<Uri>>()
+                {
+
+                    @Override
+                    public Observable<Uri> call(Boolean aBoolean)
+                    {
+
+                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), expressionPackage.image_url, expressionPackage.description, ConstantUtil.PIC_TYPE_GIF);
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Uri>()
                 {
@@ -270,7 +297,7 @@ public class ExpressionPackageFragment extends LazyFragment
                     public void call(Uri uri)
                     {
 
-                        File appDir = new File(Environment.getExternalStorageDirectory(), "pic");
+                        File appDir = new File(Environment.getExternalStorageDirectory(), ConstantUtil.FILE_DIR);
                         String msg = String.format("图片已保存至 %s 文件夹", appDir.getAbsolutePath());
                         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                     }
@@ -292,8 +319,31 @@ public class ExpressionPackageFragment extends LazyFragment
     public void shareImage(final ExpressionPackage expressionPackage)
     {
 
-        Subscription subscribe = ImageUtil.saveImageAndGetPathObservable(getActivity(), expressionPackage.image_url, expressionPackage.description)
+        Subscription subscribe = Observable.just("")
+                .compose(RxPermissions.getInstance(getActivity()).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .observeOn(Schedulers.io())
+                .filter(new Func1<Boolean,Boolean>()
+                {
+
+                    @Override
+                    public Boolean call(Boolean aBoolean)
+                    {
+
+                        return aBoolean;
+                    }
+                })
+                .flatMap(new Func1<Boolean,Observable<Uri>>()
+                {
+
+                    @Override
+                    public Observable<Uri> call(Boolean aBoolean)
+                    {
+
+                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), expressionPackage.image_url, expressionPackage.description, ConstantUtil.PIC_TYPE_GIF);
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry()
                 .subscribe(new Action1<Uri>()
                 {
 
@@ -310,7 +360,7 @@ public class ExpressionPackageFragment extends LazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        Toast.makeText(getActivity(), "保存失败,请重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "分享失败,请重试", Toast.LENGTH_SHORT).show();
                     }
                 });
 

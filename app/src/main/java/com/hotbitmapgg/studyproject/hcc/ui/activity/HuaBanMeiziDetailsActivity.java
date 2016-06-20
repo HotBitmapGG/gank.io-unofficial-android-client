@@ -141,7 +141,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
         {
             case R.id.action_fuli_share:
                 // 分享
-                GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title)
+                Observable.just("")
                         .compose(RxPermissions.getInstance(HuaBanMeiziDetailsActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                         .observeOn(Schedulers.io())
                         .filter(new Func1<Boolean,Boolean>()
@@ -161,7 +161,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
                             public Observable<Uri> call(Boolean aBoolean)
                             {
 
-                                return GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title);
+                                return GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title,ConstantUtil.PIC_TYPE_JPG);
                             }
                         })
                         .observeOn(AndroidSchedulers.mainThread())
@@ -262,8 +262,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
 
     private void saveImageToGallery()
     {
-
-        Subscription s = GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title)
+        Subscription s = Observable.just("")
                 .compose(RxPermissions.getInstance(HuaBanMeiziDetailsActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -283,7 +282,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title,ConstantUtil.PIC_TYPE_JPG);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())

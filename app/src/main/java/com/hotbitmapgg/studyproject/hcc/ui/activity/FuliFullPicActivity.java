@@ -197,8 +197,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
 
     private void saveImageToGallery()
     {
-
-        GlideDownloadImageUtil.saveImageToLocal(this, url, title)
+        Observable.just("")
                 .compose(RxPermissions.getInstance(FuliFullPicActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -218,7 +217,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title, ConstantUtil.PIC_TYPE_JPG);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -272,7 +271,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title, ConstantUtil.PIC_TYPE_JPG);
                     }
                 })
                 .map(new Func1<Uri,String>()
@@ -340,7 +339,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title, ConstantUtil.PIC_TYPE_JPG);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())

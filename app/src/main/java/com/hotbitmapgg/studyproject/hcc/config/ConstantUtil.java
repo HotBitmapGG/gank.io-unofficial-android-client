@@ -43,4 +43,10 @@ public class ConstantUtil
 
     //退出登录
     public static final String CODE_LOGOUT = "logout";
+
+    //本地保存图片类型 JPG
+    public static final String PIC_TYPE_JPG = "jpg";
+
+    //本地保存图片类型 GIF
+    public static final String PIC_TYPE_GIF = "gif";
 }

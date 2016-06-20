@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.SystemClock;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
@@ -25,7 +26,7 @@ import rx.schedulers.Schedulers;
 public class GlideDownloadImageUtil
 {
 
-    public static Observable<Uri> saveImageToLocal(final Context context, final String url, final String title)
+    public static Observable<Uri> saveImageToLocal(final Context context, final String url, final String title, final String type)
     {
 
         return Observable.create(new Observable.OnSubscribe<File>()
@@ -71,7 +72,16 @@ public class GlideDownloadImageUtil
                         dir.mkdirs();
                     }
 
-                    String fileName = title + ".jpg";
+                    String fileName = null;
+                    LogUtil.all("下载图片");
+                    if (type.equals(ConstantUtil.PIC_TYPE_JPG))
+                    {
+                        fileName = title + SystemClock.currentThreadTimeMillis() + ".jpg";
+                    } else if (type.equals(ConstantUtil.PIC_TYPE_GIF))
+                    {
+                        fileName = title + SystemClock.currentThreadTimeMillis() + ".gif";
+                    }
+
                     mFile = new File(dir, fileName);
                     FileInputStream fis = new FileInputStream(file.getAbsolutePath());
 

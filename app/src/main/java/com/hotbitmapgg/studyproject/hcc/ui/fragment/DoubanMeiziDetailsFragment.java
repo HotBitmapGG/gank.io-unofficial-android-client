@@ -53,13 +53,13 @@ public class DoubanMeiziDetailsFragment extends LazyFragment implements RequestL
 
     private CompositeSubscription mCompositeSubscription;
 
-    public static DoubanMeiziDetailsFragment newInstance(String url , String title)
+    public static DoubanMeiziDetailsFragment newInstance(String url, String title)
     {
 
         DoubanMeiziDetailsFragment mDoubanMeiziDetailsFragment = new DoubanMeiziDetailsFragment();
         Bundle mBundle = new Bundle();
         mBundle.putString(EXTRA_URL, url);
-        mBundle.putString(EXTRA_TITLE , title);
+        mBundle.putString(EXTRA_TITLE, title);
         mDoubanMeiziDetailsFragment.setArguments(mBundle);
 
         return mDoubanMeiziDetailsFragment;
@@ -130,7 +130,7 @@ public class DoubanMeiziDetailsFragment extends LazyFragment implements RequestL
     private void saveImageToGallery()
     {
 
-        Subscription s = GlideDownloadImageUtil.saveImageToLocal(getActivity(), url, title)
+        Subscription s = Observable.just("")
                 .compose(RxPermissions.getInstance(getActivity()).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -150,7 +150,7 @@ public class DoubanMeiziDetailsFragment extends LazyFragment implements RequestL
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), url, title, ConstantUtil.PIC_TYPE_JPG);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -200,7 +200,7 @@ public class DoubanMeiziDetailsFragment extends LazyFragment implements RequestL
 
         super.onDestroy();
 
-        if(mCompositeSubscription != null && !mCompositeSubscription.isUnsubscribed())
+        if (mCompositeSubscription != null && !mCompositeSubscription.isUnsubscribed())
         {
             mCompositeSubscription.unsubscribe();
         }
