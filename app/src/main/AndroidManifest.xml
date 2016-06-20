@@ -166,7 +166,7 @@
 
         <!--用户Github界面-->
         <activity
-            android:name=".hcc.ui.activity.GithubUserInfoActivity"
+            android:name=".hcc.ui.activity.GitHubUserInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
 

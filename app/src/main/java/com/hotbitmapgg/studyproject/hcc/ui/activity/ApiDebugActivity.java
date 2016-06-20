@@ -70,7 +70,7 @@ public class ApiDebugActivity extends AbsBaseActivity
 //                    public void call(GitHubQueryUserInfo.UserInfo userInfo)
 //                    {
 //
-//                        Glide.with(GithubUserInfoActivity.this)
+//                        Glide.with(GitHubUserInfoActivity.this)
 //                                .load(userInfo.avatarUrl)
 //                                .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                                .into(mUserAvatar);

@@ -21,7 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
-import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.GlideDownloadImageUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.ImmersiveUtil;
 import com.jakewharton.rxbinding.view.RxMenuItem;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -198,7 +198,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
     private void saveImageToGallery()
     {
 
-        ImageUtil.saveImageAndGetPathObservable(this, url, title)
+        GlideDownloadImageUtil.saveImageToLocal(this, url, title)
                 .compose(RxPermissions.getInstance(FuliFullPicActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -218,7 +218,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return ImageUtil.saveImageAndGetPathObservable(FuliFullPicActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -272,7 +272,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return ImageUtil.saveImageAndGetPathObservable(FuliFullPicActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title);
                     }
                 })
                 .map(new Func1<Uri,String>()
@@ -340,7 +340,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return ImageUtil.saveImageAndGetPathObservable(FuliFullPicActivity.this, url, title);
+                        return GlideDownloadImageUtil.saveImageToLocal(FuliFullPicActivity.this, url, title);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())

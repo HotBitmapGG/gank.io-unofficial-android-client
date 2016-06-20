@@ -3,9 +3,11 @@ package com.hotbitmapgg.studyproject.hcc.ui.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -18,7 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
@@ -35,6 +37,7 @@ import com.hotbitmapgg.studyproject.hcc.widget.CircleImageView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import rx.Subscription;
 import rx.functions.Action1;
 
 
@@ -53,18 +56,10 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     @Bind(R.id.fab)
     FloatingActionButton mFloatingActionButton;
 
-    //    @Nullable
-//    @Bind(R.id.github_user_avatar)
     CircleImageView mUserAvatar;
 
-    //
-//    @Nullable
-//    @Bind(R.id.github_user_name)
     TextView mUserName;
 
-    //
-//    @Nullable
-//    @Bind(R.id.github_user_bio)
     TextView mUserBio;
 
     private HomeFragment homeFragment;
@@ -86,6 +81,8 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     private boolean isLogin = false;
 
     private GitHubUserInfo mUserInfo;
+
+    private Subscription subscribe;
 
 
     @Override
@@ -116,7 +113,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         mFloatingActionButton.setVisibility(View.VISIBLE);
 
 
-        RxBus2.getInstance().toObserverable(String.class)
+        subscribe = RxBus2.getInstance().toObserverable(String.class)
                 .subscribe(new Action1<String>()
                 {
 
@@ -127,8 +124,17 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                         if (!TextUtils.isEmpty(s))
                         {
                             LogUtil.all(s);
-                            isLogin = true;
-                            setUserInfo();
+                            if (s.equals(ConstantUtil.CODE_SUCCESS))
+                            {
+                                // 登录成功
+                                isLogin = true;
+                                setUserInfo();
+                            } else if (s.equals(ConstantUtil.CODE_LOGOUT))
+                            {
+                                //退出登录
+                                isLogin = false;
+                                clearUserInfo();
+                            }
                         }
                     }
                 }, new Action1<Throwable>()
@@ -141,6 +147,14 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                         LogUtil.all("用户登录更新失败");
                     }
                 });
+    }
+
+    private void clearUserInfo()
+    {
+
+        mUserAvatar.setImageResource(R.drawable.ic_slide_menu_avatar_no_login);
+        mUserName.setText("立即登录");
+        mUserBio.setText("使用你的GitHub账号进行登录");
     }
 
     @Override
@@ -293,7 +307,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         {
             if (isLogin)
             {
-                startActivity(new Intent(MainActivity.this , GithubUserInfoActivity.class));
+                startActivity(new Intent(MainActivity.this, GitHubUserInfoActivity.class));
             } else
             {
                 GitHubLoginWebActivity.luancher(MainActivity.this, ConstantUtil.GITHUB_LOGIN_URL);
@@ -303,6 +317,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
 
     public void setUserInfo()
     {
+
         mUserInfo = (GitHubUserInfo) ACache.get(MainActivity.this).getAsObject(ConstantUtil.CACHE_USER_KEY);
 
         if (mUserInfo != null)
@@ -312,8 +327,19 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
             LogUtil.all(mUserInfo.avatarUrl);
             Glide.with(MainActivity.this)
                     .load(mUserInfo.avatarUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(mUserAvatar);
+                    .asBitmap()
+                    .placeholder(R.drawable.ic_slide_menu_avatar_no_login)
+                    .into(new BitmapImageViewTarget(mUserAvatar)
+                    {
+
+                        @Override
+                        protected void setResource(Bitmap resource)
+                        {
+
+                            mUserAvatar.setImageDrawable(RoundedBitmapDrawableFactory.create
+                                    (MainActivity.this.getResources(), resource));
+                        }
+                    });
 
             mUserName.setText(mUserInfo.name);
             mUserBio.setText(mUserInfo.bio);
@@ -328,5 +354,11 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     {
 
         super.onDestroy();
+
+        // 取消RxBus的订阅事件
+        if (subscribe != null && !subscribe.isUnsubscribed())
+        {
+            subscribe.unsubscribe();
+        }
     }
 }

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubFollowerInfo;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
@@ -47,8 +46,8 @@ public class GitHubFollowInfoAdapter extends AbsRecyclerViewAdapter
             GitHubFollowerInfo gitHubFollowerInfo = followerInfos.get(position);
             Glide.with(getContext())
                     .load(gitHubFollowerInfo.avatarUrl)
+                    .dontAnimate()
                     .placeholder(R.drawable.ic_slide_menu_avatar_no_login)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(itemViewHolder.mFollowAvatar);
 
             itemViewHolder.mFollowName.setText(gitHubFollowerInfo.login);

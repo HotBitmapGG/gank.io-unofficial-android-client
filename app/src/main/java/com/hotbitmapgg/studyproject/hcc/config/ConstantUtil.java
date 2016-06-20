@@ -15,7 +15,7 @@ public class ConstantUtil
     public static final String APP_SIGN = "d424376f51f1467da1b8c75debebf148";
 
     //本地存储dir目录
-    public static final String FILE_DIR = "gank.io";
+    public static final String FILE_DIR = "gank_io";
 
     //Github三方登录授权Id
     public static final String GITHUB_CLIENT_ID = "3f0b872a51a4b0c45065";
@@ -37,4 +37,10 @@ public class ConstantUtil
 
     //Github登录授权Url
     public static final String GITHUB_LOGIN_URL = "https://github.com/login/oauth/authorize?client_id=3f0b872a51a4b0c45065&state=AndroidRank&redirect_uri=http://example.com/path";
+
+    //登录成功
+    public static final String CODE_SUCCESS = "success";
+
+    //退出登录
+    public static final String CODE_LOGOUT = "logout";
 }

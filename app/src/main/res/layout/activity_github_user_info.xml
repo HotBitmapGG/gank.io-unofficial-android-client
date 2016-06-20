@@ -80,6 +80,12 @@
             app:tl_textUnselectColor="@android:color/darker_gray" />
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_bg" />
+
+
     </android.support.design.widget.AppBarLayout>
 
 

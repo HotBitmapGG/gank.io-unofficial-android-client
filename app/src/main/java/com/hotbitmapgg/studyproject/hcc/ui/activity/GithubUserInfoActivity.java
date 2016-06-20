@@ -3,9 +3,11 @@ package com.hotbitmapgg.studyproject.hcc.ui.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -14,12 +16,13 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
+import com.hotbitmapgg.studyproject.hcc.rxdemo.RxBus2;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.GitHubFollowersFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.GitHubFollowingFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.GitHubUserDetailsFragment;
@@ -35,7 +38,7 @@ import butterknife.Bind;
 /**
  * Github登录用户详情界面
  */
-public class GithubUserInfoActivity extends AbsBaseActivity
+public class GitHubUserInfoActivity extends AbsBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -81,7 +84,7 @@ public class GithubUserInfoActivity extends AbsBaseActivity
     {
 
 
-        mUserInfo = (GitHubUserInfo) ACache.get(GithubUserInfoActivity.this)
+        mUserInfo = (GitHubUserInfo) ACache.get(GitHubUserInfoActivity.this)
                 .getAsObject(ConstantUtil.CACHE_USER_KEY);
 
         initFragments();
@@ -107,9 +110,19 @@ public class GithubUserInfoActivity extends AbsBaseActivity
 
         Glide.with(this)
                 .load(mUserInfo.avatarUrl)
+                .asBitmap()
                 .placeholder(R.drawable.ic_slide_menu_avatar_no_login)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(mUserInfoAvatar);
+                .into(new BitmapImageViewTarget(mUserInfoAvatar)
+                {
+
+                    @Override
+                    protected void setResource(Bitmap resource)
+                    {
+
+                        mUserInfoAvatar.setImageDrawable(RoundedBitmapDrawableFactory
+                                .create(GitHubUserInfoActivity.this.getResources(), resource));
+                    }
+                });
         mUsername.setText(mUserInfo.name);
     }
 
@@ -148,7 +161,9 @@ public class GithubUserInfoActivity extends AbsBaseActivity
             share();
         } else if (item.getItemId() == R.id.action_logout)
         {
-            ACache.get(GithubUserInfoActivity.this).clear();
+            ACache.get(GitHubUserInfoActivity.this).clear();
+            RxBus2.getInstance().post(ConstantUtil.CODE_LOGOUT);
+            GitHubUserInfoActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);
     }

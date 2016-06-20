@@ -125,8 +125,6 @@ public class GitHubLoginWebActivity extends AbsBaseActivity
         {
             finish();
         }
-
-        LogUtil.all("1111" + url);
         // Github授权登录回调url后解析地址拿到code参数
         if (url.startsWith("http://example.com/path"))
         {
@@ -196,7 +194,7 @@ public class GitHubLoginWebActivity extends AbsBaseActivity
                                     .put(ConstantUtil.CACHE_USER_KEY, gitHubUserInfo);
                             hideProgress();
                             Toast.makeText(GitHubLoginWebActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                            RxBus2.getInstance().post("success");
+                            RxBus2.getInstance().post(ConstantUtil.CODE_SUCCESS);
                             GitHubLoginWebActivity.this.finish();
                         }
                     }, new Action1<Throwable>()
@@ -237,9 +235,18 @@ public class GitHubLoginWebActivity extends AbsBaseActivity
     public void showProgress()
     {
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-        mLoadLayout.setVisibility(View.VISIBLE);
+        mCircleProgressView.post(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                mCircleProgressView.setVisibility(View.VISIBLE);
+                mCircleProgressView.spin();
+                mLoadLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
     public void hideProgress()

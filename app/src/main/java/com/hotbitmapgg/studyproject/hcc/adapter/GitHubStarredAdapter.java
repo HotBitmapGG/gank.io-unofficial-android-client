@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubStarInfo;
 import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
@@ -48,7 +47,8 @@ public class GitHubStarredAdapter extends AbsRecyclerViewAdapter
             GitHubStarInfo starredInfo = starredInfos.get(position);
             Glide.with(getContext())
                     .load(starredInfo.owner.avatarUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate()
+                    .placeholder(R.drawable.ic_slide_menu_avatar_no_login)
                     .into(itemViewHolder.mAvatar);
 
             itemViewHolder.mStarName.setText(starredInfo.name);
