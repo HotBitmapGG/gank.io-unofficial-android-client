@@ -1,5 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,17 +16,21 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
-import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
+import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.GlideDownloadImageUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.image.PhotoImageView;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 
@@ -125,7 +130,30 @@ public class GankMeiziDetailsFragment extends LazyFragment implements RequestLis
     private void saveImageToGallery()
     {
 
-        Subscription s = ImageUtil.saveImageAndGetPathObservable(getActivity(), url, title)
+
+        Subscription s = GlideDownloadImageUtil.saveImageToLocal(getActivity(), url, title)
+                .compose(RxPermissions.getInstance(getActivity()).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .observeOn(Schedulers.io())
+                .filter(new Func1<Boolean,Boolean>()
+                {
+
+                    @Override
+                    public Boolean call(Boolean aBoolean)
+                    {
+
+                        return aBoolean;
+                    }
+                })
+                .flatMap(new Func1<Boolean,Observable<Uri>>()
+                {
+
+                    @Override
+                    public Observable<Uri> call(Boolean aBoolean)
+                    {
+
+                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), url, title);
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Uri>()
                 {

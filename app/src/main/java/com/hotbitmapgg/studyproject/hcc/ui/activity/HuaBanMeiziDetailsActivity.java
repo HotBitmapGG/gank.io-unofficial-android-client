@@ -1,5 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,14 +24,19 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
-import com.hotbitmapgg.studyproject.hcc.utils.ImageUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.GlideDownloadImageUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.ImmersiveUtil;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.io.File;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 
@@ -112,6 +118,10 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
         {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        mAppBarLayout.setAlpha(0.5f);
+        mToolBar.setBackgroundResource(R.color.black_90);
+        mAppBarLayout.setBackgroundResource(R.color.black_90);
     }
 
     @Override
@@ -131,8 +141,31 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
         {
             case R.id.action_fuli_share:
                 // 分享
-                ImageUtil.saveImageAndGetPathObservable(HuaBanMeiziDetailsActivity.this, url, title)
+                GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title)
+                        .compose(RxPermissions.getInstance(HuaBanMeiziDetailsActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                        .observeOn(Schedulers.io())
+                        .filter(new Func1<Boolean,Boolean>()
+                        {
+
+                            @Override
+                            public Boolean call(Boolean aBoolean)
+                            {
+
+                                return aBoolean;
+                            }
+                        })
+                        .flatMap(new Func1<Boolean,Observable<Uri>>()
+                        {
+
+                            @Override
+                            public Observable<Uri> call(Boolean aBoolean)
+                            {
+
+                                return GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title);
+                            }
+                        })
                         .observeOn(AndroidSchedulers.mainThread())
+                        .retry()
                         .subscribe(new Action1<Uri>()
                         {
 
@@ -149,7 +182,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
                             public void call(Throwable throwable)
                             {
 
-                                Toast.makeText(HuaBanMeiziDetailsActivity.this, "保存失败,请重试", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(HuaBanMeiziDetailsActivity.this, "分享失败,请重试", Toast.LENGTH_SHORT).show();
                             }
                         });
                 return true;
@@ -194,6 +227,7 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
             @Override
             public boolean onLongClick(View v)
             {
+
                 new AlertDialog.Builder(HuaBanMeiziDetailsActivity.this)
                         .setMessage("是否保存到本地?")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener()
@@ -229,7 +263,29 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
     private void saveImageToGallery()
     {
 
-        Subscription s = ImageUtil.saveImageAndGetPathObservable(this, url, title)
+        Subscription s = GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title)
+                .compose(RxPermissions.getInstance(HuaBanMeiziDetailsActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .observeOn(Schedulers.io())
+                .filter(new Func1<Boolean,Boolean>()
+                {
+
+                    @Override
+                    public Boolean call(Boolean aBoolean)
+                    {
+
+                        return aBoolean;
+                    }
+                })
+                .flatMap(new Func1<Boolean,Observable<Uri>>()
+                {
+
+                    @Override
+                    public Observable<Uri> call(Boolean aBoolean)
+                    {
+
+                        return GlideDownloadImageUtil.saveImageToLocal(HuaBanMeiziDetailsActivity.this, url, title);
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Uri>()
                 {
@@ -274,12 +330,25 @@ public class HuaBanMeiziDetailsActivity extends AbsBaseActivity
     protected void hideOrShowToolbar()
     {
 
-        mAppBarLayout.animate()
-                .translationY(isHide ? 0 : -mAppBarLayout.getHeight())
-                .setInterpolator(new DecelerateInterpolator(2))
-                .start();
-
-        isHide = !isHide;
+        if (isHide)
+        {
+            //显示
+            ImmersiveUtil.exit(this);
+            mAppBarLayout.animate()
+                    .translationY(0)
+                    .setInterpolator(new DecelerateInterpolator(2))
+                    .start();
+            isHide = false;
+        } else
+        {
+            //隐藏
+            ImmersiveUtil.enter(this);
+            mAppBarLayout.animate()
+                    .translationY(-mAppBarLayout.getHeight())
+                    .setInterpolator(new DecelerateInterpolator(2))
+                    .start();
+            isHide = true;
+        }
     }
 
 

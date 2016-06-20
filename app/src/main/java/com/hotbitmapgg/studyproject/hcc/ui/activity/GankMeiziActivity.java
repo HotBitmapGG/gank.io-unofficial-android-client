@@ -97,6 +97,7 @@ public class GankMeiziActivity extends AbsBaseActivity
     public void initToolBar()
     {
 
+        mToolbar.setTitle("Gank妹子福利");
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)

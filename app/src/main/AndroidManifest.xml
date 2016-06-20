@@ -101,7 +101,8 @@
         <!-- 花瓣妹子详情界面-->
         <activity
             android:name=".hcc.ui.activity.HuaBanMeiziDetailsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.StatusBar" />
 
         <!-- 个人信息界面-->
         <activity
