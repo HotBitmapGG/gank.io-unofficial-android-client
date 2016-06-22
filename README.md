@@ -1,4 +1,4 @@
-# StudyProject
+# AndroidRank
 Gank.IO客户端+各种好玩的API+日常练习代码，感兴趣的请Star一波~!
 
 ------
