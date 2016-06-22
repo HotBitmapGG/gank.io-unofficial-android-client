@@ -1,24 +1,26 @@
 # AndroidRank
-Gank.IO客户端+各种好玩的API+日常练习代码，感兴趣的请Star一波~!
+
+Based on Rxjava series class library implementation AndroidRank dry study to the client.
 
 ------
-## 简介
+## Introduction to the
 
-本来只是自己平时练习写代码提交的地方,但是想把做的东西分享出来,
-小弟才疏学浅,还请各位大神指点~~！
+Originally just places they usually practice writing code to submit, but want to share out the things to do,The younger brother pretty good, also please great god show ~ ~!
 
 
-## 更新说明
-最近添加了全球最大同性交友网站GitHub的登录,优化界面UI，修复了很多已知的bug，增加干货提交，后期会添加收藏，评论，朋友圈等功能，很多好玩的控件，Api实现更新中，为了更好的优化体验。
+## Updated instructions
+最近添加了全球最大同性交友网站GitHub的登录,优化界面UI，
+修复了很多已知的bug，增加干货提交，
+后期会添加收藏，评论，朋友圈等功能，很多好玩的控件，Api实现更新中，为了更好的优化体验。
 
-##功能说明
-首页:Gank.Io客户端 Api均来自代码家的Gnak.Io.
-Rxjava:Rxjava实际应用的demo,Rxjava操作符大全,数据均来自RxJavaDocs.
-自定义控件练习.
-表情包搜索,支持本地保存以及分享好友.
-更多功能慢慢完善,会把一些好玩的Api以及界面效果做出来分享.
+## Functional specifications
 
-## 截图
+Home page: Gank. Io client Api code are from home Gnak. Io.Rxjava application demo,
+Rxjava operator, the data are from RxJavaDocs.Personal practice custom controls.Douban,
+petals, gank sister series, etc.All kinds of iso learning tips.Search expression package,
+support local preservation and friends to share.More slowly, the Api and interface effect to make some fun to share.
+
+## screenshots
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/01.jpg?raw=true)
 
