@@ -7,6 +7,10 @@ Gank.IO客户端+各种好玩的API+日常练习代码，感兴趣的请Star一�
 本来只是自己平时练习写代码提交的地方,但是想把做的东西分享出来,
 小弟才疏学浅,还请各位大神指点~~！
 
+
+## 更新说明
+最近添加了全球最大同性交友网站GitHub的登录,优化界面UI，修复了很多已知的bug，增加干货提交，后期会添加收藏，评论，朋友圈等功能，很多好玩的控件，Api实现更新中，为了更好的优化体验。
+
 ##功能说明
 首页:Gank.Io客户端 Api均来自代码家的Gnak.Io.
 Rxjava:Rxjava实际应用的demo,Rxjava操作符大全,数据均来自RxJavaDocs.
@@ -23,6 +27,14 @@ Rxjava:Rxjava实际应用的demo,Rxjava操作符大全,数据均来自RxJavaDocs
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/03.jpg?raw=true)
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/04.jpg?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/05.jpg?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/06.jpg?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/07.jpg?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/08.jpg?raw=true)
 
 ## Other
 
