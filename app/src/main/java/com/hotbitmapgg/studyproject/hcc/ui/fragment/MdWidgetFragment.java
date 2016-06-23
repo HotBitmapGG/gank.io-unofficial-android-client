@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.recycleview.RecycleViewDemoActivity;
+import com.hotbitmapgg.studyproject.hcc.widget_demo.ScrollDemoActivity;
 
 import butterknife.OnClick;
 
@@ -36,5 +37,12 @@ public class MdWidgetFragment extends LazyFragment
     {
 
         startActivity(new Intent(getActivity(), RecycleViewDemoActivity.class));
+    }
+
+    @OnClick(R.id.md_btn_2)
+    void startScrollDemo()
+    {
+
+        startActivity(new Intent(getActivity(), ScrollDemoActivity.class));
     }
 }

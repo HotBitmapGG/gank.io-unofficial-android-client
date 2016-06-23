@@ -176,6 +176,11 @@
             android:name=".hcc.ui.activity.GitHubLoginWebActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+        <!--安卓滑动实现演示界面-->
+        <activity
+            android:name=".hcc.widget_demo.ScrollDemoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

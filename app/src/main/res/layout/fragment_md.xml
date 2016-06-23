@@ -23,6 +23,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:name="RecycleView各种用法示例" />
+
+            <include layout="@layout/layout_line_view" />
+
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/md_btn_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="安卓实现滑动的滑动的几种方法" />
         </LinearLayout>
 
 
