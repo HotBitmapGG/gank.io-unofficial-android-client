@@ -10,7 +10,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground">
 
         <com.hotbitmapgg.studyproject.hcc.widget.CircleImageView
             android:id="@+id/item_follow_avatar"

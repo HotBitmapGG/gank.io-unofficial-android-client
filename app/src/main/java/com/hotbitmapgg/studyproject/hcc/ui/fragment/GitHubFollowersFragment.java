@@ -11,6 +11,8 @@ import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubFollowerInfo;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
+import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import java.io.IOException;
@@ -118,6 +120,19 @@ public class GitHubFollowersFragment extends LazyFragment
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new GitHubFollowInfoAdapter(mRecyclerView, followerInfos));
+        GitHubFollowInfoAdapter mAdapter = new GitHubFollowInfoAdapter(mRecyclerView, followerInfos);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                GitHubFollowerInfo gitHubFollowerInfo = followerInfos.get(position);
+                WebActivity.start(getActivity(), gitHubFollowerInfo.htlmUrl, gitHubFollowerInfo.login);
+            }
+        });
     }
 }

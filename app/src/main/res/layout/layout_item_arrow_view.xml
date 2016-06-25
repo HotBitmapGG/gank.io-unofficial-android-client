@@ -11,7 +11,7 @@
         android:id="@+id/arrow_layout"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="?android:attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/arrow_img"

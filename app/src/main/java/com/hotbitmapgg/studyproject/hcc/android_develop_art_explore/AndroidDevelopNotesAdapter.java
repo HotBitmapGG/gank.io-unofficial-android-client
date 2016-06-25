@@ -12,10 +12,7 @@ import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hcc on 16/6/5 15:17
- * 100332338@qq.com
- */
+
 public class AndroidDevelopNotesAdapter extends AbsRecyclerViewAdapter
 {
 

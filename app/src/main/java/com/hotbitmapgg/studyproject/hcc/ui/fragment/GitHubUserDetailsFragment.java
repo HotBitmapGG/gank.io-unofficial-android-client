@@ -14,6 +14,8 @@ import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubStarInfo;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
+import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleProgressView;
 
@@ -179,8 +181,22 @@ public class GitHubUserDetailsFragment extends LazyFragment
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new GitHubStarredAdapter(mRecyclerView, stars));
+        GitHubStarredAdapter mAdapter = new GitHubStarredAdapter(mRecyclerView, stars);
+        mRecyclerView.setAdapter(mAdapter);
         hideProgress();
+
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                GitHubStarInfo gitHubStarInfo = stars.get(position);
+                WebActivity.start(getActivity(),gitHubStarInfo.htmlUrl , gitHubStarInfo.fullName);
+            }
+        });
+
     }
 
     public void showProgress()
