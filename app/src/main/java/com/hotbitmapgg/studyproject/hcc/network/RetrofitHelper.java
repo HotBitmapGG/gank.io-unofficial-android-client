@@ -30,10 +30,6 @@ public class RetrofitHelper
 
     public static final String BASE_POST_GANK_URL = "https://gank.io/api/add2gank";
 
-    public static final String BASE_HUABAN_URL = "http://route.showapi.com/";
-
-    public static final String BASE_DOUBAN_URL = "http://www.dbmeinv.com/dbgroup/";
-
     public static final String BASE_GITHUB_URL = "https://api.github.com/";
 
     public static final String BASE_GITHUB_LOGIN_URL = "https://github.com/login/oauth/";
@@ -139,42 +135,6 @@ public class RetrofitHelper
         ExpressionPackageApi expressionPackageApi = retrofit.create(ExpressionPackageApi.class);
 
         return expressionPackageApi;
-    }
-
-
-    /**
-     * 花瓣Api
-     *
-     * @return
-     */
-    public static HuaBanMeiziApi getHuaBanMeiziApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_HUABAN_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-
-        HuaBanMeiziApi huaBanMeiziApi = retrofit.create(HuaBanMeiziApi.class);
-
-        return huaBanMeiziApi;
-    }
-
-    /**
-     * 豆瓣Api
-     *
-     * @return
-     */
-    public static DoubanMeizhiApi getDoubanMeiziApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_DOUBAN_URL)
-                .client(new OkHttpClient())
-                .build();
-
-        return retrofit.create(DoubanMeizhiApi.class);
     }
 
 
