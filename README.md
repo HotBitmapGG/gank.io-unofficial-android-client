@@ -1,26 +1,23 @@
 # AndroidRank
 
-Based on Rxjava series class library implementation AndroidRank dry study to the client.
+Gank.IO客户端,每日更新各种干货.
 
-------
-## Introduction to the
+## 功能介绍
 
-Originally just places they usually practice writing code to submit, but want to share out the things to do,The younger brother pretty good, also please great god show ~ ~!
+* 每日干货更新,一键分享保存.
+* 自定义控件练习例子.
+* Rxjava操作符,中文文档,使用案例,方便随时查阅学习.
+* 安卓艺术开发探索读书笔记,EffectiveJava读书笔记.
+* 各种表情包搜索,本地保存与分享.
 
 
-## Updated instructions
-最近添加了全球最大同性交友网站GitHub的登录,优化界面UI，
-修复了很多已知的bug，增加干货提交，
-后期会添加收藏，评论，朋友圈等功能，很多好玩的控件，Api实现更新中，为了更好的优化体验。
+## 更新说明
+最近添加了全球最大同性交友网站GitHub的登录,优化界面UI,
+修复了很多已知的bug,增加干货提交,
+后期会添加收藏,评论,朋友圈等功能.
 
-## Functional specifications
 
-Home page: Gank. Io client Api code are from home Gnak. Io.Rxjava application demo,
-Rxjava operator, the data are from RxJavaDocs.Personal practice custom controls.Douban,
-petals, gank sister series, etc.All kinds of iso learning tips.Search expression package,
-support local preservation and friends to share.More slowly, the Api and interface effect to make some fun to share.
-
-## screenshots
+## 截图
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/01.jpg?raw=true)
 
@@ -41,8 +38,9 @@ support local preservation and friends to share.More slowly, the Api and interfa
 ## Other
 
 * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
-* 高仿BiliBili客户端:https://github.com/HotBitmapGG/OhMyBiliBili
-* Gank.IO客户端 :https://github.com/HotBitmapGG/StudyProject
+* 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
+* Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
+* 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
 
 ## License
 
