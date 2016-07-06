@@ -4,6 +4,10 @@ import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
+import com.hotbitmapgg.studyproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,10 @@ public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRec
     private Context context;
 
     protected RecyclerView mRecyclerView;
+
+    private int mLastPosition = -1;
+
+    private static final int DELAY = 138;
 
     protected List<RecyclerView.OnScrollListener> mListeners = new ArrayList<RecyclerView.OnScrollListener>();
 
@@ -53,6 +61,52 @@ public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRec
     {
 
         mListeners.add(listener);
+    }
+
+    public void showItemAnim(final View view, final int position)
+    {
+
+        if (position > mLastPosition)
+        {
+            view.setAlpha(0);
+            view.postDelayed(new Runnable()
+            {
+
+                @Override
+                public void run()
+                {
+
+                    Animation animation = AnimationUtils.loadAnimation(view.getContext(),
+                            R.anim.slide_in_right);
+                    animation.setAnimationListener(new Animation.AnimationListener()
+                    {
+
+                        @Override
+                        public void onAnimationStart(Animation animation)
+                        {
+
+                            view.setAlpha(1);
+                        }
+
+
+                        @Override
+                        public void onAnimationEnd(Animation animation)
+                        {
+
+                        }
+
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation)
+                        {
+
+                        }
+                    });
+                    view.startAnimation(animation);
+                }
+            }, position);
+            mLastPosition = position;
+        }
     }
 
     public interface OnItemClickListener
@@ -122,8 +176,7 @@ public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRec
                 if (itemLongClickListener != null)
                 {
                     return itemLongClickListener.onItemLongClick(position, holder);
-                }
-                else
+                } else
                 {
                     return false;
                 }

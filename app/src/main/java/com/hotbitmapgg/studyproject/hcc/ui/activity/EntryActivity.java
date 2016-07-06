@@ -80,10 +80,10 @@ public class EntryActivity extends Activity
                     @Override
                     public void call(Long aLong)
                     {
+
                         startAnim();
                     }
                 });
-
     }
 
     private void startAnim()
@@ -105,6 +105,7 @@ public class EntryActivity extends Activity
 
                 startActivity(new Intent(EntryActivity.this, MainActivity.class));
                 EntryActivity.this.finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }

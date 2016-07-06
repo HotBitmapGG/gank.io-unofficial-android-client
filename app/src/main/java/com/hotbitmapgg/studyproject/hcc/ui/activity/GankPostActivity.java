@@ -1,9 +1,10 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,16 +12,20 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.hotbitmapgg.studyproject.R;
+import com.hotbitmapgg.studyproject.hcc.adapter.GankTypeSelectAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostBoby;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostResult;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
+import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.LoadingDialog;
 import com.jakewharton.rxbinding.view.RxMenuItem;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
@@ -48,11 +53,11 @@ public class GankPostActivity extends AbsBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolBar;
 
-    @Bind(R.id.select_type)
-    TextView mSelectType;
-
     @Bind(R.id.ed_title)
     TextInputEditText mEdTitle;
+
+    @Bind(R.id.select_type)
+    TextView mSelectType;
 
     @Bind(R.id.ed_url)
     TextInputEditText mEdUrl;
@@ -71,6 +76,10 @@ public class GankPostActivity extends AbsBaseActivity
     private String type;
 
     private String isDebug = "false";
+
+    private BottomSheetDialog mBottomSheetDialog;
+
+    private List<String> types = Arrays.asList("Android", "iOS", "休息视频", "福利", "拓展资源", "前端", "瞎推荐", "App");
 
 
     @Override
@@ -270,21 +279,42 @@ public class GankPostActivity extends AbsBaseActivity
     void startSelectGankType()
     {
 
-        Intent mIntent = new Intent(GankPostActivity.this, GankTypeSelectActivity.class);
-        startActivityForResult(mIntent, 100, null);
+        mBottomSheetDialog = new BottomSheetDialog(GankPostActivity.this);
+        mBottomSheetDialog.setContentView(R.layout.layout_gank_type_bottom);
+        RecyclerView mRecyclerView = (RecyclerView) mBottomSheetDialog.findViewById(R.id.recycle);
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GankTypeSelectAdapter mAdapter = new GankTypeSelectAdapter(mRecyclerView, types);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                type = types.get(position);
+                mSelectType.setText(type);
+                mBottomSheetDialog.dismiss();
+            }
+        });
+
+
+        mBottomSheetDialog.show();
     }
 
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    protected void onDestroy()
     {
 
-        if (resultCode == Activity.RESULT_OK)
-        {
-            type = data.getStringExtra("type");
-            mSelectType.setText(type);
-        }
+        super.onDestroy();
 
-        super.onActivityResult(requestCode, resultCode, data);
+        if (mBottomSheetDialog != null)
+        {
+            if (mBottomSheetDialog.isShowing())
+                mBottomSheetDialog.dismiss();
+        }
     }
 }

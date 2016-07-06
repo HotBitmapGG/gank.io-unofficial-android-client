@@ -149,6 +149,18 @@
         <activity
             android:name=".hcc.widget_demo.ScrollDemoActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".hcc.ui.activity.GankToDayActivity"
+            android:screenOrientation="portrait" />
+
+        <!--serchview-->
+        <provider
+            android:name="br.com.mauker.materialsearchview.db.HistoryProvider"
+            android:authorities="br.com.mauker.materialsearchview.searchhistorydatabase"
+            android:exported="false"
+            android:protectionLevel="signature"
+            android:syncable="true" />
     </application>
 
 </manifest>

@@ -5,15 +5,18 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:elevation="0dp">
+
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -35,6 +38,13 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
+        <br.com.mauker.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            style="@style/MaterialSearchViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -42,11 +52,11 @@
             android:layout_gravity="right|bottom|end"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="15dp"
+            android:clickable="true"
             android:src="@drawable/ic_add_white_24dp"
             android:tint="@android:color/white"
             android:visibility="gone"
             app:backgroundTint="@color/colorPrimary"
-            android:clickable="true"
             app:elevation="6dp"
             app:layout_behavior="com.hotbitmapgg.studyproject.hcc.widget.behaviour.ScrollAwareFabBehavior"
             app:pressedTranslationZ="12dp"

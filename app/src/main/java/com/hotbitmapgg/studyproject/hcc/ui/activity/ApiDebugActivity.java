@@ -33,6 +33,22 @@ public class ApiDebugActivity extends AbsBaseActivity
     {
 
 
+//        RetrofitHelper.getGankApi()
+//                .getGankDayData(2016, 5, 11)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<GankDayInfo>()
+//                {
+//
+//                    @Override
+//                    public void call(GankDayInfo gankDayInfo)
+//                    {
+//
+//                        LogUtil.all(gankDayInfo.results.Android.size() + "~~");
+//                    }
+//                });
+
+
 //        Uri uri = Uri.parse("https://github.com/login/oauth/authorize?client_id=3f0b872a51a4b0c45065&state=AndroidRank&redirect_uri=http://example.com/path");
 //        Intent mIntent = new Intent(Intent.ACTION_VIEW , uri);
 //        startActivity(mIntent);

@@ -14,9 +14,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -33,8 +35,13 @@ import com.hotbitmapgg.studyproject.hcc.ui.fragment.MdWidgetFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
 import com.hotbitmapgg.studyproject.hcc.utils.ACache;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
+import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import br.com.mauker.materialsearchview.MaterialSearchView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import rx.Subscription;
@@ -52,6 +59,9 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
 
     @Bind(R.id.nav_view)
     NavigationView mNavigationView;
+
+    @Bind(R.id.search_view)
+    MaterialSearchView mSearchView;
 
     @Bind(R.id.fab)
     FloatingActionButton mFloatingActionButton;
@@ -83,6 +93,8 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     private GitHubUserInfo mUserInfo;
 
     private Subscription subscribe;
+
+    private long exitTime;
 
 
     @Override
@@ -147,6 +159,74 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                         LogUtil.all("用户登录更新失败");
                     }
                 });
+
+        initSearchView();
+    }
+
+    private void initSearchView()
+    {
+
+        mSearchView.adjustTintAlpha(0.8f);
+
+        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()
+        {
+
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+
+                search(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+
+                return false;
+            }
+        });
+
+
+        mSearchView.setSearchViewListener(new MaterialSearchView.SearchViewListener()
+        {
+
+            @Override
+            public void onSearchViewOpened()
+            {
+
+                mFloatingActionButton.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onSearchViewClosed()
+            {
+
+                mFloatingActionButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        mSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+
+                TextView tv = (TextView) view.findViewById(R.id.tv_str);
+
+                if (tv != null)
+                {
+                    mSearchView.setQuery(tv.getText().toString(), false);
+                }
+            }
+        });
+    }
+
+    private void search(String query)
+    {
+
+        LogUtil.all(query);
     }
 
     private void clearUserInfo()
@@ -161,14 +241,19 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     public void initToolBar()
     {
 
-        mToolbar.setTitle("Gank.IO");
+        mToolbar.setTitle("Gank.Io");
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
             mActionBar.setDisplayHomeAsUpEnabled(true);
 
 
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,
+                mDrawerLayout,
+                mToolbar,
+                R.string.app_name,
+                R.string.app_name);
+
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
@@ -194,10 +279,33 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
             case R.id.action_debug:
                 startActivity(new Intent(MainActivity.this, ApiDebugActivity.class));
                 return true;
+            case R.id.action_search:
+                mSearchView.openSearch();
+                return true;
+            case R.id.action_today:
+                startTodayGank();
+                return true;
+
+            case R.id.action_about:
+                // 关于界面
+                return true;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startTodayGank()
+    {
+        // 获取今日的时间
+        String timeStr = SimpleDateFormat.getDateInstance().format(new Date());
+        String replaceStr = timeStr.replace("年", "/").replace("月", "/").replace("日", "/");
+        String[] splitStrs = replaceStr.split("/");
+        int year = Integer.parseInt(splitStrs[0]);
+        int month = Integer.parseInt(splitStrs[1]);
+        int day = Integer.parseInt(splitStrs[2]);
+
+        GankToDayActivity.luanhcer(MainActivity.this, year, month, day);
     }
 
     private void setupDrawerContent(NavigationView navigationView)
@@ -350,6 +458,43 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            if (mSearchView != null)
+            {
+                if (mSearchView.isOpen())
+                {
+                    mSearchView.closeSearch();
+                } else
+                {
+                    logoutApp();
+                }
+            } else
+            {
+                logoutApp();
+            }
+        }
+
+        return true;
+    }
+
+    private void logoutApp()
+    {
+
+        if (System.currentTimeMillis() - exitTime > 2000)
+        {
+            SnackbarUtil.showMessage(mDrawerLayout, "再按一次退出AndroidRank");
+            exitTime = System.currentTimeMillis();
+        } else
+        {
+            finish();
+        }
+    }
+
+    @Override
     protected void onDestroy()
     {
 
@@ -359,6 +504,15 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         if (subscribe != null && !subscribe.isUnsubscribed())
         {
             subscribe.unsubscribe();
+        }
+
+        if (mSearchView != null)
+        {
+            if (mSearchView.isOpen())
+            {
+                mSearchView.closeSearch();
+                mSearchView.clearAll();
+            }
         }
     }
 }
