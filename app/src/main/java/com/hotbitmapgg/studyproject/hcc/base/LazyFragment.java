@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
+/**
+ * Tips:
+ * 这里没有使用V4包下的Fragment 使用了V13下的Fragment
+ * 都是可以向下兼容的
+ */
 public abstract class LazyFragment extends Fragment
 {
 
@@ -18,6 +23,7 @@ public abstract class LazyFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+
         rootView = inflater.inflate(getLayoutId(), container, false);
 
         return rootView;
@@ -26,15 +32,16 @@ public abstract class LazyFragment extends Fragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
+
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         initViews();
-
     }
 
     @Override
     public void onDetach()
     {
+
         super.onDetach();
     }
 

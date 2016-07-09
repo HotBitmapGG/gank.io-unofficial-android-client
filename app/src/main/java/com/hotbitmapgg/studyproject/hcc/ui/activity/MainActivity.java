@@ -166,8 +166,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     private void initSearchView()
     {
 
-        mSearchView.adjustTintAlpha(0.8f);
-
+        mSearchView.setTintColor(getResources().getColor(R.color.bg_color));
         mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()
         {
 
@@ -288,6 +287,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
 
             case R.id.action_about:
                 // 关于界面
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
                 return true;
             default:
                 break;

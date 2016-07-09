@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="AndroidRank">
+
+        <Preference
+            android:key="introduction"
+            android:summary="Hcc的AndroidRank之路"
+            android:title="应用介绍" />
+
+        <Preference
+            android:key="currentVersion"
+            android:summary="1.0"
+            android:title="当前版本" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="关于作者">
+        <Preference
+            android:key="author"
+            android:summary="HotBitmapGG"
+            android:title="作者" />
+
+        <Preference
+            android:key="email"
+            android:summary="hotbitmapgg@gmail.com"
+            android:title="邮箱" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="说明">
+
+        <Preference
+            android:key="gank"
+            android:summary="Gank.Io"
+            android:title="API数据来源" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Other">
+
+        <Preference
+            android:key="other"
+            android:summary="高仿哔哩哔哩:https://github.com/HotBitmapGG/OhMyBiliBili\n\n知了日报:https://github.com/HotBitmapGG/RxZhiHu\n\n萌妹:https://github.com/HotBitmapGG/MoeQuest"
+            android:title="" />
+    </PreferenceCategory>
+</PreferenceScreen>

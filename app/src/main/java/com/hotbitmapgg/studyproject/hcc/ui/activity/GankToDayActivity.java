@@ -1,11 +1,13 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -114,7 +116,8 @@ public class GankToDayActivity extends AbsBaseActivity
                         if (gankDayInfo.results.福利 != null)
                             ganks.addAll(gankDayInfo.results.福利);
 
-                        setBackBroudImage(gankDayInfo.results.福利.get(0).url);
+                        if (gankDayInfo.results.福利 != null)
+                            setBackBroudImage(gankDayInfo.results.福利.get(0).url);
                         finishTask();
                     }
                 });
@@ -132,6 +135,23 @@ public class GankToDayActivity extends AbsBaseActivity
 
     private void finishTask()
     {
+
+        if (ganks.isEmpty())
+            new AlertDialog.Builder(GankToDayActivity.this)
+                    .setTitle("提示")
+                    .setMessage("周末休息,暂无干货")
+                    .setCancelable(false)
+                    .setNegativeButton("确定", new DialogInterface.OnClickListener()
+                    {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+
+                            dialog.dismiss();
+                            GankToDayActivity.this.finish();
+                        }
+                    }).show();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(GankToDayActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -155,7 +175,7 @@ public class GankToDayActivity extends AbsBaseActivity
             }
         });
 
-         showBottomSheet();
+        showBottomSheet();
     }
 
     @Override

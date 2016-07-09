@@ -150,8 +150,14 @@
             android:name=".hcc.widget_demo.ScrollDemoActivity"
             android:screenOrientation="portrait" />
 
+        <!--今日干货数据-->
         <activity
             android:name=".hcc.ui.activity.GankToDayActivity"
+            android:screenOrientation="portrait" />
+
+        <!--关于界面-->
+        <activity
+            android:name=".hcc.ui.activity.AboutActivity"
             android:screenOrientation="portrait" />
 
         <!--serchview-->

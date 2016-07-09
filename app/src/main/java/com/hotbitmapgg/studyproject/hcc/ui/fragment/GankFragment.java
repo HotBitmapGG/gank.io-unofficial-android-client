@@ -93,7 +93,9 @@ public class GankFragment extends LazyFragment
             public void onRefresh()
             {
 
-                startGetBeautysByMap();
+                page = 1;
+                infos.clear();
+                getGankData();
             }
         });
 
@@ -113,7 +115,7 @@ public class GankFragment extends LazyFragment
 
                 page++;
                 footLayout.setVisibility(View.VISIBLE);
-                startGetBeautysByMap();
+                getGankData();
             }
         });
     }
@@ -130,13 +132,13 @@ public class GankFragment extends LazyFragment
             {
 
                 mSwipeRefreshLayout.setRefreshing(true);
-                startGetBeautysByMap();
+                getGankData();
             }
         }, 500);
     }
 
 
-    private void startGetBeautysByMap()
+    private void getGankData()
     {
 
         RetrofitHelper.getGankApi()
@@ -163,6 +165,7 @@ public class GankFragment extends LazyFragment
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry()
                 .subscribe(new Action1<List<Gank.GankInfo>>()
                 {
 
@@ -182,7 +185,8 @@ public class GankFragment extends LazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        footLayout.setVisibility(View.GONE);
+                        if (footLayout != null)
+                            footLayout.setVisibility(View.GONE);
                         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,下拉刷新重新加载!");
                         mSwipeRefreshLayout.post(new Runnable()
                         {
