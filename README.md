@@ -15,7 +15,7 @@ Gank.IO客户端,每日更新各种干货.
   * v2.1
   * 1.去除了所有的练习示例代码,现在是一个纯纯的干货客户端.
   * 2.项目整体进行了重构,包结构的修改.
-  * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:[](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
+  * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:[GitHub](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
 
 
   * v2.0
