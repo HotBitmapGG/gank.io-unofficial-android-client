@@ -5,7 +5,6 @@ Gank.IO客户端,每日更新各种干货.
 ## 功能介绍
 
 * 每日干货更新,一键分享保存.
-* 自定义控件练习例子.
 * Rxjava操作符,中文文档,使用案例,方便随时查阅学习.
 * 安卓艺术开发探索读书笔记,EffectiveJava读书笔记.
 * 各种表情包搜索,本地保存与分享.
@@ -40,9 +39,16 @@ Gank.IO客户端,每日更新各种干货.
 ## Other
 
 * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
+
 * 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
+
 * Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
+
 * 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
+
+* 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
+
+* 安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice
 
 ## License
 
