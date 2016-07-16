@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.recycleview.loadmore;
+package com.hotbitmapgg.studyproject.hcc.widget.recyclehelper;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

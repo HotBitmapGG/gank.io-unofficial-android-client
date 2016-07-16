@@ -15,7 +15,7 @@ import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
-import com.hotbitmapgg.studyproject.hcc.rxdemo.RxBus2;
+import com.hotbitmapgg.studyproject.hcc.rx.RxBus;
 import com.hotbitmapgg.studyproject.hcc.utils.ACache;
 import com.hotbitmapgg.studyproject.hcc.utils.JsHandler;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
@@ -194,7 +194,7 @@ public class GitHubLoginWebActivity extends AbsBaseActivity
                                     .put(ConstantUtil.CACHE_USER_KEY, gitHubUserInfo);
                             hideProgress();
                             Toast.makeText(GitHubLoginWebActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                            RxBus2.getInstance().post(ConstantUtil.CODE_SUCCESS);
+                            RxBus.getInstance().post(ConstantUtil.CODE_SUCCESS);
                             GitHubLoginWebActivity.this.finish();
                         }
                     }, new Action1<Throwable>()

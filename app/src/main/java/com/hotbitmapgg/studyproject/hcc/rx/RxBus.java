@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.rxdemo;
+package com.hotbitmapgg.studyproject.hcc.rx;
 
 
 import rx.Observable;
@@ -17,15 +17,15 @@ import rx.subjects.Subject;
  * <p/>
  * ofType操作符只发射指定类型的数据，其内部就是filter+cast
  */
-public class RxBus2
+public class RxBus
 {
 
-    private static volatile RxBus2 mInstance;
+    private static volatile RxBus mInstance;
 
     private final Subject bus;
 
 
-    public RxBus2()
+    public RxBus()
     {
 
         bus = new SerializedSubject<>(PublishSubject.create());
@@ -36,24 +36,24 @@ public class RxBus2
      *
      * @return
      */
-    public static RxBus2 getInstance()
+    public static RxBus getInstance()
     {
 
-        RxBus2 rxBus2 = mInstance;
+        RxBus rxBus = mInstance;
         if (mInstance == null)
         {
-            synchronized (RxBus2.class)
+            synchronized (RxBus.class)
             {
-                rxBus2 = mInstance;
+                rxBus = mInstance;
                 if (mInstance == null)
                 {
-                    rxBus2 = new RxBus2();
-                    mInstance = rxBus2;
+                    rxBus = new RxBus();
+                    mInstance = rxBus;
                 }
             }
         }
 
-        return rxBus2;
+        return rxBus;
     }
 
 

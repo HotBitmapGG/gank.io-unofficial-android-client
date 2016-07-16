@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.model.Gank;
-import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.utils.StringStyleUtils;
 
 import java.util.List;

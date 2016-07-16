@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.model.ExpressionPackage;
-import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,11 @@ import butterknife.ButterKnife;
 /**
  * Created by 11 on 2016/4/5.
  */
-public class ZhuangbiAdapter extends AbsRecyclerViewAdapter
+public class FaceAdapter extends AbsRecyclerViewAdapter
 {
     private List<ExpressionPackage> datas = new ArrayList<>();
 
-    public ZhuangbiAdapter(RecyclerView recyclerView, List<ExpressionPackage> datas)
+    public FaceAdapter(RecyclerView recyclerView, List<ExpressionPackage> datas)
     {
         super(recyclerView);
         this.datas = datas;
@@ -35,7 +35,7 @@ public class ZhuangbiAdapter extends AbsRecyclerViewAdapter
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.card_item_zhuangbi, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.card_item_face, parent, false));
     }
 
     @Override

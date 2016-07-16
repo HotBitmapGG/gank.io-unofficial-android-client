@@ -6,15 +6,15 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.android_develop_art_explore.AndroidDevelopActivity;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
 import com.hotbitmapgg.studyproject.hcc.effective_java.EffectiveJavaNoteActivity;
-import com.hotbitmapgg.studyproject.hcc.rxdemo.RxJavaSampleActivity;
 import com.hotbitmapgg.studyproject.hcc.rxjava_operator.RxJavaOperatorActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.FaceActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView;
 import com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class RxjavaDemoFragment extends LazyFragment
+public class RxjavaAndNotesFragment extends LazyFragment
 {
 
     @Bind(R.id.sping_scroll)
@@ -33,17 +33,17 @@ public class RxjavaDemoFragment extends LazyFragment
     ItemArrowCardView mEffectiveJava;
 
 
-    public static RxjavaDemoFragment newInstance()
+    public static RxjavaAndNotesFragment newInstance()
     {
 
-        return new RxjavaDemoFragment();
+        return new RxjavaAndNotesFragment();
     }
 
     @Override
     public int getLayoutId()
     {
 
-        return R.layout.fragment_rxjava_demo;
+        return R.layout.fragment_rxjava_notes;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class RxjavaDemoFragment extends LazyFragment
     void startRxJavaSample()
     {
 
-        startActivity(new Intent(getActivity(), RxJavaSampleActivity.class));
+        startActivity(new Intent(getActivity(), FaceActivity.class));
     }
 
 

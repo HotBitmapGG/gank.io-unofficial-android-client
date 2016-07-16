@@ -8,23 +8,9 @@
             android:icon="@drawable/ic_favorite_white_24dp"
             android:title="Gank.IO"/>
         <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_history_more_history"
-            android:title="CustomWidget"/>
-        <item
             android:id="@+id/nav_my_focus"
             android:icon="@drawable/ic_favorite_more"
             android:title="RxJava"/>
-        <item
-            android:id="@+id/nav_foucs_me"
-            android:icon="@drawable/ic_flag_actionbar_icon"
-            android:title="MaterialDesign"/>
-
-        <item
-            android:id="@+id/nav_article"
-            android:checkable="true"
-            android:icon="@drawable/ic_face"
-            android:title="AqualandFace"/>
     </group>
 
     <item android:title="About">

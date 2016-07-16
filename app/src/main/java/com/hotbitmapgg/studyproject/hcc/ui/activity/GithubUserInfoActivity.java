@@ -22,7 +22,7 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
-import com.hotbitmapgg.studyproject.hcc.rxdemo.RxBus2;
+import com.hotbitmapgg.studyproject.hcc.rx.RxBus;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.GitHubFollowersFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.GitHubFollowingFragment;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.GitHubUserDetailsFragment;
@@ -162,7 +162,7 @@ public class GitHubUserInfoActivity extends AbsBaseActivity
         } else if (item.getItemId() == R.id.action_logout)
         {
             ACache.get(GitHubUserInfoActivity.this).clear();
-            RxBus2.getInstance().post(ConstantUtil.CODE_LOGOUT);
+            RxBus.getInstance().post(ConstantUtil.CODE_LOGOUT);
             GitHubUserInfoActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);

@@ -17,7 +17,7 @@ import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostBoby;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostResult;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
-import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.LoadingDialog;

@@ -1,10 +1,11 @@
-package com.hotbitmapgg.studyproject.hcc.ui.fragment;
+package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -20,13 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.adapter.ZhuangbiAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.adapter.FaceAdapter;
+import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.ExpressionPackage;
 import com.hotbitmapgg.studyproject.hcc.network.ExpressionPackageApi;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
-import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.utils.GlideDownloadImageUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -48,7 +49,7 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 
-public class ExpressionPackageFragment extends LazyFragment
+public class FaceActivity extends AbsBaseActivity
 {
 
     @Bind(R.id.recycle)
@@ -68,27 +69,27 @@ public class ExpressionPackageFragment extends LazyFragment
 
     private List<ExpressionPackage> datas = new ArrayList<>();
 
-    public static ExpressionPackageFragment newInstance()
+    public static FaceActivity newInstance()
     {
 
-        return new ExpressionPackageFragment();
+        return new FaceActivity();
     }
 
     @Override
     public int getLayoutId()
     {
 
-        return R.layout.fragment_expression_package;
+        return R.layout.activity_face;
     }
 
     @Override
-    public void initViews()
+    public void initViews(Bundle savedInstanceState)
     {
 
 
         mCompositeSubscription = new CompositeSubscription();
 
-        mInputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        mInputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.colorPrimary);
@@ -140,6 +141,13 @@ public class ExpressionPackageFragment extends LazyFragment
         });
     }
 
+    @Override
+    public void initToolBar()
+    {
+
+    }
+
+
     private void getZhuangBiList(String text)
     {
 
@@ -185,8 +193,8 @@ public class ExpressionPackageFragment extends LazyFragment
     {
 
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        ZhuangbiAdapter mAdapter = new ZhuangbiAdapter(mRecyclerView, datas);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(FaceActivity.this, 2));
+        FaceAdapter mAdapter = new FaceAdapter(mRecyclerView, datas);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setRefreshing(false);
@@ -198,7 +206,7 @@ public class ExpressionPackageFragment extends LazyFragment
             public void onItemClick(final int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                new AlertDialog.Builder(getActivity())
+                new AlertDialog.Builder(FaceActivity.this)
                         .setMessage("是否保存到本地?")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener()
                         {
@@ -233,7 +241,7 @@ public class ExpressionPackageFragment extends LazyFragment
             public boolean onItemLongClick(final int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                new AlertDialog.Builder(getActivity())
+                new AlertDialog.Builder(FaceActivity.this)
                         .setMessage("是否分享给好友?")
                         .setNegativeButton("取消", new DialogInterface.OnClickListener()
                         {
@@ -267,7 +275,7 @@ public class ExpressionPackageFragment extends LazyFragment
     {
 
         Subscription s = Observable.just("")
-                .compose(RxPermissions.getInstance(getActivity()).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .compose(RxPermissions.getInstance(FaceActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
                 {
@@ -286,7 +294,7 @@ public class ExpressionPackageFragment extends LazyFragment
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), expressionPackage.image_url, expressionPackage.description, ConstantUtil.PIC_TYPE_GIF);
+                        return GlideDownloadImageUtil.saveImageToLocal(FaceActivity.this, expressionPackage.image_url, expressionPackage.description, ConstantUtil.PIC_TYPE_GIF);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -299,7 +307,7 @@ public class ExpressionPackageFragment extends LazyFragment
 
                         File appDir = new File(Environment.getExternalStorageDirectory(), ConstantUtil.FILE_DIR);
                         String msg = String.format("图片已保存至 %s 文件夹", appDir.getAbsolutePath());
-                        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FaceActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 }, new Action1<Throwable>()
                 {
@@ -308,7 +316,7 @@ public class ExpressionPackageFragment extends LazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        Toast.makeText(getActivity(), "保存失败,请重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FaceActivity.this, "保存失败,请重试", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -320,7 +328,7 @@ public class ExpressionPackageFragment extends LazyFragment
     {
 
         Subscription subscribe = Observable.just("")
-                .compose(RxPermissions.getInstance(getActivity()).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                .compose(RxPermissions.getInstance(FaceActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
                 {
@@ -339,7 +347,7 @@ public class ExpressionPackageFragment extends LazyFragment
                     public Observable<Uri> call(Boolean aBoolean)
                     {
 
-                        return GlideDownloadImageUtil.saveImageToLocal(getActivity(), expressionPackage.image_url, expressionPackage.description, ConstantUtil.PIC_TYPE_GIF);
+                        return GlideDownloadImageUtil.saveImageToLocal(FaceActivity.this, expressionPackage.image_url, expressionPackage.description, ConstantUtil.PIC_TYPE_GIF);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -360,7 +368,7 @@ public class ExpressionPackageFragment extends LazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        Toast.makeText(getActivity(), "分享失败,请重试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FaceActivity.this, "分享失败,请重试", Toast.LENGTH_SHORT).show();
                     }
                 });
 

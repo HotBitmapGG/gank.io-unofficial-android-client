@@ -9,9 +9,9 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.studyproject.hcc.recycleview.DividerItemDecoration;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.DividerItemDecoration;
 
 import java.util.List;
 

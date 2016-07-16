@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:name="RxJava示例"/>
+                app:name="表情包搜索"/>
 
             <include layout="@layout/layout_line_view"/>
 

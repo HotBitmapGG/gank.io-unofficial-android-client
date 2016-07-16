@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.recycleview;
+package com.hotbitmapgg.studyproject.hcc.widget.recyclehelper;
 
 import android.content.Context;
 import android.content.res.TypedArray;

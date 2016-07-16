@@ -38,29 +38,14 @@
             android:screenOrientation="portrait" />
 
         <!-- 爱心点赞界面-->
-        <activity
-            android:name=".hcc.widget_demo.LoveActivity"
-            android:screenOrientation="portrait" />
 
         <!-- Rxjava练习界面-->
-        <activity
-            android:name=".hcc.rxdemo.RxTestActivity"
-            android:screenOrientation="portrait" />
 
         <!-- RecycleView练习界面-->
-        <activity
-            android:name=".hcc.recycleview.RecycleViewDemoActivity"
-            android:screenOrientation="portrait" />
 
         <!-- Rxjava例子界面-->
-        <activity
-            android:name=".hcc.rxdemo.RxJavaSampleActivity"
-            android:screenOrientation="portrait" />
 
         <!-- RxjavaDemo展示界面-->
-        <activity
-            android:name=".hcc.rxdemo.RxJavaDemoActivity"
-            android:screenOrientation="portrait" />
 
         <!-- 浏览器界面-->
         <activity
@@ -80,19 +65,10 @@
             android:screenOrientation="portrait" />
 
         <!-- 自定义进度条展示界面-->
-        <activity
-            android:name=".hcc.widget_demo.CircleProgressBarActivity"
-            android:screenOrientation="portrait" />
 
         <!-- 贝塞尔曲线展示界面-->
-        <activity
-            android:name=".hcc.widget_demo.BezaerActivity"
-            android:screenOrientation="portrait" />
 
         <!-- 表格布局展示界面-->
-        <activity
-            android:name=".hcc.widget_demo.TableActivity"
-            android:screenOrientation="portrait" />
 
 
         <!-- 个人信息界面-->
@@ -102,9 +78,6 @@
             android:theme="@style/AppTheme.StatusBar" />
 
         <!-- 仿探探界面-->
-        <activity
-            android:name=".hcc.widget_demo.SlideGankMeiziActivity"
-            android:screenOrientation="portrait" />
 
         <!--安卓开发艺术探索读书笔记-->
         <activity
@@ -146,9 +119,6 @@
             android:screenOrientation="portrait" />
 
         <!--安卓滑动实现演示界面-->
-        <activity
-            android:name=".hcc.widget_demo.ScrollDemoActivity"
-            android:screenOrientation="portrait" />
 
         <!--今日干货数据-->
         <activity
@@ -159,6 +129,12 @@
         <activity
             android:name=".hcc.ui.activity.AboutActivity"
             android:screenOrientation="portrait" />
+
+        <!--表情包搜索-->
+        <activity
+            android:name=".hcc.ui.activity.FaceActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--serchview-->
         <provider

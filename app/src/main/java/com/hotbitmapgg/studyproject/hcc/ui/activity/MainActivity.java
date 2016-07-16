@@ -27,12 +27,9 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
-import com.hotbitmapgg.studyproject.hcc.rxdemo.RxBus2;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.CustomWidgetFragment;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.ExpressionPackageFragment;
+import com.hotbitmapgg.studyproject.hcc.rx.RxBus;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.HomeFragment;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.MdWidgetFragment;
-import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaDemoFragment;
+import com.hotbitmapgg.studyproject.hcc.ui.fragment.RxjavaAndNotesFragment;
 import com.hotbitmapgg.studyproject.hcc.utils.ACache;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
@@ -74,19 +71,13 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
 
     private HomeFragment homeFragment;
 
-    private ExpressionPackageFragment expressionPackageFragment;
-
-    private RxjavaDemoFragment rxjavaDemoFragment;
+    private RxjavaAndNotesFragment rxjavaAndNotesFragment;
 
     private Fragment[] fragments;
 
     private int currentTabIndex;
 
     private int index;
-
-    private CustomWidgetFragment customWidgetFragment;
-
-    private MdWidgetFragment mdFragment;
 
     private boolean isLogin = false;
 
@@ -112,20 +103,16 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         {
             setupDrawerContent(mNavigationView);
         }
-
-        expressionPackageFragment = ExpressionPackageFragment.newInstance();
         homeFragment = HomeFragment.newInstance();
-        rxjavaDemoFragment = RxjavaDemoFragment.newInstance();
-        customWidgetFragment = CustomWidgetFragment.newInstance();
-        mdFragment = MdWidgetFragment.newInstance();
+        rxjavaAndNotesFragment = RxjavaAndNotesFragment.newInstance();
 
-        fragments = new Fragment[]{homeFragment, customWidgetFragment, rxjavaDemoFragment, expressionPackageFragment, mdFragment};
+        fragments = new Fragment[]{homeFragment, rxjavaAndNotesFragment};
 
         getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
         mFloatingActionButton.setVisibility(View.VISIBLE);
 
 
-        subscribe = RxBus2.getInstance().toObserverable(String.class)
+        subscribe = RxBus.getInstance().toObserverable(String.class)
                 .subscribe(new Action1<String>()
                 {
 
@@ -337,38 +324,12 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                         mFloatingActionButton.setVisibility(View.VISIBLE);
                         return true;
 
-                    case R.id.nav_messages:
-                        index = 1;
-                        addFragment(fragments[1]);
-                        mToolbar.setTitle("CustomWidget");
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        mFloatingActionButton.setVisibility(View.GONE);
-                        return true;
 
                     case R.id.nav_my_focus:
-                        index = 2;
-                        addFragment(fragments[2]);
+                        index = 1;
+                        addFragment(fragments[1]);
                         menuItem.setChecked(true);
                         mToolbar.setTitle("RxJava");
-                        mDrawerLayout.closeDrawers();
-                        mFloatingActionButton.setVisibility(View.GONE);
-                        return true;
-
-                    case R.id.nav_foucs_me:
-                        index = 4;
-                        addFragment(fragments[4]);
-                        mToolbar.setTitle("MaterialDesign");
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        mFloatingActionButton.setVisibility(View.GONE);
-                        return true;
-
-                    case R.id.nav_article:
-                        index = 3;
-                        addFragment(fragments[3]);
-                        menuItem.setChecked(true);
-                        mToolbar.setTitle("AqualandFace");
                         mDrawerLayout.closeDrawers();
                         mFloatingActionButton.setVisibility(View.GONE);
                         return true;

@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankTypeSelectAdapter;
 import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
-import com.hotbitmapgg.studyproject.hcc.recycleview.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 
 import java.util.Arrays;
 import java.util.List;
