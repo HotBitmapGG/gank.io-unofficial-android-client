@@ -37,16 +37,6 @@
             android:name=".hcc.ui.activity.ApiDebugActivity"
             android:screenOrientation="portrait" />
 
-        <!-- 爱心点赞界面-->
-
-        <!-- Rxjava练习界面-->
-
-        <!-- RecycleView练习界面-->
-
-        <!-- Rxjava例子界面-->
-
-        <!-- RxjavaDemo展示界面-->
-
         <!-- 浏览器界面-->
         <activity
             android:name=".hcc.ui.activity.WebActivity"
@@ -58,17 +48,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentStatusBar" />
 
-
         <!-- Rxjava操作符界面-->
         <activity
             android:name=".hcc.rxjava_operator.RxJavaOperatorActivity"
             android:screenOrientation="portrait" />
-
-        <!-- 自定义进度条展示界面-->
-
-        <!-- 贝塞尔曲线展示界面-->
-
-        <!-- 表格布局展示界面-->
 
 
         <!-- 个人信息界面-->
@@ -76,8 +59,6 @@
             android:name=".hcc.ui.activity.HotBitmapGGActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
-
-        <!-- 仿探探界面-->
 
         <!--安卓开发艺术探索读书笔记-->
         <activity
@@ -117,8 +98,6 @@
             android:name=".hcc.ui.activity.GitHubLoginWebActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
-        <!--安卓滑动实现演示界面-->
 
         <!--今日干货数据-->
         <activity
