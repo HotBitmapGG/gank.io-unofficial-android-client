@@ -12,9 +12,17 @@ Gank.IO客户端,每日更新各种干货.
 
 
 ## 更新说明
-最近添加了全球最大同性交友网站GitHub的登录,优化界面UI,
-修复了很多已知的bug,增加干货提交,
-后期会添加收藏,评论,朋友圈等功能.
+
+  * v2.1
+  * 1.去除了所有的练习示例代码,现在是一个纯纯的干货客户端.
+  * 2.项目整体进行了重构,包结构的修改.
+  * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:![](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
+
+
+  * v2.0
+  * 1.增加了GitHub登录,后期使用GitHub账户来进行用户管理.
+  * 2.增加了Gank.Io的干货提交,提交干货更加方便了.
+  * 3.整体UI修改,更好的用户体验.
 
 
 ## 截图
@@ -24,12 +32,6 @@ Gank.IO客户端,每日更新各种干货.
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/02.jpg?raw=true)
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/03.jpg?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/04.jpg?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/05.jpg?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/06.jpg?raw=true)
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/07.jpg?raw=true)
 
