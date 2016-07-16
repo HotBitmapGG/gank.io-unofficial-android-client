@@ -268,14 +268,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
             case R.id.action_search:
                 mSearchView.openSearch();
                 return true;
-            case R.id.action_today:
-                startTodayGank();
-                return true;
 
-            case R.id.action_about:
-                // 关于界面
-                startActivity(new Intent(MainActivity.this, AboutActivity.class));
-                return true;
             default:
                 break;
         }
@@ -316,26 +309,27 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_home:
-                        index = 0;
-                        addFragment(fragments[0]);
-                        menuItem.setChecked(true);
-                        mToolbar.setTitle("Gank.IO");
-                        mDrawerLayout.closeDrawers();
-                        mFloatingActionButton.setVisibility(View.VISIBLE);
+                        changNavItem(menuItem, 0, "Gank.IO", true);
                         return true;
 
 
                     case R.id.nav_my_focus:
-                        index = 1;
-                        addFragment(fragments[1]);
-                        menuItem.setChecked(true);
-                        mToolbar.setTitle("RxJava");
-                        mDrawerLayout.closeDrawers();
-                        mFloatingActionButton.setVisibility(View.GONE);
+                        changNavItem(menuItem, 1, "RxJavaDoc", false);
                         return true;
 
+                    case R.id.nav_today:
+                        //今日干货
+                        startTodayGank();
+                        break;
+
                     case R.id.nav_about:
+                        //关于我
                         startActivity(new Intent(MainActivity.this, HotBitmapGGActivity.class));
+                        break;
+
+                    case R.id.nav_about_app:
+                        // 关于App
+                        startActivity(new Intent(MainActivity.this, AboutActivity.class));
                         break;
 
                     default:
@@ -358,6 +352,21 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         }
         trx.show(fragments[index]).commit();
         currentTabIndex = index;
+    }
+
+
+    public void changNavItem(MenuItem menuItem, int pos, String itemTitle, boolean isShowFab)
+    {
+
+        index = pos;
+        addFragment(fragments[pos]);
+        menuItem.setChecked(true);
+        mToolbar.setTitle(itemTitle);
+        mDrawerLayout.closeDrawers();
+        if (isShowFab)
+            mFloatingActionButton.setVisibility(View.VISIBLE);
+        else
+            mFloatingActionButton.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.fab)

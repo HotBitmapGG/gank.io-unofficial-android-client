@@ -6,12 +6,20 @@
             android:id="@+id/nav_home"
             android:checked="true"
             android:icon="@drawable/ic_favorite_white_24dp"
-            android:title="Gank.IO"/>
+            android:title="Gank.IO" />
         <item
             android:id="@+id/nav_my_focus"
             android:icon="@drawable/ic_favorite_more"
-            android:title="RxJava"/>
+            android:title="RxJavaDoc" />
+
+
+        <item
+            android:id="@+id/nav_today"
+            android:checkable="true"
+            android:icon="@drawable/ic_flag_actionbar_icon"
+            android:title="TodayGank" />
     </group>
+
 
     <item android:title="About">
         <menu>
@@ -19,8 +27,14 @@
             <item
                 android:id="@+id/nav_about"
                 android:checkable="true"
+                android:icon="@drawable/ic_eye_white_24dp"
+                android:title="关于我" />
+
+            <item
+                android:id="@+id/nav_about_app"
+                android:checkable="true"
                 android:icon="@drawable/ic_info_outline"
-                android:title="关于我"/>
+                android:title="关于AndroidRank" />
         </menu>
     </item>
 
