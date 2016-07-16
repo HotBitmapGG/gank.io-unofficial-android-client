@@ -8,7 +8,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmMigration;
 
-public class StudyApp extends Application
+public class AndroidRankApp extends Application
 {
 
     public static Context mAppContext;

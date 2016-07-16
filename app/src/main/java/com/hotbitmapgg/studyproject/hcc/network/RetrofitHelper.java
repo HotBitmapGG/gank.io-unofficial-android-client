@@ -1,7 +1,7 @@
 package com.hotbitmapgg.studyproject.hcc.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.hotbitmapgg.studyproject.hcc.StudyApp;
+import com.hotbitmapgg.studyproject.hcc.AndroidRankApp;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostBoby;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
@@ -196,7 +196,7 @@ public class RetrofitHelper
                 if (mOkHttpClient == null)
                 {
                     //设置Http缓存
-                    Cache cache = new Cache(new File(StudyApp.getContext().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
+                    Cache cache = new Cache(new File(AndroidRankApp.getContext().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
 
                     mOkHttpClient = new OkHttpClient.Builder()
                             .cache(cache)
