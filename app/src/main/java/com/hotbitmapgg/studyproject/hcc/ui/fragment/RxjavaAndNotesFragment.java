@@ -3,10 +3,10 @@ package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 import android.content.Intent;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.android_develop_art_explore.AndroidDevelopActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore.AndroidDevelopActivity;
 import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
-import com.hotbitmapgg.studyproject.hcc.effective_java.EffectiveJavaNoteActivity;
-import com.hotbitmapgg.studyproject.hcc.rxjava_operator.RxJavaOperatorActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.effective_java.EffectiveJavaNoteActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.rxjava_operator.RxJavaOperatorActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.FaceActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView;
 import com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView;

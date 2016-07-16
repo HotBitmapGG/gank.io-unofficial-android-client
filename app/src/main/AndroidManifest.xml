@@ -50,7 +50,7 @@
 
         <!-- Rxjava操作符界面-->
         <activity
-            android:name=".hcc.rxjava_operator.RxJavaOperatorActivity"
+            android:name=".hcc.notes.rxjava_operator.RxJavaOperatorActivity"
             android:screenOrientation="portrait" />
 
 
@@ -62,12 +62,12 @@
 
         <!--安卓开发艺术探索读书笔记-->
         <activity
-            android:name=".hcc.android_develop_art_explore.AndroidDevelopActivity"
+            android:name=".hcc.notes.android_develop_art_explore.AndroidDevelopActivity"
             android:screenOrientation="portrait" />
 
         <!-- EffectiveJava读书笔记-->
         <activity
-            android:name=".hcc.effective_java.EffectiveJavaNoteActivity"
+            android:name=".hcc.notes.effective_java.EffectiveJavaNoteActivity"
             android:screenOrientation="portrait" />
 
 

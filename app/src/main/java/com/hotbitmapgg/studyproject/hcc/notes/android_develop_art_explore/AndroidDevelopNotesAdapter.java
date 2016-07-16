@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.android_develop_art_explore;
+package com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

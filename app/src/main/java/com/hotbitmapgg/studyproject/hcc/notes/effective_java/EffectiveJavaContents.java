@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.effective_java;
+package com.hotbitmapgg.studyproject.hcc.notes.effective_java;
 
 import java.util.ArrayList;
 import java.util.List;

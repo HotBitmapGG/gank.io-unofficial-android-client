@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.effective_java;
+package com.hotbitmapgg.studyproject.hcc.notes.effective_java;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

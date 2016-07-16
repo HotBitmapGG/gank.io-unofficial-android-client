@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.android_develop_art_explore;
+package com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

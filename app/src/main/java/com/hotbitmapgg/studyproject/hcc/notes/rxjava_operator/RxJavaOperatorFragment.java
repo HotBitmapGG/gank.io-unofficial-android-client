@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.rxjava_operator;
+package com.hotbitmapgg.studyproject.hcc.notes.rxjava_operator;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
