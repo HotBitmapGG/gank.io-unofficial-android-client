@@ -38,17 +38,19 @@ Gank.IO客户端,每日更新各种干货.
 
 ## Other
 
-* 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
+  * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
 
-* 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
+  * 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
 
-* Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
+  * Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
 
-* 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
+  * 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
 
-* 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
+  * 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
 
-* 安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice
+  * 安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice
+  
+  * 轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
 
 ## License
 
