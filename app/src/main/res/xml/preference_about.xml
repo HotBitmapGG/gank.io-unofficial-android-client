@@ -5,12 +5,12 @@
 
         <Preference
             android:key="introduction"
-            android:summary="Hcc的AndroidRank之路"
+            android:summary="Gank.Io客户端+RxJavaDoc+读书笔记的学习App"
             android:title="应用介绍" />
 
         <Preference
             android:key="currentVersion"
-            android:summary="1.0"
+            android:summary="V2.1"
             android:title="当前版本" />
 
     </PreferenceCategory>
@@ -31,7 +31,7 @@
 
         <Preference
             android:key="gank"
-            android:summary="Gank.Io"
+            android:summary="Gank.Io\nRxJava中文文档"
             android:title="API数据来源" />
     </PreferenceCategory>
 
@@ -40,7 +40,34 @@
 
         <Preference
             android:key="other"
-            android:summary="高仿哔哩哔哩:https://github.com/HotBitmapGG/OhMyBiliBili\n\n知了日报:https://github.com/HotBitmapGG/RxZhiHu\n\n萌妹:https://github.com/HotBitmapGG/MoeQuest"
+            android:summary="高仿哔哩哔哩:https://github.com/HotBitmapGG/OhMyBiliBili"
             android:title="" />
+
+        <Preference
+            android:key="other"
+            android:summary="知了日报:https://github.com/HotBitmapGG/RxZhiHu"
+            android:title="" />
+
+        <Preference
+            android:key="other"
+            android:summary="萌妹:https://github.com/HotBitmapGG/MoeQuest"
+            android:title="" />
+
+        <Preference
+            android:key="other"
+            android:summary="自定义控件之圆环进度条:https://github.com/HotBitmapGG/RingProgressBar"
+            android:title="" />
+
+        <Preference
+            android:key="other"
+            android:summary="轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper"
+            android:title="" />
+
+        <Preference
+            android:key="other"
+            android:summary="安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice"
+            android:title="" />
+
+
     </PreferenceCategory>
 </PreferenceScreen>
