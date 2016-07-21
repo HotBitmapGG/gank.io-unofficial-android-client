@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="circle_progress_view_default_size">56dp</dimen>
     <dimen name="circle_progress_view_default_border_width">4dp</dimen>
-    <dimen name="head_layout_height">250dp</dimen>
+    <dimen name="head_layout_height">220dp</dimen>
     <dimen name="nav_width">300dp</dimen>
 </resources>

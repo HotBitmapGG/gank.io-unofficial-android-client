@@ -5,18 +5,18 @@
         <item
             android:id="@+id/nav_home"
             android:checked="true"
-            android:icon="@drawable/ic_favorite_white_24dp"
+            android:icon="@drawable/google_code_copyrighted"
             android:title="Gank.IO" />
         <item
             android:id="@+id/nav_my_focus"
-            android:icon="@drawable/ic_favorite_more"
+            android:icon="@drawable/doc"
             android:title="RxJavaDoc" />
 
 
         <item
             android:id="@+id/nav_today"
             android:checkable="true"
-            android:icon="@drawable/ic_flag_actionbar_icon"
+            android:icon="@drawable/planner"
             android:title="TodayGank" />
     </group>
 
@@ -27,13 +27,13 @@
             <item
                 android:id="@+id/nav_about"
                 android:checkable="true"
-                android:icon="@drawable/ic_eye_white_24dp"
+                android:icon="@drawable/recurring_appointment_exception"
                 android:title="关于我" />
 
             <item
                 android:id="@+id/nav_about_app"
                 android:checkable="true"
-                android:icon="@drawable/ic_info_outline"
+                android:icon="@drawable/help"
                 android:title="关于AndroidRank" />
         </menu>
     </item>

@@ -139,7 +139,7 @@ public class GankToDayActivity extends AbsBaseActivity
         if (ganks.isEmpty())
             new AlertDialog.Builder(GankToDayActivity.this)
                     .setTitle("提示")
-                    .setMessage("周末休息,暂无干货")
+                    .setMessage("今日休息,暂无干货")
                     .setCancelable(false)
                     .setNegativeButton("确定", new DialogInterface.OnClickListener()
                     {
