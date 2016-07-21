@@ -262,11 +262,13 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            case R.id.action_debug:
-                startActivity(new Intent(MainActivity.this, ApiDebugActivity.class));
-                return true;
             case R.id.action_search:
                 mSearchView.openSearch();
+                return true;
+
+            case R.id.action_today:
+                //今日干货
+                startTodayGank();
                 return true;
 
             default:
@@ -316,11 +318,6 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                     case R.id.nav_my_focus:
                         changNavItem(menuItem, 1, "RxJavaDoc", false);
                         return true;
-
-                    case R.id.nav_today:
-                        //今日干货
-                        startTodayGank();
-                        break;
 
                     case R.id.nav_about:
                         //关于我

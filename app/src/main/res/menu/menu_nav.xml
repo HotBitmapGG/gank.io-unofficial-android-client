@@ -11,13 +11,6 @@
             android:id="@+id/nav_my_focus"
             android:icon="@drawable/doc"
             android:title="RxJavaDoc" />
-
-
-        <item
-            android:id="@+id/nav_today"
-            android:checkable="true"
-            android:icon="@drawable/planner"
-            android:title="TodayGank" />
     </group>
 
 
