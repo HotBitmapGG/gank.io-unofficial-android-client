@@ -103,8 +103,8 @@ public class GitHubUserDetailsFragment extends LazyFragment
         mUserCompany.setText(mUserInfo.company);
         mUserEmail.setText(mUserInfo.email);
         mUserLocation.setText(mUserInfo.location);
-        mUserFollowers.setText(mUserInfo.followers + "");
-        mUserFollowing.setText(mUserInfo.following + "");
+        mUserFollowers.setText("Following :" + mUserInfo.followers);
+        mUserFollowing.setText("Followers :" + mUserInfo.following);
 
 
         getGitHubUserStarred();
