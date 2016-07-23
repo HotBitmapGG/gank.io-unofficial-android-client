@@ -9,14 +9,14 @@
     <item android:id="@android:id/secondaryProgress">
         <clip>
             <shape android:shape="rectangle">
-                <solid android:color="#FD4C5B"/>
+                <solid android:color="@color/md_grey_900"/>
             </shape>
         </clip>
     </item>
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="rectangle">
-                <solid android:color="#FD4C5B"/>
+                <solid android:color="@color/md_grey_900"/>
             </shape>
         </clip>
     </item>

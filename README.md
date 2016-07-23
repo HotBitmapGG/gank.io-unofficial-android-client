@@ -1,21 +1,26 @@
 # AndroidRank
 
-Gank.IO客户端,每日更新各种干货.
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/app_icon.png?raw=true)
 
 ## 功能介绍
 
-* 每日干货更新,一键分享保存.
+* 每日干货查看,一键分享保存,分类干货查看,干货搜索.
 * Rxjava操作符,中文文档,使用案例,方便随时查阅学习.
 * 安卓艺术开发探索读书笔记,EffectiveJava读书笔记.
-* 各种表情包搜索,本地保存与分享.
 
 
 ## 更新说明
 
+
+  * V2.2
+  * 1.UI风格修改,更适合阅读.
+  * 2.去除了无用代码,代码进行重构工作,持续中.
+  * 3.增加了搜索功能,快速查询需要的干货.
+
   * v2.1
   * 1.去除了所有的练习示例代码,现在是一个纯纯的干货客户端.
   * 2.项目整体进行了重构,包结构的修改.
-  * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:[GitHub](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
+  * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:[AndroidEveryDayPractice](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
 
 
   * v2.0
@@ -26,15 +31,29 @@ Gank.IO客户端,每日更新各种干货.
 
 ## 截图
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/01.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/01.png?raw=true)
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/02.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/02.png?raw=true)
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/03.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/03.png?raw=true)
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/07.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/04.png?raw=true)
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/08.jpg?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/05.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/06.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/07.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/08.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/09.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/10.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/11.png?raw=true)
+
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/12.png?raw=true)
 
 ## Other
 

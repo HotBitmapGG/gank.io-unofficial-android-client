@@ -31,7 +31,7 @@ public class HomeFragment extends RxBaseFragment
     ViewPager mViewPager;
 
 
-    private List<String> titles = Arrays.asList("all", "Android", "iOS", "前端", "拓展资源", "休息视频", "瞎推荐", "App");
+    private List<String> titles = Arrays.asList("all", "Android", "iOS", "App", "前端", "拓展资源", "休息视频", "瞎推荐");
 
 
     public static HomeFragment newInstance()
