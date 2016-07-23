@@ -1,9 +1,9 @@
 package com.hotbitmapgg.studyproject.hcc.notes.rxjava_operator;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ import butterknife.Bind;
  * 13.String字符串操作
  * 14.其他
  */
-public class RxJavaOperatorActivity extends AbsBaseActivity
+public class RxJavaOperatorActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -64,7 +64,7 @@ public class RxJavaOperatorActivity extends AbsBaseActivity
     {
 
         initOperators();
-        mVierPager.setAdapter(new PagerAdapter(getFragmentManager()));
+        mVierPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
         mTabLayout.setViewPager(mVierPager);
     }
 
@@ -112,6 +112,7 @@ public class RxJavaOperatorActivity extends AbsBaseActivity
 
     private class PagerAdapter extends FragmentStatePagerAdapter
     {
+
 
         public PagerAdapter(FragmentManager fm)
         {

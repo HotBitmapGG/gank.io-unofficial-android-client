@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.google.gson.GsonBuilder;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GitHubStarredAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubStarInfo;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
@@ -35,7 +35,7 @@ import rx.schedulers.Schedulers;
 /**
  * GitHub用户详情信息
  */
-public class GitHubUserDetailsFragment extends LazyFragment
+public class GitHubUserDetailsFragment extends RxBaseFragment
 {
 
     @Bind(R.id.user_info_bio)
@@ -115,6 +115,7 @@ public class GitHubUserDetailsFragment extends LazyFragment
 
         RetrofitHelper.getGithubApi()
                 .getGitHubStarred(mUserInfo.login)
+                .compose(this.<ResponseBody>bindToLifecycle())
                 .doOnSubscribe(new Action0()
                 {
 

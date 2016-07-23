@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.GlideDownloadImageUtil;
 import com.hotbitmapgg.studyproject.hcc.utils.ImmersiveUtil;
@@ -30,12 +30,10 @@ import java.io.File;
 
 import butterknife.Bind;
 import rx.Observable;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by hcc on 16/6/12.
@@ -50,7 +48,7 @@ import rx.subscriptions.CompositeSubscription;
  * ToolBar单独使用的一些技巧,不与ActionBar进行一起使用
  * 使用mToolBar.inflateMenu(R.menu.xxx)即可
  */
-public class FuliFullPicActivity extends AbsBaseActivity
+public class FuliFullPicActivity extends RxBaseActivity
 {
 
 
@@ -73,8 +71,6 @@ public class FuliFullPicActivity extends AbsBaseActivity
 
     private String title;
 
-    private CompositeSubscription mCompositeSubscription;
-
     private boolean isHide = false;
 
     @Override
@@ -87,8 +83,6 @@ public class FuliFullPicActivity extends AbsBaseActivity
     @Override
     public void initViews(Bundle savedInstanceState)
     {
-
-        mCompositeSubscription = new CompositeSubscription();
 
         Intent intent = getIntent();
         if (intent != null)
@@ -197,7 +191,8 @@ public class FuliFullPicActivity extends AbsBaseActivity
 
     private void saveImageToGallery()
     {
-        Observable.just("")
+        Observable.just(ConstantUtil.APP_NAME)
+                .compose(bindToLifecycle())
                 .compose(RxPermissions.getInstance(FuliFullPicActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -221,6 +216,7 @@ public class FuliFullPicActivity extends AbsBaseActivity
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry()
                 .subscribe(new Action1<Uri>()
                 {
 
@@ -251,7 +247,8 @@ public class FuliFullPicActivity extends AbsBaseActivity
     private void saveImage()
     {
 
-        Subscription subscribe = RxMenuItem.clicks(mToolBar.getMenu().findItem(R.id.action_fuli_save))
+       RxMenuItem.clicks(mToolBar.getMenu().findItem(R.id.action_fuli_save))
+               .compose(bindToLifecycle())
                 .compose(RxPermissions.getInstance(FuliFullPicActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -308,8 +305,6 @@ public class FuliFullPicActivity extends AbsBaseActivity
                         Toast.makeText(FuliFullPicActivity.this, "保存失败,请重试", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-        mCompositeSubscription.add(subscribe);
     }
 
     /**
@@ -319,7 +314,8 @@ public class FuliFullPicActivity extends AbsBaseActivity
     {
 
 
-        Subscription subscribe = RxMenuItem.clicks(mToolBar.getMenu().findItem(R.id.action_fuli_share))
+        RxMenuItem.clicks(mToolBar.getMenu().findItem(R.id.action_fuli_share))
+                .compose(bindToLifecycle())
                 .compose(RxPermissions.getInstance(FuliFullPicActivity.this).ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
                 .observeOn(Schedulers.io())
                 .filter(new Func1<Boolean,Boolean>()
@@ -363,8 +359,6 @@ public class FuliFullPicActivity extends AbsBaseActivity
                         Toast.makeText(FuliFullPicActivity.this, "分享失败,请重试", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-        mCompositeSubscription.add(subscribe);
     }
 
     /**
@@ -410,11 +404,6 @@ public class FuliFullPicActivity extends AbsBaseActivity
     @Override
     protected void onDestroy()
     {
-
-        if (mCompositeSubscription != null && !mCompositeSubscription.isUnsubscribed())
-        {
-            mCompositeSubscription.unsubscribe();
-        }
         super.onDestroy();
     }
 }

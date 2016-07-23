@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankTypeSelectAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostBoby;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostResult;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
@@ -47,7 +47,7 @@ import rx.schedulers.Schedulers;
  * type 	干货类型 	可选参数: Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
  * debug 	当前提交为测试数据 	如果想要测试数据是否合法, 请设置 debug 为 true! 可选参数: true | false
  */
-public class GankPostActivity extends AbsBaseActivity
+public class GankPostActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -232,6 +232,7 @@ public class GankPostActivity extends AbsBaseActivity
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
         observable
+                .compose(this.<String>bindToLifecycle())
                 .doOnSubscribe(new Action0()
                 {
 

@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.web.LoveVideoView;
 
 import butterknife.Bind;
 
-public class VideoWebActivity extends AbsBaseActivity
+public class VideoWebActivity extends RxBaseActivity
 {
 
     @Bind(R.id.video)

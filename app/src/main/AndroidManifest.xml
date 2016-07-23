@@ -82,11 +82,6 @@
             android:name=".hcc.ui.activity.GankPostActivity"
             android:screenOrientation="portrait" />
 
-        <!-- 干货类型选择界面-->
-        <activity
-            android:name=".hcc.ui.activity.GankTypeSelectActivity"
-            android:screenOrientation="portrait" />
-
         <!--用户Github界面-->
         <activity
             android:name=".hcc.ui.activity.GitHubUserInfoActivity"
@@ -109,10 +104,12 @@
             android:name=".hcc.ui.activity.AboutActivity"
             android:screenOrientation="portrait" />
 
-        <!--表情包搜索-->
+        <!--搜索界面-->
         <activity
-            android:name=".hcc.ui.activity.FaceActivity"
-            android:screenOrientation="portrait" />
+            android:name=".hcc.ui.activity.SearchGankListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Search"
+            android:windowSoftInputMode="stateHidden" />
 
 
         <!--serchview-->

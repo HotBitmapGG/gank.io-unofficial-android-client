@@ -19,19 +19,9 @@
             android:orientation="vertical">
 
 
-
-            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
-                android:id="@+id/btn_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:name="表情包搜索"/>
-
-            <include layout="@layout/layout_line_view"/>
-
-
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
                 android:id="@+id/btn_3"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:name="RxJava操作符大全"/>

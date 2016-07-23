@@ -17,4 +17,7 @@ public interface GankApi
 
     @GET("day/{year}/{month}/{day}")
     Observable<GankDayInfo> getGankDayData(@Path("year") int year, @Path("month") int month, @Path("day") int day);
+
+    @GET("search/query/listview/category/{type}/count/{count}/page/{page}")
+    Observable<Gank> searchGank(@Path("type") String type, @Path("count") int count, @Path("page") int page);
 }

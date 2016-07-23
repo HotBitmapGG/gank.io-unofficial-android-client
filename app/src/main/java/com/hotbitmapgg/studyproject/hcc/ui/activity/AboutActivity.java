@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.fragment.AboutFragment;
 
 import butterknife.Bind;
@@ -15,7 +15,7 @@ import butterknife.Bind;
  * Created by hcc on 16/7/9 21:43
  * 100332338@qq.com
  */
-public class AboutActivity extends AbsBaseActivity
+public class AboutActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

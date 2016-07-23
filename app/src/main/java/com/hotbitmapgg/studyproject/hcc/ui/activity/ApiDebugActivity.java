@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -14,7 +14,7 @@ import butterknife.OnClick;
 /**
  * Api接口调用测试界面
  */
-public class ApiDebugActivity extends AbsBaseActivity
+public class ApiDebugActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
@@ -20,7 +20,7 @@ import butterknife.Bind;
  * 方便查阅
  * 所有数据均来自 RxJavaDocs 中文文档
  */
-public class RxJavaOperatorFragment extends LazyFragment
+public class RxJavaOperatorFragment extends RxBaseFragment
 {
 
 

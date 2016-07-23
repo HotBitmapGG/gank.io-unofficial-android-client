@@ -3,7 +3,6 @@ package com.hotbitmapgg.studyproject.hcc.network;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.studyproject.hcc.AndroidRankApp;
 import com.hotbitmapgg.studyproject.hcc.model.GankPostBoby;
-import com.hotbitmapgg.studyproject.hcc.utils.LogUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,8 +22,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper
 {
-
-    public static final String BASE_ZHUANGBI_URL = "http://zhuangbi.info/";
 
     public static final String BASE_GANK_URL = "http://gank.io/api/";
 
@@ -96,49 +93,6 @@ public class RetrofitHelper
 
 
     /**
-     * Gank妹子Api
-     *
-     * @return
-     */
-    public static GankMeiziApi getGankMeiziApi()
-    {
-
-        Retrofit mRetrofit = new Retrofit.Builder()
-                .baseUrl(BASE_GANK_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        GankMeiziApi gankMeiziApi = mRetrofit.create(GankMeiziApi.class);
-
-        return gankMeiziApi;
-    }
-
-
-    /**
-     * 表情包搜索Api
-     *
-     * @return
-     */
-    public static ExpressionPackageApi getExpressionPackageApi()
-    {
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_ZHUANGBI_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ExpressionPackageApi expressionPackageApi = retrofit.create(ExpressionPackageApi.class);
-
-        return expressionPackageApi;
-    }
-
-
-    /**
      * GithubApi
      *
      * @return
@@ -184,8 +138,6 @@ public class RetrofitHelper
      */
     private static void initOkHttpClient()
     {
-
-        LogUtil.all("初始化OkHttpClient");
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

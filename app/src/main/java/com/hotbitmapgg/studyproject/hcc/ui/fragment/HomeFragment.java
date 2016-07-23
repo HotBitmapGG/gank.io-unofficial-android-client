@@ -1,13 +1,13 @@
 package com.hotbitmapgg.studyproject.hcc.ui.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ import butterknife.Bind;
  * <p/>
  * 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
  */
-public class HomeFragment extends LazyFragment
+public class HomeFragment extends RxBaseFragment
 {
 
 
@@ -31,7 +31,7 @@ public class HomeFragment extends LazyFragment
     ViewPager mViewPager;
 
 
-    private List<String> titles = Arrays.asList("all","Android", "iOS", "前端", "拓展资源", "休息视频","瞎推荐");
+    private List<String> titles = Arrays.asList("all", "Android", "iOS", "前端", "拓展资源", "休息视频", "瞎推荐", "App");
 
 
     public static HomeFragment newInstance()
@@ -58,6 +58,7 @@ public class HomeFragment extends LazyFragment
 
     private class TabPagerAdapter extends FragmentStatePagerAdapter
     {
+
 
         public TabPagerAdapter(FragmentManager fm)
         {

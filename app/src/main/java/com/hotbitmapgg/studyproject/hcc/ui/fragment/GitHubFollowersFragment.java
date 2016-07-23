@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.google.gson.GsonBuilder;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GitHubFollowInfoAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubFollowerInfo;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
@@ -29,7 +29,7 @@ import rx.schedulers.Schedulers;
 /**
  * 关注用户的人界面
  */
-public class GitHubFollowersFragment extends LazyFragment
+public class GitHubFollowersFragment extends RxBaseFragment
 {
 
     @Bind(R.id.recycle)
@@ -64,6 +64,7 @@ public class GitHubFollowersFragment extends LazyFragment
         GitHubUserInfo mUserInfo = (GitHubUserInfo) getArguments().getSerializable(KEY);
         RetrofitHelper.getGithubApi()
                 .getGitHubFollowers(mUserInfo.login)
+                .compose(this.<ResponseBody>bindToLifecycle())
                 .map(new Func1<ResponseBody,List<GitHubFollowerInfo>>()
                 {
 

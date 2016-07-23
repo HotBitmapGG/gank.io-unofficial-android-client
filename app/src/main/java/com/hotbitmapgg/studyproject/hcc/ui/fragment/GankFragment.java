@@ -8,11 +8,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.LazyFragment;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 import com.hotbitmapgg.studyproject.hcc.model.Gank;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
 import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
@@ -32,7 +33,7 @@ import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-public class GankFragment extends LazyFragment
+public class GankFragment extends RxBaseFragment
 {
 
     @Bind(R.id.recycle)
@@ -58,6 +59,8 @@ public class GankFragment extends LazyFragment
     private View footLayout;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+
+    private boolean mIsRefresh = false;
 
 
     public static GankFragment newInstance(String dataType)
@@ -95,6 +98,7 @@ public class GankFragment extends LazyFragment
 
                 page = 1;
                 infos.clear();
+                mIsRefresh = true;
                 getGankData();
             }
         });
@@ -118,6 +122,7 @@ public class GankFragment extends LazyFragment
                 getGankData();
             }
         });
+        setRecycleViewScroll();
     }
 
     private void showProgress()
@@ -132,6 +137,7 @@ public class GankFragment extends LazyFragment
             {
 
                 mSwipeRefreshLayout.setRefreshing(true);
+                mIsRefresh = true;
                 getGankData();
             }
         }, 500);
@@ -143,6 +149,7 @@ public class GankFragment extends LazyFragment
 
         RetrofitHelper.getGankApi()
                 .getGankDatas(type, pageNum, page)
+                .compose(this.<Gank>bindToLifecycle())
                 .filter(new Func1<Gank,Boolean>()
                 {
 
@@ -213,7 +220,7 @@ public class GankFragment extends LazyFragment
         {
             mSwipeRefreshLayout.setRefreshing(false);
         }
-
+        mIsRefresh = false;
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
 
@@ -267,5 +274,23 @@ public class GankFragment extends LazyFragment
         footLayout = LayoutInflater.from(getActivity()).inflate(R.layout.load_more_foot_layout, mRecyclerView, false);
         mHeaderViewRecyclerAdapter.addFooterView(footLayout);
         footLayout.setVisibility(View.GONE);
+    }
+
+    public void setRecycleViewScroll()
+    {
+
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener()
+        {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+
+                if (mIsRefresh)
+                    return true;
+                else
+                    return false;
+            }
+        });
     }
 }

@@ -1,12 +1,12 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.rx.RxBus;
@@ -45,7 +45,7 @@ import rx.Subscription;
 import rx.functions.Action1;
 
 
-public class MainActivity extends AbsBaseActivity implements View.OnClickListener
+public class MainActivity extends RxBaseActivity implements View.OnClickListener
 {
 
     @Bind(R.id.toolbar)
@@ -108,11 +108,12 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
 
         fragments = new Fragment[]{homeFragment, rxjavaAndNotesFragment};
 
-        getFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
         mFloatingActionButton.setVisibility(View.VISIBLE);
 
 
-        subscribe = RxBus.getInstance().toObserverable(String.class)
+        subscribe = RxBus.getInstance()
+                .toObserverable(String.class)
                 .subscribe(new Action1<String>()
                 {
 
@@ -209,10 +210,19 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         });
     }
 
-    private void search(String query)
+    private void search(final String query)
     {
 
-        LogUtil.all(query);
+        mSearchView.postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                SearchGankListActivity.luancher(MainActivity.this, query);
+            }
+        },500);
+
     }
 
     private void clearUserInfo()
@@ -341,7 +351,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     public void addFragment(Fragment fragment)
     {
 
-        FragmentTransaction trx = getFragmentManager().beginTransaction();
+        FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
         trx.hide(fragments[currentTabIndex]);
         if (!fragments[index].isAdded())
         {

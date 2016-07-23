@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.adapter.GankListAdapter;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.model.Gank;
 import com.hotbitmapgg.studyproject.hcc.model.GankDayInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
@@ -38,7 +38,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 每日干货数据
  */
-public class GankToDayActivity extends AbsBaseActivity
+public class GankToDayActivity extends RxBaseActivity
 {
 
     @Bind(R.id.recycle)
@@ -94,6 +94,7 @@ public class GankToDayActivity extends AbsBaseActivity
 
         RetrofitHelper.getGankApi()
                 .getGankDayData(year, month, day)
+                .compose(this.<GankDayInfo>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<GankDayInfo>()

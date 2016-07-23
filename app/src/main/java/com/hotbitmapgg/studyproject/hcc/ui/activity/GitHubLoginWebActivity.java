@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
@@ -43,7 +43,7 @@ import rx.schedulers.Schedulers;
  * 因为授权三方登录需要页面跳转获取登录所需要的Token参数
  * 所以在这里先打开网页进行登录在获取参数去拉取用户信息
  */
-public class GitHubLoginWebActivity extends AbsBaseActivity
+public class GitHubLoginWebActivity extends RxBaseActivity
 {
 
     @Bind(R.id.circle_progress)
@@ -126,18 +126,18 @@ public class GitHubLoginWebActivity extends AbsBaseActivity
             finish();
         }
         // Github授权登录回调url后解析地址拿到code参数
-        if (url.startsWith("http://example.com/path"))
+        if (url.startsWith(ConstantUtil.AUTHORIZATION_CALLBACK_URL))
         {
-            LogUtil.all("登录完账号,走这里");
             Map<String,String> stringStringMap = UrlUtil.URLRequest(url);
             LogUtil.all(stringStringMap.toString());
             String code = stringStringMap.get("code");
             if (!TextUtils.isEmpty(code))
                 showProgress();
 
-            LogUtil.all("code不为空，进行登录获取数据");
-            RetrofitHelper.getGithubLoginApi().getLoginToken(ConstantUtil.GITHUB_CLIENT_ID, ConstantUtil.GITHUB_CLIENT_SECRET,
+            RetrofitHelper.getGithubLoginApi()
+                    .getLoginToken(ConstantUtil.GITHUB_CLIENT_ID, ConstantUtil.GITHUB_CLIENT_SECRET,
                     code, ConstantUtil.AUTHORIZATION_CALLBACK_URL)
+                    .compose(this.<ResponseBody>bindToLifecycle())
                     .map(new Func1<ResponseBody,String>()
                     {
 

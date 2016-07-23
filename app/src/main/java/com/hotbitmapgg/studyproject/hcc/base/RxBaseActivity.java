@@ -1,13 +1,13 @@
 package com.hotbitmapgg.studyproject.hcc.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.hotbitmapgg.studyproject.hcc.utils.StatusBarCompatUtil;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 
-public abstract class AbsBaseActivity extends AppCompatActivity
+public abstract class RxBaseActivity extends RxAppCompatActivity
 {
 
     @Override

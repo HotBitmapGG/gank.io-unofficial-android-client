@@ -1,12 +1,12 @@
 package com.hotbitmapgg.studyproject.hcc.ui.activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.config.ConstantUtil;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 import com.hotbitmapgg.studyproject.hcc.rx.RxBus;
@@ -38,7 +38,7 @@ import butterknife.Bind;
 /**
  * Github登录用户详情界面
  */
-public class GitHubUserInfoActivity extends AbsBaseActivity
+public class GitHubUserInfoActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -100,7 +100,7 @@ public class GitHubUserInfoActivity extends AbsBaseActivity
         fragments.add(mGitHubUserDetailsFragment);
         fragments.add(mGitHubFollowersFragment);
         fragments.add(mGitHubFollowingFragment);
-        mViewPager.setAdapter(new UserInfoPagerAdapter(getFragmentManager()));
+        mViewPager.setAdapter(new UserInfoPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(fragments.size());
         mSlidingTabLayout.setViewPager(mViewPager);
     }
@@ -182,6 +182,7 @@ public class GitHubUserInfoActivity extends AbsBaseActivity
 
     private class UserInfoPagerAdapter extends FragmentStatePagerAdapter
     {
+
 
         public UserInfoPagerAdapter(FragmentManager fm)
         {

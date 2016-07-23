@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.DividerItemDecoration;
@@ -22,7 +22,7 @@ import butterknife.Bind;
  * <p/>
  * 数据来自 简书作者:HuDP
  */
-public class AndroidDevelopActivity extends AbsBaseActivity
+public class AndroidDevelopActivity extends RxBaseActivity
 {
 
     @Bind(R.id.recycle)

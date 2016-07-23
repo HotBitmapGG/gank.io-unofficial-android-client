@@ -7,11 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 
 import butterknife.Bind;
 
-public class HotBitmapGGActivity extends AbsBaseActivity
+public class HotBitmapGGActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

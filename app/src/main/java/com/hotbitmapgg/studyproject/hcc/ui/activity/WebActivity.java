@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.studyproject.hcc.base.AbsBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.utils.ClipboardUtils;
 import com.hotbitmapgg.studyproject.hcc.utils.JsHandler;
 import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
@@ -26,7 +26,7 @@ import butterknife.Bind;
 /**
  * gank.IO详情web页面
  */
-public class WebActivity extends AbsBaseActivity
+public class WebActivity extends RxBaseActivity
 {
 
     @Bind(R.id.circle_progress)
