@@ -31,7 +31,7 @@
 
         <Preference
             android:key="gank"
-            android:summary="Gank.Io\nRxJava中文文档"
+            android:summary="Gank.Io\nRxJava中文文档\nHuDP的简书\nchjttony的CSDN博客"
             android:title="API数据来源" />
     </PreferenceCategory>
 
