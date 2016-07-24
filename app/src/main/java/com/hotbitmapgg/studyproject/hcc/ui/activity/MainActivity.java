@@ -3,6 +3,7 @@ package com.hotbitmapgg.studyproject.hcc.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -36,7 +37,9 @@ import com.hotbitmapgg.studyproject.hcc.utils.SnackbarUtil;
 import com.hotbitmapgg.studyproject.hcc.widget.CircleImageView;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import br.com.mauker.materialsearchview.MaterialSearchView;
 import butterknife.Bind;
@@ -63,6 +66,9 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
     @Bind(R.id.fab)
     FloatingActionButton mFloatingActionButton;
 
+    @Bind(R.id.coor_layout)
+    CoordinatorLayout mCoordinatorLayout;
+
     CircleImageView mUserAvatar;
 
     TextView mUserName;
@@ -86,6 +92,9 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
     private Subscription subscribe;
 
     private long exitTime;
+
+    // all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
+    private List<String> types = Arrays.asList("all", "Android", "iOS", "休息视频", "福利", "拓展资源", "前端", "瞎推荐", "App");
 
 
     @Override
@@ -213,16 +222,23 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
     private void search(final String query)
     {
 
+        if (!types.contains(query))
+        {
+            SnackbarUtil.showMessage(mCoordinatorLayout, "请输入正确的干货类型");
+            return;
+        }
+
+
         mSearchView.postDelayed(new Runnable()
         {
 
             @Override
             public void run()
             {
+
                 SearchGankListActivity.luancher(MainActivity.this, query);
             }
-        },500);
-
+        }, 500);
     }
 
     private void clearUserInfo()
@@ -408,8 +424,6 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
         if (mUserInfo != null)
         {
             isLogin = true;
-
-            LogUtil.all(mUserInfo.avatarUrl);
             Glide.with(MainActivity.this)
                     .load(mUserInfo.avatarUrl)
                     .asBitmap()
@@ -463,7 +477,7 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
 
         if (System.currentTimeMillis() - exitTime > 2000)
         {
-            SnackbarUtil.showMessage(mDrawerLayout, "再按一次退出AndroidRank");
+            SnackbarUtil.showMessage(mCoordinatorLayout, "再按一次退出AndroidRank");
             exitTime = System.currentTimeMillis();
         } else
         {

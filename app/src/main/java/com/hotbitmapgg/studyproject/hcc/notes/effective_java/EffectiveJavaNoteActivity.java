@@ -5,13 +5,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.DividerItemDecoration;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.HeaderViewRecyclerAdapter;
 
 import java.util.List;
 
@@ -31,6 +35,8 @@ public class EffectiveJavaNoteActivity extends RxBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
+    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+
     @Override
     public int getLayoutId()
     {
@@ -49,7 +55,9 @@ public class EffectiveJavaNoteActivity extends RxBaseActivity
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         EffectiveJavaNoteAdapter mAdapter = new EffectiveJavaNoteAdapter(mRecyclerView, effectiveJavaNotes);
-        mRecyclerView.setAdapter(mAdapter);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        createHead();
+        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
 
@@ -84,5 +92,14 @@ public class EffectiveJavaNoteActivity extends RxBaseActivity
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createHead()
+    {
+
+        View headView = LayoutInflater.from(this).inflate(R.layout.layout_notes_head, mRecyclerView, false);
+        mHeaderViewRecyclerAdapter.addHeaderView(headView);
+        TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
+        mNotesExplain.setText("文／chjttony（CSND博客)\n\n原文链接:原地址:http://blog.csdn.net/chjttony/article/category/1311991");
     }
 }
