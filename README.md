@@ -1,5 +1,7 @@
 # AndroidRank
 
+ A Material Design style Gank. Io unofficial client App 一款Material Design风格的Gank.Io非官方客户端应用
+
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/app_icon.png?raw=true)
 
 ## 功能介绍
@@ -17,12 +19,15 @@
   * 2.去除了无用代码,代码进行重构工作,持续中.
   * 3.增加了搜索功能,快速查询需要的干货.
 
+ </p>
+
   * v2.1
   * 1.去除了所有的练习示例代码,现在是一个纯纯的干货客户端.
   * 2.项目整体进行了重构,包结构的修改.
   * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:[AndroidEveryDayPractice](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
 
-
+ </p>
+ 
   * v2.0
   * 1.增加了GitHub登录,后期使用GitHub账户来进行用户管理.
   * 2.增加了Gank.Io的干货提交,提交干货更加方便了.
