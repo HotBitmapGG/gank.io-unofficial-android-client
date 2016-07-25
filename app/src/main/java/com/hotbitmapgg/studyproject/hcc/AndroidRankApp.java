@@ -20,15 +20,19 @@ public class AndroidRankApp extends Application
         super.onCreate();
         mAppContext = this;
         // 配置Realm数据库
-        RealmConfiguration configuration = new RealmConfiguration.Builder(this).deleteRealmIfMigrationNeeded().schemaVersion(6).migration(new RealmMigration()
-        {
+        RealmConfiguration configuration = new RealmConfiguration
+                .Builder(this)
+                .deleteRealmIfMigrationNeeded()
+                .schemaVersion(6).migration(new RealmMigration()
+                {
 
-            @Override
-            public void migrate(DynamicRealm realm, long oldVersion, long newVersion)
-            {
+                    @Override
+                    public void migrate(DynamicRealm realm,
+                                        long oldVersion, long newVersion)
+                    {
 
-            }
-        }).build();
+                    }
+                }).build();
 
         Realm.setDefaultConfiguration(configuration);
     }

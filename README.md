@@ -32,6 +32,11 @@
   * 1.增加了GitHub登录,后期使用GitHub账户来进行用户管理.
   * 2.增加了Gank.Io的干货提交,提交干货更加方便了.
   * 3.整体UI修改,更好的用户体验.
+  
+  
+
+## APK
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/canvas.png?raw=true)
 
 
 ## 截图
