@@ -72,14 +72,4 @@ public class GankPostBoby
 
         this.isdebug = isdebug;
     }
-
-//    public GankPostBoby(String url, String title, String name, String type, boolean isdebug)
-//    {
-//
-//        this.url = url;
-//        this.title = title;
-//        this.name = name;
-//        this.type = type;
-//        this.isdebug = isdebug;
-//    }
 }

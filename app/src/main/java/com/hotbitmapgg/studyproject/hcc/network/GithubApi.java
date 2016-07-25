@@ -1,7 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.network;
 
 
-import com.hotbitmapgg.studyproject.hcc.model.GitHubQueryUserInfo;
 import com.hotbitmapgg.studyproject.hcc.model.GitHubUserInfo;
 
 import okhttp3.ResponseBody;
@@ -33,15 +32,6 @@ import rx.Observable;
  */
 public interface GithubApi
 {
-
-    /**
-     * 根据登录名获取用户信息
-     *
-     * @param name
-     * @return
-     */
-    @GET("search/users")
-    Observable<GitHubQueryUserInfo> getGitHubUserInfo(@Query("q") String name);
 
     /**
      * 三方登录授权获取Token
