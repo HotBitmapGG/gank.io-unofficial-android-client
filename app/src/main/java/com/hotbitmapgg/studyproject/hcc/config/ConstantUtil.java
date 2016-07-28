@@ -8,12 +8,6 @@ package com.hotbitmapgg.studyproject.hcc.config;
 public class ConstantUtil
 {
 
-    //易源接口AppId
-    public static final String APP_ID = "15314";
-
-    //易源接口AppSign
-    public static final String APP_SIGN = "d424376f51f1467da1b8c75debebf148";
-
     //本地存储dir目录
     public static final String FILE_DIR = "gank_io";
 
