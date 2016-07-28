@@ -337,12 +337,12 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_home:
-                        changNavItem(menuItem, 0, "Gank.IO", true);
+                        changNavItem(menuItem, 0, "Gank.Io", true);
                         return true;
 
 
                     case R.id.nav_my_focus:
-                        changNavItem(menuItem, 1, "RxJavaDoc", false);
+                        changNavItem(menuItem, 1, "Notes", false);
                         return true;
 
                     case R.id.nav_about:

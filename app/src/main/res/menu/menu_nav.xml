@@ -6,11 +6,11 @@
             android:id="@+id/nav_home"
             android:checked="true"
             android:icon="@drawable/google_code_copyrighted"
-            android:title="Gank.IO" />
+            android:title="Gank.Io" />
         <item
             android:id="@+id/nav_my_focus"
             android:icon="@drawable/doc"
-            android:title="RxJavaDoc" />
+            android:title="Notes" />
     </group>
 
 
