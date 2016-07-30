@@ -33,21 +33,21 @@ public class RxjavaAndNotesFragment extends RxBaseFragment
     }
 
 
-    @OnClick(R.id.btn_3)
+    @OnClick(R.id.btn_1)
     void startRxJavaOperator()
     {
 
         startActivity(new Intent(getActivity(), RxJavaOperatorActivity.class));
     }
 
-    @OnClick(R.id.btn_4)
+    @OnClick(R.id.btn_5)
     void startAndroidDevelopArtExplore()
     {
 
         startActivity(new Intent(getActivity(), AndroidDevelopActivity.class));
     }
 
-    @OnClick(R.id.btn_5)
+    @OnClick(R.id.btn_6)
     void startEffectiveJava()
     {
 

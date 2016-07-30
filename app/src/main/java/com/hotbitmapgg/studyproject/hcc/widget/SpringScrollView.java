@@ -1,5 +1,6 @@
 package com.hotbitmapgg.studyproject.hcc.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -45,6 +46,7 @@ public class SpringScrollView extends ScrollView
     }
 
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onFinishInflate()
     {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.hotbitmapgg.studyproject.hcc.widget.SpringScrollView
         android:id="@+id/sping_scroll"
@@ -20,11 +20,27 @@
 
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
-                android:id="@+id/btn_3"
-                android:layout_marginTop="20dp"
+                android:id="@+id/btn_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:name="RxJava操作符大全"/>
+                android:layout_marginTop="20dp"
+                app:name="RxJava操作符大全" />
+
+
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:name="安卓面试知识点总结" />
+
+            <include layout="@layout/layout_line_view" />
+
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="自定义控件相关笔记" />
 
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
@@ -32,15 +48,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:name="安卓开发艺术探索读书笔记"/>
+                app:name="Gityuan大神博客总结" />
 
-            <include layout="@layout/layout_line_view"/>
+            <include layout="@layout/layout_line_view" />
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
                 android:id="@+id/btn_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:name="EffectiveJava读书笔记"/>
+                app:name="安卓开发艺术探索读书笔记" />
+
+            <include layout="@layout/layout_line_view" />
+
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="EffectiveJava读书笔记" />
 
 
         </LinearLayout>
