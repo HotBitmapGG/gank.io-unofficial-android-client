@@ -23,6 +23,10 @@
 
 ## 更新说明
 
+### v2.2.2
+  * 1.增加了一些最近在学习比较好的安卓大神的博客.
+  * 2.增加了来自GeniusVJR整理的安卓面试笔记.
+  * 3.优化了一些界面UI效果,以及修复了一些Bug.
 
 ### v2.2
   * 1.UI风格修改,更适合阅读.
@@ -74,6 +78,8 @@
 
 ![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/12.png?raw=true)
 
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/13.png?raw=true)
+
 ## Other
 
   * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
@@ -87,7 +93,7 @@
   * 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
 
   * 安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice
-  
+
   * 轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
 
 ## License
