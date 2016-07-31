@@ -41,7 +41,7 @@ public class EffectiveJavaNoteActivity extends RxBaseActivity
     public int getLayoutId()
     {
 
-        return R.layout.activity_effective_java;
+        return R.layout.activity_notes;
     }
 
     @Override
@@ -100,6 +100,6 @@ public class EffectiveJavaNoteActivity extends RxBaseActivity
         View headView = LayoutInflater.from(this).inflate(R.layout.layout_notes_head, mRecyclerView, false);
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
         TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
-        mNotesExplain.setText("文／chjttony（CSND博客)\n\n原文链接:原地址:http://blog.csdn.net/chjttony/article/category/1311991");
+        mNotesExplain.setText("文／chjttony（CSND博客)\n\n原文链接:http://blog.csdn.net/chjttony/article/category/1311991");
     }
 }

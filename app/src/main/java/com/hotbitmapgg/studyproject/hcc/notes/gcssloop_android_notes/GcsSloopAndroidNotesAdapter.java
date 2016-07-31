@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore;
+package com.hotbitmapgg.studyproject.hcc.notes.gcssloop_android_notes;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,14 +12,13 @@ import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdap
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class AndroidDevelopNotesAdapter extends AbsRecyclerViewAdapter
+public class GcsSloopAndroidNotesAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<AndroidDevelopNote> notes = new ArrayList<>();
+    private List<GcsSloopAndroidNotes> notes = new ArrayList<>();
 
 
-    public AndroidDevelopNotesAdapter(RecyclerView recyclerView, List<AndroidDevelopNote> notes)
+    public GcsSloopAndroidNotesAdapter(RecyclerView recyclerView, List<GcsSloopAndroidNotes> notes)
     {
 
         super(recyclerView);
@@ -41,8 +40,8 @@ public class AndroidDevelopNotesAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            itemViewHolder.mChapter.setText(notes.get(position).name);
-            itemViewHolder.mName.setText("HuDP");
+            itemViewHolder.mChapter.setText(notes.get(position).title);
+            itemViewHolder.mName.setText("GcsSloop");
         }
         super.onBindViewHolder(holder, position);
     }
@@ -54,7 +53,7 @@ public class AndroidDevelopNotesAdapter extends AbsRecyclerViewAdapter
         return notes.size();
     }
 
-    private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    private class ItemViewHolder extends ClickableViewHolder
     {
 
         public TextView mChapter;

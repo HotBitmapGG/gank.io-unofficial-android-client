@@ -34,7 +34,7 @@ public class EffectiveJavaNoteAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_effective_java, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_notes, parent, false));
     }
 
     @Override
@@ -45,6 +45,7 @@ public class EffectiveJavaNoteAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mChapter.setText(notes.get(position).chapter);
+            itemViewHolder.mName.setText("chjttony");
         }
         super.onBindViewHolder(holder, position);
     }
@@ -61,11 +62,14 @@ public class EffectiveJavaNoteAdapter extends AbsRecyclerViewAdapter
 
         public TextView mChapter;
 
+        public TextView mName;
+
         public ItemViewHolder(View itemView)
         {
 
             super(itemView);
             mChapter = $(R.id.tv_chapter);
+            mName = $(R.id.tv_name);
         }
     }
 }

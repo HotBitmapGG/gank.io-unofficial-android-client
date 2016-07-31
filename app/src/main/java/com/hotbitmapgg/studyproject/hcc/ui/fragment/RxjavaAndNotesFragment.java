@@ -6,8 +6,11 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 import com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore.AndroidDevelopActivity;
 import com.hotbitmapgg.studyproject.hcc.notes.effective_java.EffectiveJavaNoteActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.gcssloop_android_notes.GcsSloopAndroidNotesActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.ldtk_blog.LdtkBlogActivity;
 import com.hotbitmapgg.studyproject.hcc.notes.learning_notes.LearningNotesActivity;
 import com.hotbitmapgg.studyproject.hcc.notes.rxjava_operator.RxJavaOperatorActivity;
+import com.hotbitmapgg.studyproject.hcc.ui.activity.WebActivity;
 
 import butterknife.OnClick;
 
@@ -46,6 +49,29 @@ public class RxjavaAndNotesFragment extends RxBaseFragment
     {
 
         startActivity(new Intent(getActivity(), LearningNotesActivity.class));
+    }
+
+
+    @OnClick(R.id.btn_3)
+    void startGityuanBlog()
+    {
+
+        WebActivity.start(getActivity(), "http://gityuan.com/", "GityuanBlog");
+    }
+
+    @OnClick(R.id.btn_4)
+    void startGcsSloopAndroidNotes()
+    {
+
+        startActivity(new Intent(getActivity(), GcsSloopAndroidNotesActivity.class));
+    }
+
+
+    @OnClick(R.id.btn_5)
+    void startLdtkBlog()
+    {
+
+        startActivity(new Intent(getActivity(), LdtkBlogActivity.class));
     }
 
     @OnClick(R.id.btn_6)

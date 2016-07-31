@@ -253,7 +253,7 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
     public void initToolBar()
     {
 
-        mToolbar.setTitle("Gank.Io");
+        mToolbar.setTitle("AndroidRank");
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)

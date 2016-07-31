@@ -15,7 +15,6 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_horizontal_margin"
         android:scrollbars="none" />
 
 

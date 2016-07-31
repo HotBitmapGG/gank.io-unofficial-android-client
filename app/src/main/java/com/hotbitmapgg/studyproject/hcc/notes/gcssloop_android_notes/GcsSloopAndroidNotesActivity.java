@@ -1,4 +1,4 @@
-package com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore;
+package com.hotbitmapgg.studyproject.hcc.notes.gcssloop_android_notes;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -22,11 +22,13 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 安卓开发艺术探索读书笔记
+ * Created by hcc on 16/7/31 13:20
+ * 100332338@qq.com
  * <p/>
- * 数据来自 简书作者:HuDP
+ * 作者:GcsSloop
+ * 地址:https://github.com/GcsSloop/AndroidNote
  */
-public class AndroidDevelopActivity extends RxBaseActivity
+public class GcsSloopAndroidNotesActivity extends RxBaseActivity
 {
 
     @Bind(R.id.recycle)
@@ -36,6 +38,8 @@ public class AndroidDevelopActivity extends RxBaseActivity
     Toolbar mToolbar;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+
+    private List<GcsSloopAndroidNotes> gcsSloopAndroidNotes;
 
     @Override
     public int getLayoutId()
@@ -48,16 +52,16 @@ public class AndroidDevelopActivity extends RxBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        AndroidDevelopNoteContents androidDevelopNoteContents = new AndroidDevelopNoteContents();
-        final List<AndroidDevelopNote> androidDevelopNotes = androidDevelopNoteContents.fillData();
+        GcsSloopAndroidNotesContents mGcsSloopAndroidNotesContents = new GcsSloopAndroidNotesContents();
+        gcsSloopAndroidNotes = mGcsSloopAndroidNotesContents.fillData();
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        AndroidDevelopNotesAdapter mAdapter = new AndroidDevelopNotesAdapter(mRecyclerView, androidDevelopNotes);
+        GcsSloopAndroidNotesAdapter mAdapter = new GcsSloopAndroidNotesAdapter(mRecyclerView, gcsSloopAndroidNotes);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         createHead();
+        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
 
@@ -65,9 +69,9 @@ public class AndroidDevelopActivity extends RxBaseActivity
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                WebActivity.start(AndroidDevelopActivity.this,
-                        androidDevelopNotes.get(position).url,
-                        androidDevelopNotes.get(position).name);
+                WebActivity.start(GcsSloopAndroidNotesActivity.this,
+                        gcsSloopAndroidNotes.get(position).url,
+                        gcsSloopAndroidNotes.get(position).title);
             }
         });
     }
@@ -76,7 +80,7 @@ public class AndroidDevelopActivity extends RxBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("安卓开发艺术探索读书笔记");
+        mToolbar.setTitle("GcsSloopAndroidNote");
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
@@ -94,13 +98,12 @@ public class AndroidDevelopActivity extends RxBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-
     public void createHead()
     {
 
         View headView = LayoutInflater.from(this).inflate(R.layout.layout_notes_head, mRecyclerView, false);
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
         TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
-        mNotesExplain.setText("文／HuDP（简书作者)\n\n原文链接:http://www.jianshu.com/p/eb3247fac29a");
+        mNotesExplain.setText("文／GcsSloop（GitHub)\n\n原地址:https://github.com/GcsSloop/AndroidNote");
     }
 }

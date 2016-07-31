@@ -15,7 +15,7 @@
 
 * Rxjava中文文档,地址: [mcxiaoke/RxDocs](https://github.com/mcxiaoke/RxDocs)
 * 安卓面试整理资料,地址: [GeniusVJR/LearningNotes](https://github.com/GeniusVJR/LearningNotes)
-* Gityuan大神博客,地址: [gityuan/Blog](http://gityuan.com)
+* Gityuan大神博客,地址: [gityuan/Blog](http://gityuan.com/)
 * 安卓笔记,地址: [GcsSloop/AndroidNote](https://github.com/GcsSloop/AndroidNote)
 * 自定义控件笔记,地址: [Idtk/Blog](https://github.com/Idtk/Blog)
 

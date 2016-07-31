@@ -117,6 +117,16 @@
             android:name=".hcc.notes.learning_notes.LearningNotesActivity"
             android:screenOrientation="portrait" />
 
+        <!--安卓笔记界面-->
+        <activity
+            android:name=".hcc.notes.gcssloop_android_notes.GcsSloopAndroidNotesActivity"
+            android:screenOrientation="portrait" />
+
+        <!--自定义控件笔记-->
+        <activity
+            android:name=".hcc.notes.ldtk_blog.LdtkBlogActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--serchview-->
         <provider
