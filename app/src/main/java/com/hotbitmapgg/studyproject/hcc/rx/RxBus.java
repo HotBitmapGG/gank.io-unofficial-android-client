@@ -32,7 +32,7 @@ public class RxBus
     }
 
     /**
-     * 单例模式RxBus2
+     * 单例模式RxBus
      *
      * @return
      */

@@ -23,7 +23,7 @@ public class AndroidRankApp extends Application
         RealmConfiguration configuration = new RealmConfiguration
                 .Builder(this)
                 .deleteRealmIfMigrationNeeded()
-                .schemaVersion(6).migration(new RealmMigration()
+                .schemaVersion(7).migration(new RealmMigration()
                 {
 
                     @Override

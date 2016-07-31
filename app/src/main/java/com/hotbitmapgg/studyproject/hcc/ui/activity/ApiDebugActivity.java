@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.learning_notes.LearningNotesContents;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -111,6 +112,38 @@ public class ApiDebugActivity extends RxBaseActivity
     void startLogin()
     {
         //GitHubLoginWebActivity.luancher(ApiDebugActivity.this , ConstantUtil.GITHUB_LOGIN_URL);
+        LearningNotesContents mLearningNotesContents = new LearningNotesContents();
+        //mLearningNotesContents.fillAndroidData();
+       // mLearningNotesContents.fillDesignPatternData();
+
+//        Realm realm = Realm.getDefaultInstance();
+//        realm.beginTransaction();
+//        realm.where(LearningNotes.class)
+//                .equalTo("type", ConstantUtil.NOTES_TYPE_DESIGN_PATTERN)
+//                .findAll().clear();
+//        realm.commitTransaction();
+
+//        Realm.getDefaultInstance().where(LearningNotes.class).equalTo("type", ConstantUtil.NOTES_TYPE_ANDROID).findAll().asObservable()
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<RealmResults<LearningNotes>>()
+//                {
+//
+//                    @Override
+//                    public void call(RealmResults<LearningNotes> learningNotes)
+//                    {
+//
+//                        LogUtil.all(learningNotes.get(0).getChapter());
+//                    }
+//                }, new Action1<Throwable>()
+//                {
+//
+//                    @Override
+//                    public void call(Throwable throwable)
+//                    {
+//
+//                        LogUtil.all("加载失败" + throwable.getMessage());
+//                    }
+//                });
     }
 
     @Override

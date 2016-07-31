@@ -112,6 +112,12 @@
             android:windowSoftInputMode="stateHidden" />
 
 
+        <!--面试笔记界面-->
+        <activity
+            android:name=".hcc.notes.learning_notes.LearningNotesActivity"
+            android:screenOrientation="portrait" />
+
+
         <!--serchview-->
         <provider
             android:name="br.com.mauker.materialsearchview.db.HistoryProvider"

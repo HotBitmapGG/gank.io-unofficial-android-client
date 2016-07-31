@@ -35,6 +35,8 @@ import butterknife.Bind;
  * 12.Blocking阻塞操作
  * 13.String字符串操作
  * 14.其他
+ * <p/>
+ * 原文链接:https://github.com/mcxiaoke/RxDocs
  */
 public class RxJavaOperatorActivity extends RxBaseActivity
 {

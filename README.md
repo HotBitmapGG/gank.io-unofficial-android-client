@@ -9,26 +9,34 @@
 * 每日干货查看,一键分享保存,分类干货查看,干货搜索.
 * Rxjava操作符,中文文档,使用案例,方便随时查阅学习.
 * 安卓艺术开发探索读书笔记,EffectiveJava读书笔记.
+* 收集各大神博客以及安卓笔记,安卓面试笔记等方便手机端查看.
+
+## 感谢
+
+* Rxjava中文文档,地址: [mcxiaoke/RxDocs](https://github.com/mcxiaoke/RxDocs)
+* 安卓面试整理资料,地址: [GeniusVJR/LearningNotes](https://github.com/GeniusVJR/LearningNotes)
+* Gityuan大神博客,地址: [gityuan/Blog](http://gityuan.com)
+* 安卓笔记,地址: [GcsSloop/AndroidNote](https://github.com/GcsSloop/AndroidNote)
+* 自定义控件笔记,地址: [Idtk/Blog](https://github.com/Idtk/Blog)
+
 
 
 ## 更新说明
 
 
-  * V2.2
+### v2.2
   * 1.UI风格修改,更适合阅读.
   * 2.去除了无用代码,代码进行重构工作,持续中.
   * 3.增加了搜索功能,快速查询需要的干货.
 
- </p>
 
-  * v2.1
+### v2.1
   * 1.去除了所有的练习示例代码,现在是一个纯纯的干货客户端.
   * 2.项目整体进行了重构,包结构的修改.
   * 3.去除的代码已移动到个人每日学习代码的提交项目,地址:[AndroidEveryDayPractice](https://github.com/HotBitmapGG/AndroidEveryDayPractice)
 
- </p>
  
-  * v2.0
+### v2.0
   * 1.增加了GitHub登录,后期使用GitHub账户来进行用户管理.
   * 2.增加了Gank.Io的干货提交,提交干货更加方便了.
   * 3.整体UI修改,更好的用户体验.

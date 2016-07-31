@@ -43,4 +43,19 @@ public class ConstantUtil
 
     //本地保存图片类型 GIF
     public static final String PIC_TYPE_GIF = "gif";
+
+    //安卓面试notes数据存存储type之安卓
+    public static final String NOTES_TYPE_ANDROID = "android";
+
+    //安卓面试notes数据存存储type之设计模式
+    public static final String NOTES_TYPE_DESIGN_PATTERN = "design_pattern";
+
+    //安卓面试notes数据存存储type之java基础
+    public static final String NOTES_TYPE_JAVA = "java";
+
+    //安卓面试notes数据存存储type之数据结构，算法
+    public static final String NOTES_TYPE_DATA_STRUCTURE = "data_structure";
+
+    //安卓面试notes数据存存储type之网络
+    public static final String NOTES_TYPE_NETWORK = "network";
 }

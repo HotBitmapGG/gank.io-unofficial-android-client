@@ -1,9 +1,51 @@
 package com.hotbitmapgg.studyproject.hcc.notes.learning_notes;
 
-public class LearningNotes
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class LearningNotes extends RealmObject
 {
 
-    public String chapter;
+    private String chapter;
 
-    public String url;
+    @PrimaryKey
+    private String url;
+
+    private String type;
+
+    public String getChapter()
+    {
+
+        return chapter;
+    }
+
+    public void setChapter(String chapter)
+    {
+
+        this.chapter = chapter;
+    }
+
+    public String getUrl()
+    {
+
+        return url;
+    }
+
+    public void setUrl(String url)
+    {
+
+        this.url = url;
+    }
+
+    public String getType()
+    {
+
+        return type;
+    }
+
+    public void setType(String type)
+    {
+
+        this.type = type;
+    }
 }

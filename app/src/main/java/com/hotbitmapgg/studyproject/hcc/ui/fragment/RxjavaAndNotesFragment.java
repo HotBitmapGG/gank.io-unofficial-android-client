@@ -6,6 +6,7 @@ import com.hotbitmapgg.studyproject.R;
 import com.hotbitmapgg.studyproject.hcc.base.RxBaseFragment;
 import com.hotbitmapgg.studyproject.hcc.notes.android_develop_art_explore.AndroidDevelopActivity;
 import com.hotbitmapgg.studyproject.hcc.notes.effective_java.EffectiveJavaNoteActivity;
+import com.hotbitmapgg.studyproject.hcc.notes.learning_notes.LearningNotesActivity;
 import com.hotbitmapgg.studyproject.hcc.notes.rxjava_operator.RxJavaOperatorActivity;
 
 import butterknife.OnClick;
@@ -40,14 +41,21 @@ public class RxjavaAndNotesFragment extends RxBaseFragment
         startActivity(new Intent(getActivity(), RxJavaOperatorActivity.class));
     }
 
-    @OnClick(R.id.btn_5)
+    @OnClick(R.id.btn_2)
+    void startLearningNotes()
+    {
+
+        startActivity(new Intent(getActivity(), LearningNotesActivity.class));
+    }
+
+    @OnClick(R.id.btn_6)
     void startAndroidDevelopArtExplore()
     {
 
         startActivity(new Intent(getActivity(), AndroidDevelopActivity.class));
     }
 
-    @OnClick(R.id.btn_6)
+    @OnClick(R.id.btn_7)
     void startEffectiveJava()
     {
 

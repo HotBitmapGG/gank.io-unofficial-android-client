@@ -11,8 +11,7 @@
         android:id="@+id/debug_btn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="登录"
-        android:visibility="gone"
+        android:text="接口调试"
         android:textSize="18sp" />
 
 </LinearLayout>

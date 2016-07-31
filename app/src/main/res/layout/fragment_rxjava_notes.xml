@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:name="RxJava操作符大全" />
+                app:name="mcxiaoke/RxDocs" />
 
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:name="安卓面试知识点总结" />
+                app:name="GeniusVJR/LearningNotes" />
 
             <include layout="@layout/layout_line_view" />
 
@@ -40,28 +40,36 @@
                 android:id="@+id/btn_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:name="自定义控件相关笔记" />
-
+                app:name="Gityuan/Blog" />
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
                 android:id="@+id/btn_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:name="Gityuan大神博客总结" />
+                app:name="GcsSloop/AndroidNote" />
+
 
             <include layout="@layout/layout_line_view" />
+
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
                 android:id="@+id/btn_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:name="Idtk/Blog" />
+
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 app:name="安卓开发艺术探索读书笔记" />
 
             <include layout="@layout/layout_line_view" />
 
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
-                android:id="@+id/btn_6"
+                android:id="@+id/btn_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:name="EffectiveJava读书笔记" />

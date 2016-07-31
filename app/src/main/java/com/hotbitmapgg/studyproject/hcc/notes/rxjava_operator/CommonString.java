@@ -3,7 +3,7 @@ package com.hotbitmapgg.studyproject.hcc.notes.rxjava_operator;
 public class CommonString
 {
     public static final String SPLASH_INDEX_URL = "http://www.itfish.net/Home/Modules/Images/itfish_53904_0.jpg";
-    public static final String GITHUB_URL = "https://github.com/jiang111/RxJavaApp";
+    public static final String GITHUB_URL = "https://github.com/HotBitmapGG/StudyProject";
     public static final String OBSERVABLES = "https://github.com/mcxiaoke/RxDocs/raw/master/images/legend.png";
     public static final String SUBJECT = "https://github.com/mcxiaoke/RxDocs/raw/master/images/S.AsyncSubject.png";
     public static final String JUST = "https://github.com/mcxiaoke/RxDocs/raw/master/images/operators/just.png";
