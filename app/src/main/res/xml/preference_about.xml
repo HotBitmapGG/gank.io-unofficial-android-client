@@ -10,7 +10,7 @@
 
         <Preference
             android:key="currentVersion"
-            android:summary="V2.1"
+            android:summary="V2.1.2"
             android:title="当前版本" />
 
     </PreferenceCategory>
@@ -31,7 +31,7 @@
 
         <Preference
             android:key="gank"
-            android:summary="Gank.Io\nRxJava中文文档\nHuDP的简书\nchjttony的CSDN博客"
+            android:summary="Gank.Io\nRxJava中文文档\nHuDP的简书\nchjttony的CSDN博客\nmcxiaoke/RxDocs\nGeniusVJR/LearningNotes\ngityuan/Blog\nGcsSloop/AndroidNote\nIdtk/Blog"
             android:title="API数据来源" />
     </PreferenceCategory>
 
