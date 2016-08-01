@@ -18,6 +18,8 @@
 * Gityuan大神博客,地址: [gityuan/Blog](http://gityuan.com/)
 * 安卓笔记,地址: [GcsSloop/AndroidNote](https://github.com/GcsSloop/AndroidNote)
 * 自定义控件笔记,地址: [Idtk/Blog](https://github.com/Idtk/Blog)
+* 安卓开发艺术探索读书笔记,地址: [简书](http://www.jianshu.com/p/eb3247fac29a)
+* EffectiveJava读书笔记,地址: [CSDN](http://blog.csdn.net/chjttony/article/category/1311991)
 
 
 
