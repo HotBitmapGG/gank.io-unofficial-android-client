@@ -51,7 +51,7 @@
 
 ## APK
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/canvas.png?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/index.png?raw=true)
 
 
 ## 截图
