@@ -297,6 +297,9 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
                 startTodayGank();
                 return true;
 
+            case R.id.action_today_github:
+                 WebActivity.start(MainActivity.this,"https://github.com/trending","GitHub Today's popular project");
+                return true;
             default:
                 break;
         }

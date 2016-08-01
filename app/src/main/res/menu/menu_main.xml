@@ -16,4 +16,11 @@
         android:orderInCategory="100"
         android:title="今日干货"
         app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_today_github"
+        android:orderInCategory="100"
+        android:title="今日GitHub热门"
+        app:showAsAction="never" />
 </menu>
