@@ -42,6 +42,15 @@
                 android:layout_height="wrap_content"
                 app:name="Gityuan/Blog" />
 
+            <include layout="@layout/layout_line_view" />
+
+            <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
+                android:id="@+id/btn_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:name="JackyAndroid/AndroidInterview-Q-A" />
+
+
             <com.hotbitmapgg.studyproject.hcc.widget.ItemArrowCardView
                 android:id="@+id/btn_4"
                 android:layout_width="match_parent"

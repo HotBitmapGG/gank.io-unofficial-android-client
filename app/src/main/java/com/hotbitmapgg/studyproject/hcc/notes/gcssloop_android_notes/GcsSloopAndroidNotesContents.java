@@ -81,6 +81,8 @@ public class GcsSloopAndroidNotesContents
 
     public final static String GCSSLOOP_ANDROID_NOTES_TITLE_26 = "Rotate3dAnimation - 3D旋转动画(修正版)";
 
+    public final static String GCSSLOOP_ANDROID_NOTES_TITLE_27 = "Matrix原理";
+
 
     public final static String GCSSLOOP_ANDROID_NOTES_URL_1 = "https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Base/%5B1%5DCoordinateSystem.md";
 
@@ -134,6 +136,8 @@ public class GcsSloopAndroidNotesContents
 
     public final static String GCSSLOOP_ANDROID_NOTES_URL_26 = "https://github.com/GcsSloop/Rotate3dAnimation";
 
+    public final static String GCSSLOOP_ANDROID_NOTES_URL_27 = " https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B09%5DMatrix_Basic.md";
+
 
     public List<GcsSloopAndroidNotes> fillData()
     {
@@ -164,6 +168,7 @@ public class GcsSloopAndroidNotesContents
         titles.add(GCSSLOOP_ANDROID_NOTES_TITLE_24);
         titles.add(GCSSLOOP_ANDROID_NOTES_TITLE_25);
         titles.add(GCSSLOOP_ANDROID_NOTES_TITLE_26);
+        titles.add(GCSSLOOP_ANDROID_NOTES_TITLE_27);
 
         urls.add(GCSSLOOP_ANDROID_NOTES_URL_1);
         urls.add(GCSSLOOP_ANDROID_NOTES_URL_2);
@@ -191,6 +196,7 @@ public class GcsSloopAndroidNotesContents
         urls.add(GCSSLOOP_ANDROID_NOTES_URL_24);
         urls.add(GCSSLOOP_ANDROID_NOTES_URL_25);
         urls.add(GCSSLOOP_ANDROID_NOTES_URL_26);
+        urls.add(GCSSLOOP_ANDROID_NOTES_URL_27);
 
 
         int size = titles.size();

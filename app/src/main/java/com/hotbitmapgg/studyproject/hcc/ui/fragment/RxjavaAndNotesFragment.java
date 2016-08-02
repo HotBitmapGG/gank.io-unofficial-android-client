@@ -17,6 +17,15 @@ import butterknife.OnClick;
 public class RxjavaAndNotesFragment extends RxBaseFragment
 {
 
+    public final static String GIT_YUAN_BLOG_URL = "http://gityuan.com/";
+
+    public final static String GIT_YUAN_BLOG_TITLE = "GityuanBlog";
+
+    public final static String JACKYANDROID_ANDROIDINTERVIEW_URL = "https://github.com/JackyAndroid/AndroidInterview-Q-A/blob/master/README-CN.md";
+
+    public final static String JACKYANDROID_ANDROIDINTERVIEW_TITLE = "JackyAndroid/AndroidInterview-Q-A";
+
+
     public static RxjavaAndNotesFragment newInstance()
     {
 
@@ -56,7 +65,7 @@ public class RxjavaAndNotesFragment extends RxBaseFragment
     void startGityuanBlog()
     {
 
-        WebActivity.start(getActivity(), "http://gityuan.com/", "GityuanBlog");
+        WebActivity.start(getActivity(), GIT_YUAN_BLOG_URL, GIT_YUAN_BLOG_TITLE);
     }
 
     @OnClick(R.id.btn_4)
@@ -86,5 +95,12 @@ public class RxjavaAndNotesFragment extends RxBaseFragment
     {
 
         startActivity(new Intent(getActivity(), EffectiveJavaNoteActivity.class));
+    }
+
+    @OnClick(R.id.btn_8)
+    void startAndroidInterviewQA()
+    {
+
+        WebActivity.start(getActivity(), JACKYANDROID_ANDROIDINTERVIEW_URL, JACKYANDROID_ANDROIDINTERVIEW_TITLE);
     }
 }
