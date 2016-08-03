@@ -19,7 +19,7 @@ public class StatusBarCompatUtil
     private static final int INVALID_VAL = -1;
 
     //这里设置你statusBar要设置的颜色
-    private static final int COLOR_DEFAULT = Color.parseColor("#FD4C5B");
+    private static final int COLOR_DEFAULT = Color.parseColor("#424242");
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void compat(Activity activity, int statusColor)
