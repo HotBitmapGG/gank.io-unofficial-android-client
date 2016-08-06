@@ -2,7 +2,6 @@ package com.hotbitmapgg.studyproject.hcc.base;
 
 import android.os.Bundle;
 
-import com.hotbitmapgg.studyproject.hcc.utils.StatusBarCompatUtil;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -23,8 +22,6 @@ public abstract class RxBaseActivity extends RxAppCompatActivity
         initViews(savedInstanceState);
         //初始化ToolBar
         initToolBar();
-        //适配4.4系统状态栏
-        StatusBarCompatUtil.compat(this);
     }
 
 
