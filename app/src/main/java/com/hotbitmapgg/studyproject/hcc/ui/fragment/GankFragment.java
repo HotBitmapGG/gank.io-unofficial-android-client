@@ -172,7 +172,6 @@ public class GankFragment extends RxBaseFragment
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .retry()
                 .subscribe(new Action1<List<Gank.GankInfo>>()
                 {
 
