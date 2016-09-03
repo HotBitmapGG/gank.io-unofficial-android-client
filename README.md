@@ -11,17 +11,6 @@
 * 安卓艺术开发探索读书笔记,EffectiveJava读书笔记.
 * 收集各大神博客以及安卓笔记,安卓面试笔记等方便手机端查看.
 
-## 感谢
-
-* Rxjava中文文档,地址: [mcxiaoke/RxDocs](https://github.com/mcxiaoke/RxDocs)
-* 安卓面试整理资料,地址: [GeniusVJR/LearningNotes](https://github.com/GeniusVJR/LearningNotes)
-* Gityuan大神博客,地址: [gityuan/Blog](http://gityuan.com/)
-* 安卓笔记,地址: [GcsSloop/AndroidNote](https://github.com/GcsSloop/AndroidNote)
-* 自定义控件笔记,地址: [Idtk/Blog](https://github.com/Idtk/Blog)
-* 安卓开发艺术探索读书笔记,地址: [简书](http://www.jianshu.com/p/eb3247fac29a)
-* EffectiveJava读书笔记,地址: [CSDN](http://blog.csdn.net/chjttony/article/category/1311991)
-
-
 
 ## 更新说明
 
@@ -71,15 +60,24 @@
 <a href="art/13.png"><img src="art/13.png" width="40%"/>
 
 
-***
+## 感谢
+
+* Rxjava中文文档,地址: [mcxiaoke/RxDocs](https://github.com/mcxiaoke/RxDocs)
+* 安卓面试整理资料,地址: [GeniusVJR/LearningNotes](https://github.com/GeniusVJR/LearningNotes)
+* Gityuan大神博客,地址: [gityuan/Blog](http://gityuan.com/)
+* 安卓笔记,地址: [GcsSloop/AndroidNote](https://github.com/GcsSloop/AndroidNote)
+* 自定义控件笔记,地址: [Idtk/Blog](https://github.com/Idtk/Blog)
+* 安卓开发艺术探索读书笔记,地址: [简书](http://www.jianshu.com/p/eb3247fac29a)
+* EffectiveJava读书笔记,地址: [CSDN](http://blog.csdn.net/chjttony/article/category/1311991)
+
 
 ## Other
 
-
+  * 高仿BiliBili客户端:https://github.com/HotBitmapGG/OhMyBiliBili
 
   * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
 
-  * 高仿BiliBili客户端:https://github.com/HotBitmapGG/OhMyBiliBili
+  * Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
 
   * 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
 
