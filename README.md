@@ -72,9 +72,9 @@
 
 ## Other
 
-  * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
-
   * 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
+
+  * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
 
   * Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
 
