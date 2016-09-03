@@ -82,9 +82,9 @@
 
   * 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
 
-  * 仿芝麻信用圆环进度: https://github.com/HotBitmapGG/CreditSesameRingView
+  * 仿芝麻信用圆环进度:https://github.com/HotBitmapGG/CreditSesameRingView
 
-  * 轻量级的RecycleViewAdapter辅助类库: https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
+  * 轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
 
 ## License
 
