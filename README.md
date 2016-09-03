@@ -2,7 +2,7 @@
 
  A Material Design style Gank. Io unofficial client App 一款Material Design风格的Gank.Io非官方客户端应用
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/app_icon.png?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/arc/app_icon.png?raw=true)
 
 ## 功能介绍
 
@@ -40,7 +40,7 @@
 
 ## APK
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/index.png?raw=true)
+![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/art/index.png?raw=true)
 
 
 ## 截图
@@ -57,7 +57,7 @@
 
 <a href="art/11.png"><img src="art/11.png" width="40%"/></a> <a href="art/12.png"><img src="art/12.png" width="40%"/></a>
 
-<a href="art/13.png"><img src="art/13.png" width="40%"/>
+<a href="art/13.png"><img src="art/13.png" width="40%"/></a>
 
 
 ## 感谢
