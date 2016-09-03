@@ -56,31 +56,19 @@
 
 ## 截图
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/01.png?raw=true)
+<a href="art/01.png"><img src="art/01.png" width="40%"/></a> <a href="art/02.png"><img src="art/02.pngg" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/02.png?raw=true)
+<a href="art/03.png"><img src="art/03.png" width="40%"/></a> <a href="art/04.png"><img src="art/04.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/03.png?raw=true)
+<a href="art/05.png"><img src="art/05.png" width="40%"/></a> <a href="art/06.png"><img src="art/06.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/04.png?raw=true)
+<a href="art/07.png"><img src="art/07.png" width="40%"/></a> <a href="art/08.png"><img src="art/08.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/05.png?raw=true)
+<a href="art/09.png"><img src="art/09.png" width="40%"/></a> <a href="art/10.png"><img src="art/10.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/06.png?raw=true)
+<a href="art/11.png"><img src="art/11.png" width="40%"/></a> <a href="art/12.png"><img src="art/12.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/07.png?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/08.png?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/09.png?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/10.png?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/11.png?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/12.png?raw=true)
-
-![](https://github.com/HotBitmapGG/StudyProject/blob/studyRank/pic/13.png?raw=true)
+<a href="art/13.png"><img src="art/13.png" width="40%"/>
 
 ## Other
 
@@ -94,9 +82,9 @@
 
   * 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
 
-  * 安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice
+  * 仿芝麻信用圆环进度: https://github.com/HotBitmapGG/CreditSesameRingView
 
-  * 轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
+  * 轻量级的RecycleViewAdapter辅助类库: https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
 
 ## License
 
