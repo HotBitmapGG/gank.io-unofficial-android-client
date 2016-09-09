@@ -1,6 +1,6 @@
 # AndroidRank
 
-[![Wercker](https://img.shields.io/badge/Android%20Circular-AndroidRank-brightgreen.svg)]() [![bitHound](https://img.shields.io/bithound/dependencies/github/rexxars/sse-channel.svg?maxAge=2592000)]() [![Wercker](https://img.shields.io/wercker/ci/wercker/docs.svg?maxAge=2592000?style=plastic)]() [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000?style=plastic)]()  [![David](https://img.shields.io/david/strongloop/express.svg?maxAge=2592000?style=plastic)]()
+[![Wercker](https://img.shields.io/badge/Android%20Client-AndroidRank-brightgreen.svg)]() [![Wercker](https://img.shields.io/badge/Gradle-2.1.3-brightgreen.svg)]() [![bitHound](https://img.shields.io/bithound/dependencies/github/rexxars/sse-channel.svg?maxAge=2592000)]() [![Wercker](https://img.shields.io/wercker/ci/wercker/docs.svg?maxAge=2592000?style=plastic)]() [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000?style=plastic)]()  [![David](https://img.shields.io/david/strongloop/express.svg?maxAge=2592000?style=plastic)]()
 
  A Material Design style Gank. Io unofficial client App 一款Material Design风格的Gank.Io非官方客户端应用
 
@@ -79,15 +79,13 @@
 
   * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
 
-  * Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
+  * Gank.io客户端: https://github.com/HotBitmapGG/StudyProject
 
   * 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
 
   * 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
 
-  * 仿芝麻信用圆环进度:https://github.com/HotBitmapGG/CreditSesameRingView
-
-  * 轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
+  * 仿芝麻信用分仪表盘:https://github.com/HotBitmapGG/CreditSesameRingView
 
 ## License
 
