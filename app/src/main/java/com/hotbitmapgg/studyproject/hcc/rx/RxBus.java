@@ -7,7 +7,7 @@ import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
 
 /**
- * RxBus第二种实现方法
+ * RxBus
  * <p/>
  * Subject同时充当了Observer和Observable的角色，Subject是非线程安全的，
  * 要避免该问题，需要将 Subject转换为一个 SerializedSubject ，
