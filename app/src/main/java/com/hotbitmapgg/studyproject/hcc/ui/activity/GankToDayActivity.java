@@ -23,6 +23,7 @@ import com.hotbitmapgg.studyproject.hcc.base.RxBaseActivity;
 import com.hotbitmapgg.studyproject.hcc.model.Gank;
 import com.hotbitmapgg.studyproject.hcc.model.GankDayInfo;
 import com.hotbitmapgg.studyproject.hcc.network.RetrofitHelper;
+import com.hotbitmapgg.studyproject.hcc.widget.recyclehelper.AbsRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +95,7 @@ public class GankToDayActivity extends RxBaseActivity
 
         RetrofitHelper.getGankApi()
                 .getGankDayData(year, month, day)
-                .compose(this.<GankDayInfo>bindToLifecycle())
+                .compose(this.<GankDayInfo> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<GankDayInfo>()
@@ -158,6 +159,32 @@ public class GankToDayActivity extends RxBaseActivity
         mRecyclerView.setLayoutManager(layoutManager);
         GankListAdapter mAdapter = new GankListAdapter(mRecyclerView, ganks);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                Gank.GankInfo gankInfo = ganks.get(position);
+
+                if (gankInfo.type.equals("休息视频"))
+                {
+
+                    VideoWebActivity.launch(GankToDayActivity.this, gankInfo.url);
+                } else if (gankInfo.type.equals("福利"))
+                {
+                    Intent intent = FuliFullPicActivity.LuanchActivity(GankToDayActivity.this,
+                            gankInfo.url, gankInfo.desc);
+                    startActivity(intent);
+                } else
+                {
+
+                    WebActivity.start(GankToDayActivity.this, gankInfo.url, gankInfo.desc);
+                }
+            }
+        });
 
         behavior = BottomSheetBehavior.from(mRecyclerView);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback()

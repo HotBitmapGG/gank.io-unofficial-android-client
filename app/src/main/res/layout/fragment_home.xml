@@ -18,7 +18,7 @@
         app:tl_tab_space_equal="false" />
 
 
-    <android.support.v4.view.ViewPager
+    <com.hotbitmapgg.studyproject.hcc.widget.NoScrollViewPager
         android:id="@+id/tab_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
