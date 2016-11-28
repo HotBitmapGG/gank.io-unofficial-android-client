@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.hotbitmapgg.studyproject.rank.widget.CircleProgressView
+            <com.hotbitmapgg.androidrank.widget.CircleProgressView
                 android:id="@+id/load_progress"
                 android:layout_width="@dimen/circle_progress_view_default_size"
                 android:layout_height="@dimen/circle_progress_view_default_size"

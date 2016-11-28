@@ -18,7 +18,7 @@
         app:tl_tab_space_equal="false" />
 
 
-    <com.hotbitmapgg.studyproject.rank.widget.NoScrollViewPager
+    <com.hotbitmapgg.androidrank.widget.NoScrollViewPager
         android:id="@+id/tab_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
