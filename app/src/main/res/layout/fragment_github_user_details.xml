@@ -158,7 +158,7 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <com.hotbitmapgg.studyproject.hcc.widget.CircleProgressView
+    <com.hotbitmapgg.studyproject.rank.widget.CircleProgressView
         android:id="@+id/circle_progress"
         android:layout_width="@dimen/circle_progress_view_default_size"
         android:layout_height="@dimen/circle_progress_view_default_size"

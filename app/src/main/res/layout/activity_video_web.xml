@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <com.hotbitmapgg.studyproject.hcc.widget.web.LoveVideoView
+    <com.hotbitmapgg.studyproject.rank.widget.web.LoveVideoView
         android:id="@+id/video"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="?attr/selectableItemBackground">
 
-        <com.hotbitmapgg.studyproject.hcc.widget.CircleImageView
+        <com.hotbitmapgg.studyproject.rank.widget.CircleImageView
             android:id="@+id/item_follow_avatar"
             android:layout_width="70dp"
             android:layout_height="70dp"
