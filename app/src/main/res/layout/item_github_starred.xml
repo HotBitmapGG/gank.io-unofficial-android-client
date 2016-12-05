@@ -43,7 +43,7 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <com.hotbitmapgg.androidrank.widget.CircleImageView
+            <com.hotbitmapgg.gank.widget.CircleImageView
                 android:id="@+id/item_iv_avatar"
                 android:layout_width="25dp"
                 android:layout_height="25dp"

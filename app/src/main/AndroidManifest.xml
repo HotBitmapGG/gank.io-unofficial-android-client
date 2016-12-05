@@ -8,14 +8,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.hotbitmapgg.androidrank.AndroidRankApp"
+        android:name="com.hotbitmapgg.gank.GankIoApp"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.EntryActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.EntryActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar">
@@ -28,85 +28,85 @@
 
         <!-- 主界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.MainActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
 
         <!--Api接口调试界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.ApiDebugActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.ApiDebugActivity"
             android:screenOrientation="portrait" />
 
         <!-- 浏览器界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.WebActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.WebActivity"
             android:screenOrientation="portrait" />
 
         <!-- 视频播放web界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.VideoWebActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.VideoWebActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransparentStatusBar" />
 
         <!-- Rxjava操作符界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.notes.rxjava_operator.RxJavaOperatorActivity"
+            android:name="com.hotbitmapgg.gank.notes.rxjava_operator.RxJavaOperatorActivity"
             android:screenOrientation="portrait" />
 
 
         <!-- 个人信息界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.HotBitmapGGActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.HotBitmapGGActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
 
         <!--安卓开发艺术探索读书笔记-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.notes.android_develop_art_explore.AndroidDevelopActivity"
+            android:name="com.hotbitmapgg.gank.notes.android_develop_art_explore.AndroidDevelopActivity"
             android:screenOrientation="portrait" />
 
         <!-- EffectiveJava读书笔记-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.notes.effective_java.EffectiveJavaNoteActivity"
+            android:name="com.hotbitmapgg.gank.notes.effective_java.EffectiveJavaNoteActivity"
             android:screenOrientation="portrait" />
 
 
         <!-- 妹子大图单个浏览界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.FuliFullPicActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.FuliFullPicActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
 
         <!--干货提交界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.GankPostActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.GankPostActivity"
             android:screenOrientation="portrait" />
 
         <!--用户Github界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.GitHubUserInfoActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.GitHubUserInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
 
         <!--Github登录授权跳转界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.GitHubLoginWebActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.GitHubLoginWebActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <!--今日干货数据-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.GankToDayActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.GankToDayActivity"
             android:screenOrientation="portrait" />
 
         <!--关于界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.AboutActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.AboutActivity"
             android:screenOrientation="portrait" />
 
         <!--搜索界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.ui.activity.SearchGankListActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.SearchGankListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Search"
             android:windowSoftInputMode="stateHidden" />
@@ -114,17 +114,17 @@
 
         <!--面试笔记界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.notes.learning_notes.LearningNotesActivity"
+            android:name="com.hotbitmapgg.gank.notes.learning_notes.LearningNotesActivity"
             android:screenOrientation="portrait" />
 
         <!--安卓笔记界面-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.notes.gcssloop_android_notes.GcsSloopAndroidNotesActivity"
+            android:name="com.hotbitmapgg.gank.notes.gcssloop_android_notes.GcsSloopAndroidNotesActivity"
             android:screenOrientation="portrait" />
 
         <!--自定义控件笔记-->
         <activity
-            android:name="com.hotbitmapgg.androidrank.notes.ldtk_blog.LdtkBlogActivity"
+            android:name="com.hotbitmapgg.gank.notes.ldtk_blog.LdtkBlogActivity"
             android:screenOrientation="portrait" />
 
 

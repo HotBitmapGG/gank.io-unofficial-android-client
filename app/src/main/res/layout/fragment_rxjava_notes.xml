@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hotbitmapgg.androidrank.widget.SpringScrollView
+    <com.hotbitmapgg.gank.widget.SpringScrollView
         android:id="@+id/sping_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
                 app:name="mcxiaoke/RxDocs" />
 
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
 
             <include layout="@layout/layout_line_view" />
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,14 +44,14 @@
 
             <include layout="@layout/layout_line_view" />
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:name="JackyAndroid/AndroidInterview-Q-A" />
 
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,13 +62,13 @@
             <include layout="@layout/layout_line_view" />
 
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:name="Idtk/Blog" />
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
 
             <include layout="@layout/layout_line_view" />
 
-            <com.hotbitmapgg.androidrank.widget.ItemArrowCardView
+            <com.hotbitmapgg.gank.widget.ItemArrowCardView
                 android:id="@+id/btn_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,6 +87,6 @@
         </LinearLayout>
 
 
-    </com.hotbitmapgg.androidrank.widget.SpringScrollView>
+    </com.hotbitmapgg.gank.widget.SpringScrollView>
 
 </LinearLayout>

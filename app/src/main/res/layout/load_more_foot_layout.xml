@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <com.hotbitmapgg.androidrank.widget.CircleProgressView
+    <com.hotbitmapgg.gank.widget.CircleProgressView
         android:id="@+id/load_pro"
         android:layout_width="20dp"
         android:layout_height="20dp"

@@ -9,7 +9,7 @@
               android:padding="16dp"
               android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
-    <com.hotbitmapgg.androidrank.widget.CircleImageView
+    <com.hotbitmapgg.gank.widget.CircleImageView
         android:id="@+id/github_user_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
