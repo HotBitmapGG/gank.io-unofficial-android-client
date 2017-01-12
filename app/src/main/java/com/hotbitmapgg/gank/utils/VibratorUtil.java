@@ -7,12 +7,10 @@ import android.os.Vibrator;
 /**
  * 震动工具类
  */
-public class VibratorUtil
-{
+public class VibratorUtil {
 
-    public static void vibrator(Activity activity, long time)
-    {
-        Vibrator mVibrator = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
-        mVibrator.vibrate(time);
-    }
+  public static void vibrator(Activity activity, long time) {
+    Vibrator mVibrator = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
+    mVibrator.vibrate(time);
+  }
 }

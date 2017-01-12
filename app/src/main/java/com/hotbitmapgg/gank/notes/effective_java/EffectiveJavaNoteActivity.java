@@ -26,80 +26,81 @@ import butterknife.Bind;
  * <p/>
  * 数据来自CSND博客,作者:chjttony
  */
-public class EffectiveJavaNoteActivity extends RxBaseActivity
-{
+public class EffectiveJavaNoteActivity extends RxBaseActivity {
 
-    @Bind(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @Bind(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+  @Bind(R.id.toolbar)
+  Toolbar mToolbar;
 
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+  private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    @Override
-    public int getLayoutId()
-    {
 
-        return R.layout.activity_notes;
+  @Override
+  public int getLayoutId() {
+
+    return R.layout.activity_notes;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    EffectiveJavaContents effectiveJavaContents = new EffectiveJavaContents();
+    final List<EffectiveJavaNote> effectiveJavaNotes = effectiveJavaContents.fillData();
+
+    mRecyclerView.setHasFixedSize(true);
+    mRecyclerView.addItemDecoration(
+        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+    mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    EffectiveJavaNoteAdapter mAdapter = new EffectiveJavaNoteAdapter(mRecyclerView,
+        effectiveJavaNotes);
+    mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+    createHead();
+    mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+
+      @Override
+      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
+
+        WebActivity.start(EffectiveJavaNoteActivity.this,
+            effectiveJavaNotes.get(position).url,
+            effectiveJavaNotes.get(position).chapter);
+      }
+    });
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("EffectiveJava读书笔记");
+    setSupportActionBar(mToolbar);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
     }
+  }
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
 
-        EffectiveJavaContents effectiveJavaContents = new EffectiveJavaContents();
-        final List<EffectiveJavaNote> effectiveJavaNotes = effectiveJavaContents.fillData();
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        EffectiveJavaNoteAdapter mAdapter = new EffectiveJavaNoteAdapter(mRecyclerView, effectiveJavaNotes);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
-        createHead();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
-
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                WebActivity.start(EffectiveJavaNoteActivity.this,
-                        effectiveJavaNotes.get(position).url,
-                        effectiveJavaNotes.get(position).chapter);
-            }
-        });
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public void initToolBar()
-    {
 
-        mToolbar.setTitle("EffectiveJava读书笔记");
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
-    }
+  public void createHead() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-        {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void createHead()
-    {
-
-        View headView = LayoutInflater.from(this).inflate(R.layout.layout_notes_head, mRecyclerView, false);
-        mHeaderViewRecyclerAdapter.addHeaderView(headView);
-        TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
-        mNotesExplain.setText("文／chjttony（CSND博客)\n\n原文链接:http://blog.csdn.net/chjttony/article/category/1311991");
-    }
+    View headView = LayoutInflater.from(this)
+        .inflate(R.layout.layout_notes_head, mRecyclerView, false);
+    mHeaderViewRecyclerAdapter.addHeaderView(headView);
+    TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
+    mNotesExplain.setText(
+        "文／chjttony（CSND博客)\n\n原文链接:http://blog.csdn.net/chjttony/article/category/1311991");
+  }
 }

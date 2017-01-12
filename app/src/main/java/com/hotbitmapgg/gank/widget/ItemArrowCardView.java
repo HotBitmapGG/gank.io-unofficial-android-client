@@ -1,5 +1,9 @@
 package com.hotbitmapgg.gank.widget;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import com.hotbitmapgg.studyproject.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -7,53 +11,46 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hotbitmapgg.studyproject.R;
+public class ItemArrowCardView extends RelativeLayout {
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+  private String name;
+
+  @Bind(R.id.arrow_name)
+  TextView mTextView;
 
 
-public class ItemArrowCardView extends RelativeLayout
-{
+  public ItemArrowCardView(Context context) {
 
-    private String name;
+    this(context, null);
+  }
 
-    @Bind(R.id.arrow_name)
-    TextView mTextView;
 
-    public ItemArrowCardView(Context context)
-    {
+  public ItemArrowCardView(Context context, AttributeSet attrs) {
 
-        this(context, null);
-    }
+    this(context, attrs, 0);
+  }
 
-    public ItemArrowCardView(Context context, AttributeSet attrs)
-    {
 
-        this(context, attrs, 0);
-    }
+  public ItemArrowCardView(Context context, AttributeSet attrs, int defStyleAttr) {
 
-    public ItemArrowCardView(Context context, AttributeSet attrs, int defStyleAttr)
-    {
+    super(context, attrs, defStyleAttr);
 
-        super(context, attrs, defStyleAttr);
+    TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ItemArrowCardView);
+    name = typedArray.getString(R.styleable.ItemArrowCardView_name);
+    typedArray.recycle();
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ItemArrowCardView);
-        name = typedArray.getString(R.styleable.ItemArrowCardView_name);
-        typedArray.recycle();
+    View view = inflate(context, R.layout.layout_item_arrow_view, this);
+    ButterKnife.bind(view);
 
-        View view = inflate(context, R.layout.layout_item_arrow_view, this);
-        ButterKnife.bind(view);
+    init();
+  }
 
-        init();
-    }
 
-    /**
-     * 初始化
-     */
-    private void init()
-    {
+  /**
+   * 初始化
+   */
+  private void init() {
 
-        mTextView.setText(name);
-    }
+    mTextView.setText(name);
+  }
 }

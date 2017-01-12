@@ -1,5 +1,12 @@
 package com.hotbitmapgg.gank.notes.rxjava_operator;
 
+import butterknife.Bind;
+import com.flyco.tablayout.SlidingTabLayout;
+import com.hotbitmapgg.gank.base.RxBaseActivity;
+import com.hotbitmapgg.studyproject.R;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,15 +15,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import com.flyco.tablayout.SlidingTabLayout;
-import com.hotbitmapgg.gank.base.RxBaseActivity;
-import com.hotbitmapgg.studyproject.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.Bind;
 
 /**
  * Rxjava操作符使用
@@ -38,109 +36,105 @@ import butterknife.Bind;
  * <p/>
  * 原文链接:https://github.com/mcxiaoke/RxDocs
  */
-public class RxJavaOperatorActivity extends RxBaseActivity
-{
+public class RxJavaOperatorActivity extends RxBaseActivity {
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolBar;
+  @Bind(R.id.toolbar)
+  Toolbar mToolBar;
 
-    @Bind(R.id.tab_layout)
-    SlidingTabLayout mTabLayout;
+  @Bind(R.id.tab_layout)
+  SlidingTabLayout mTabLayout;
 
-    @Bind(R.id.viewpager)
-    ViewPager mVierPager;
+  @Bind(R.id.viewpager)
+  ViewPager mVierPager;
 
-    private List<String> operators = new ArrayList<>();
+  private List<String> operators = new ArrayList<>();
 
-    private int[] ids = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+  private int[] ids = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+
+
+  @Override
+  public int getLayoutId() {
+
+    return R.layout.activity_rx_java_operator;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    initOperators();
+    mVierPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
+    mTabLayout.setViewPager(mVierPager);
+  }
+
+
+  private void initOperators() {
+
+    operators.add("RxJava");
+    operators.add("Creating");
+    operators.add("Transforming");
+    operators.add("Filtering");
+    operators.add("Combining");
+    operators.add("ErrorHandling");
+    operators.add("Utility");
+    operators.add("Conditional");
+    operators.add("Mathematical");
+    operators.add("Async");
+    operators.add("Connect");
+    operators.add("Blocking");
+    operators.add("String");
+    operators.add("Other");
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolBar.setTitle("RxjavaDocs");
+    setSupportActionBar(mToolBar);
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar != null) {
+      supportActionBar.setDisplayHomeAsUpEnabled(true);
+    }
+  }
+
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+
+  private class PagerAdapter extends FragmentStatePagerAdapter {
+
+    public PagerAdapter(FragmentManager fm) {
+
+      super(fm);
+    }
+
 
     @Override
-    public int getLayoutId()
-    {
+    public Fragment getItem(int position) {
 
-        return R.layout.activity_rx_java_operator;
-    }
-
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
-
-        initOperators();
-        mVierPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
-        mTabLayout.setViewPager(mVierPager);
-    }
-
-    private void initOperators()
-    {
-
-        operators.add("RxJava");
-        operators.add("Creating");
-        operators.add("Transforming");
-        operators.add("Filtering");
-        operators.add("Combining");
-        operators.add("ErrorHandling");
-        operators.add("Utility");
-        operators.add("Conditional");
-        operators.add("Mathematical");
-        operators.add("Async");
-        operators.add("Connect");
-        operators.add("Blocking");
-        operators.add("String");
-        operators.add("Other");
-    }
-
-    @Override
-    public void initToolBar()
-    {
-
-        mToolBar.setTitle("RxjavaDocs");
-        setSupportActionBar(mToolBar);
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
+      return RxJavaOperatorFragment.newInstance(ids[position]);
     }
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public CharSequence getPageTitle(int position) {
 
-        if (item.getItemId() == android.R.id.home)
-        {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
+      return operators.get(position);
     }
 
-    private class PagerAdapter extends FragmentStatePagerAdapter
-    {
 
+    @Override
+    public int getCount() {
 
-        public PagerAdapter(FragmentManager fm)
-        {
-
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position)
-        {
-
-            return RxJavaOperatorFragment.newInstance(ids[position]);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position)
-        {
-
-            return operators.get(position);
-        }
-
-        @Override
-        public int getCount()
-        {
-
-            return operators.size();
-        }
+      return operators.size();
     }
+  }
 }

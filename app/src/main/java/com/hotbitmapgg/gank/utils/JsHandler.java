@@ -1,93 +1,86 @@
 package com.hotbitmapgg.gank.utils;
 
+import com.hotbitmapgg.studyproject.R;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
-import com.hotbitmapgg.studyproject.R;
+public class JsHandler {
+
+  Activity activity;
+
+  String TAG = "JsHandler";
+
+  WebView webView;
 
 
-public class JsHandler
-{
+  public JsHandler(Activity activity, WebView webView) {
 
-    Activity activity;
-
-    String TAG = "JsHandler";
-
-    WebView webView;
+    this.activity = activity;
+    this.webView = webView;
+  }
 
 
-    public JsHandler(Activity activity, WebView webView)
+  /**
+   * This function handles call from JS
+   */
+  public void jsFnCall(String jsString) {
+
+    showDialog(jsString);
+  }
+
+
+  /**
+   * This function handles call from Android-Java
+   */
+  @JavascriptInterface
+  public void javaFnCall(String jsString) {
+
+    final String webUrl = "javascript:diplayJavaMsg('" + jsString + "')";
+    // Add this to avoid android.view.windowmanager$badtokenexception unable to add window
+    if (!activity.isFinishing())
+      // load url on UI main thread
     {
+      activity.runOnUiThread(new Runnable() {
 
-        this.activity = activity;
-        this.webView = webView;
+        @Override
+        public void run() {
+
+          webView.loadUrl(webUrl);
+        }
+      });
     }
+  }
 
-    /**
-     * This function handles call from JS
-     */
-    public void jsFnCall(String jsString)
-    {
 
-        showDialog(jsString);
-    }
+  /**
+   * function shows Android-Native Alert Dialog
+   */
+  public void showDialog(String msg) {
 
-    /**
-     * This function handles call from Android-Java
-     */
-    @JavascriptInterface
-    public void javaFnCall(String jsString)
-    {
+    AlertDialog dialog = new AlertDialog.Builder(activity).create();
+    dialog.setTitle(activity.getString(R.string.app_name));
+    dialog.setMessage(msg);
+    dialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(android.R.string.ok),
+        new DialogInterface.OnClickListener() {
 
-        final String webUrl = "javascript:diplayJavaMsg('" + jsString + "')";
-        // Add this to avoid android.view.windowmanager$badtokenexception unable to add window
-        if (!activity.isFinishing())
-            // load url on UI main thread
-            activity.runOnUiThread(new Runnable()
-            {
+          public void onClick(DialogInterface dialog, int which) {
 
-                @Override
-                public void run()
-                {
+            dialog.dismiss();
+          }
+        });
+    dialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel),
+        new DialogInterface.OnClickListener() {
 
-                    webView.loadUrl(webUrl);
-                }
-            });
-    }
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
 
-    /**
-     * function shows Android-Native Alert Dialog
-     */
-    public void showDialog(String msg)
-    {
-
-        AlertDialog dialog = new AlertDialog.Builder(activity).create();
-        dialog.setTitle(activity.getString(R.string.app_name));
-        dialog.setMessage(msg);
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(android.R.string.ok),
-                new DialogInterface.OnClickListener()
-                {
-
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-
-                        dialog.dismiss();
-                    }
-                });
-        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(android.R.string.cancel),
-                new DialogInterface.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-
-                        dialog.dismiss();
-                    }
-                });
-        dialog.show();
-    }
+            dialog.dismiss();
+          }
+        });
+    dialog.show();
+  }
 }

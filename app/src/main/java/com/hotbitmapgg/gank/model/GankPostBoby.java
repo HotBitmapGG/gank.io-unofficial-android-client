@@ -1,75 +1,74 @@
 package com.hotbitmapgg.gank.model;
 
-public class GankPostBoby
-{
+public class GankPostBoby {
 
-    public String url;
+  public String url;
 
-    public String title;
+  public String title;
 
-    public String name;
+  public String name;
 
-    public String type;
+  public String type;
 
-    public String isdebug;
+  public String isdebug;
 
-    public String getUrl()
-    {
 
-        return url;
-    }
+  public String getUrl() {
 
-    public void setUrl(String url)
-    {
+    return url;
+  }
 
-        this.url = url;
-    }
 
-    public String getTitle()
-    {
+  public void setUrl(String url) {
 
-        return title;
-    }
+    this.url = url;
+  }
 
-    public void setTitle(String title)
-    {
 
-        this.title = title;
-    }
+  public String getTitle() {
 
-    public String getName()
-    {
+    return title;
+  }
 
-        return name;
-    }
 
-    public void setName(String name)
-    {
+  public void setTitle(String title) {
 
-        this.name = name;
-    }
+    this.title = title;
+  }
 
-    public String getType()
-    {
 
-        return type;
-    }
+  public String getName() {
 
-    public void setType(String type)
-    {
+    return name;
+  }
 
-        this.type = type;
-    }
 
-    public String getIsdebug()
-    {
+  public void setName(String name) {
 
-        return isdebug;
-    }
+    this.name = name;
+  }
 
-    public void setIsdebug(String isdebug)
-    {
 
-        this.isdebug = isdebug;
-    }
+  public String getType() {
+
+    return type;
+  }
+
+
+  public void setType(String type) {
+
+    this.type = type;
+  }
+
+
+  public String getIsdebug() {
+
+    return isdebug;
+  }
+
+
+  public void setIsdebug(String isdebug) {
+
+    this.isdebug = isdebug;
+  }
 }

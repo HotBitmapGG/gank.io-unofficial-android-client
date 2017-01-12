@@ -28,82 +28,81 @@ import butterknife.Bind;
  * ldtk的自定义控件相关博客
  * 地址:https://github.com/Idtk/Blog
  */
-public class LdtkBlogActivity extends RxBaseActivity
-{
+public class LdtkBlogActivity extends RxBaseActivity {
 
-    @Bind(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @Bind(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+  @Bind(R.id.toolbar)
+  Toolbar mToolbar;
 
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+  private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private List<LdtkBlog> ldtkBlogs;
+  private List<LdtkBlog> ldtkBlogs;
 
-    @Override
-    public int getLayoutId()
-    {
 
-        return R.layout.activity_notes;
+  @Override
+  public int getLayoutId() {
+
+    return R.layout.activity_notes;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    LdtkBlogContents mLdtkBlogContents = new LdtkBlogContents();
+    ldtkBlogs = mLdtkBlogContents.fillData();
+
+    mRecyclerView.setHasFixedSize(true);
+    mRecyclerView.addItemDecoration(
+        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+    mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    ldtkBlogAdapter mAdapter = new ldtkBlogAdapter(mRecyclerView, ldtkBlogs);
+    mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+    createHead();
+    mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+
+      @Override
+      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
+
+        WebActivity.start(LdtkBlogActivity.this,
+            ldtkBlogs.get(position).url,
+            ldtkBlogs.get(position).title);
+      }
+    });
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("LdtkBlog");
+    setSupportActionBar(mToolbar);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
     }
+  }
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
 
-        LdtkBlogContents mLdtkBlogContents = new LdtkBlogContents();
-        ldtkBlogs = mLdtkBlogContents.fillData();
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ldtkBlogAdapter mAdapter = new ldtkBlogAdapter(mRecyclerView, ldtkBlogs);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
-        createHead();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
-
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                WebActivity.start(LdtkBlogActivity.this,
-                        ldtkBlogs.get(position).url,
-                        ldtkBlogs.get(position).title);
-            }
-        });
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public void initToolBar()
-    {
 
-        mToolbar.setTitle("LdtkBlog");
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
-    }
+  public void createHead() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-        {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void createHead()
-    {
-
-        View headView = LayoutInflater.from(this).inflate(R.layout.layout_notes_head, mRecyclerView, false);
-        mHeaderViewRecyclerAdapter.addHeaderView(headView);
-        TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
-        mNotesExplain.setText("文／ldtk（GitHub)\n\n原地址:https://github.com/Idtk/Blog");
-    }
+    View headView = LayoutInflater.from(this)
+        .inflate(R.layout.layout_notes_head, mRecyclerView, false);
+    mHeaderViewRecyclerAdapter.addHeaderView(headView);
+    TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
+    mNotesExplain.setText("文／ldtk（GitHub)\n\n原地址:https://github.com/Idtk/Blog");
+  }
 }

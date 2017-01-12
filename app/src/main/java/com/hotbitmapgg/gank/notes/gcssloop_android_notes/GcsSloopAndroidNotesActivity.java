@@ -28,82 +28,82 @@ import butterknife.Bind;
  * 作者:GcsSloop
  * 地址:https://github.com/GcsSloop/AndroidNote
  */
-public class GcsSloopAndroidNotesActivity extends RxBaseActivity
-{
+public class GcsSloopAndroidNotesActivity extends RxBaseActivity {
 
-    @Bind(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @Bind(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+  @Bind(R.id.toolbar)
+  Toolbar mToolbar;
 
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+  private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private List<GcsSloopAndroidNotes> gcsSloopAndroidNotes;
+  private List<GcsSloopAndroidNotes> gcsSloopAndroidNotes;
 
-    @Override
-    public int getLayoutId()
-    {
 
-        return R.layout.activity_notes;
+  @Override
+  public int getLayoutId() {
+
+    return R.layout.activity_notes;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    GcsSloopAndroidNotesContents mGcsSloopAndroidNotesContents = new GcsSloopAndroidNotesContents();
+    gcsSloopAndroidNotes = mGcsSloopAndroidNotesContents.fillData();
+
+    mRecyclerView.setHasFixedSize(true);
+    mRecyclerView.addItemDecoration(
+        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+    mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    GcsSloopAndroidNotesAdapter mAdapter = new GcsSloopAndroidNotesAdapter(mRecyclerView,
+        gcsSloopAndroidNotes);
+    mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+    createHead();
+    mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+
+      @Override
+      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
+
+        WebActivity.start(GcsSloopAndroidNotesActivity.this,
+            gcsSloopAndroidNotes.get(position).url,
+            gcsSloopAndroidNotes.get(position).title);
+      }
+    });
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("GcsSloopAndroidNote");
+    setSupportActionBar(mToolbar);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
     }
+  }
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
 
-        GcsSloopAndroidNotesContents mGcsSloopAndroidNotesContents = new GcsSloopAndroidNotesContents();
-        gcsSloopAndroidNotes = mGcsSloopAndroidNotesContents.fillData();
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GcsSloopAndroidNotesAdapter mAdapter = new GcsSloopAndroidNotesAdapter(mRecyclerView, gcsSloopAndroidNotes);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
-        createHead();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
-
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                WebActivity.start(GcsSloopAndroidNotesActivity.this,
-                        gcsSloopAndroidNotes.get(position).url,
-                        gcsSloopAndroidNotes.get(position).title);
-            }
-        });
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public void initToolBar()
-    {
 
-        mToolbar.setTitle("GcsSloopAndroidNote");
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
-    }
+  public void createHead() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-        {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void createHead()
-    {
-
-        View headView = LayoutInflater.from(this).inflate(R.layout.layout_notes_head, mRecyclerView, false);
-        mHeaderViewRecyclerAdapter.addHeaderView(headView);
-        TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
-        mNotesExplain.setText("文／GcsSloop（GitHub)\n\n原地址:https://github.com/GcsSloop/AndroidNote");
-    }
+    View headView = LayoutInflater.from(this)
+        .inflate(R.layout.layout_notes_head, mRecyclerView, false);
+    mHeaderViewRecyclerAdapter.addHeaderView(headView);
+    TextView mNotesExplain = (TextView) headView.findViewById(R.id.notes_explain);
+    mNotesExplain.setText("文／GcsSloop（GitHub)\n\n原地址:https://github.com/GcsSloop/AndroidNote");
+  }
 }

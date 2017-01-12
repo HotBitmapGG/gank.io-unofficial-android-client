@@ -10,36 +10,36 @@ import android.util.AttributeSet;
  */
 public class NoScrollViewPager extends ViewPager {
 
-    public NoScrollViewPager(Context context, AttributeSet attrs) {
+  public NoScrollViewPager(Context context, AttributeSet attrs) {
 
-        super(context, attrs);
-        // TODO Auto-generated constructor stub
-    }
-
-
-    public NoScrollViewPager(Context context) {
-
-        super(context);
-    }
+    super(context, attrs);
+    // TODO Auto-generated constructor stub
+  }
 
 
-    @Override
-    public void scrollTo(int x, int y) {
+  public NoScrollViewPager(Context context) {
 
-        super.scrollTo(x, y);
-    }
-
-
-    @Override
-    public void setCurrentItem(int item, boolean smoothScroll) {
-
-        super.setCurrentItem(item, smoothScroll);
-    }
+    super(context);
+  }
 
 
-    @Override
-    public void setCurrentItem(int item) {
+  @Override
+  public void scrollTo(int x, int y) {
 
-        super.setCurrentItem(item, false);
-    }
+    super.scrollTo(x, y);
+  }
+
+
+  @Override
+  public void setCurrentItem(int item, boolean smoothScroll) {
+
+    super.setCurrentItem(item, smoothScroll);
+  }
+
+
+  @Override
+  public void setCurrentItem(int item) {
+
+    super.setCurrentItem(item, false);
+  }
 }

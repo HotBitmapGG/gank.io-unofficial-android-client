@@ -1,6 +1,5 @@
 package com.hotbitmapgg.gank.network;
 
-
 import com.hotbitmapgg.gank.model.GitHubUserInfo;
 
 import okhttp3.ResponseBody;
@@ -30,61 +29,38 @@ import rx.Observable;
  * <p/>
  * https://api.github.com/users/HotBitmapGG/starred
  */
-public interface GithubApi
-{
+public interface GithubApi {
 
-    /**
-     * 三方登录授权获取Token
-     *
-     * @param id
-     * @param secret
-     * @param code
-     * @param uri
-     * @return
-     */
-    @GET("access_token")
-    Observable<ResponseBody> getLoginToken(@Query("client_id") String id,
-                                           @Query("client_secret") String secret,
-                                           @Query("code") String code,
-                                           @Query("redirect_uri") String uri);
+  /**
+   * 三方登录授权获取Token
+   */
+  @GET("access_token")
+  Observable<ResponseBody> getLoginToken(@Query("client_id") String id,
+                                         @Query("client_secret") String secret,
+                                         @Query("code") String code,
+                                         @Query("redirect_uri") String uri);
 
+  /**
+   * 根据Token获取用户登录信息
+   */
+  @GET("user")
+  Observable<GitHubUserInfo> getGithubLoginUserInfo(@Query("access_token") String token);
 
-    /**
-     * 根据Token获取用户登录信息
-     *
-     * @param token
-     * @return
-     */
-    @GET("user")
-    Observable<GitHubUserInfo> getGithubLoginUserInfo(@Query("access_token") String token);
+  /**
+   * 关注用户的人
+   */
+  @GET("users/{userName}/followers")
+  Observable<ResponseBody> getGitHubFollowers(@Path("userName") String name);
 
+  /**
+   * 用户关注的人
+   */
+  @GET("users/{userName}/following")
+  Observable<ResponseBody> getGitHubFolloweing(@Path("userName") String name);
 
-    /**
-     * 关注用户的人
-     *
-     * @param name
-     * @return
-     */
-    @GET("users/{userName}/followers")
-    Observable<ResponseBody> getGitHubFollowers(@Path("userName") String name);
-
-
-    /**
-     * 用户关注的人
-     *
-     * @param name
-     * @return
-     */
-    @GET("users/{userName}/following")
-    Observable<ResponseBody> getGitHubFolloweing(@Path("userName") String name);
-
-
-    /**
-     * 获取用户最近的star项目信息
-     *
-     * @param name
-     * @return
-     */
-    @GET("users/{userName}/starred")
-    Observable<ResponseBody> getGitHubStarred(@Path("userName") String name);
+  /**
+   * 获取用户最近的star项目信息
+   */
+  @GET("users/{userName}/starred")
+  Observable<ResponseBody> getGitHubStarred(@Path("userName") String name);
 }

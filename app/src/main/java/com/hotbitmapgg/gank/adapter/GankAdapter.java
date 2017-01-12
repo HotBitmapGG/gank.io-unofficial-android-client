@@ -17,88 +17,82 @@ import com.hotbitmapgg.gank.utils.DateUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+public class GankAdapter extends AbsRecyclerViewAdapter {
 
-public class GankAdapter extends AbsRecyclerViewAdapter
-{
+  private List<Gank.GankInfo> gankInfos = new ArrayList<>();
 
-    private List<Gank.GankInfo> gankInfos = new ArrayList<>();
 
-    public GankAdapter(RecyclerView recyclerView, List<Gank.GankInfo> gankInfos)
-    {
+  public GankAdapter(RecyclerView recyclerView, List<Gank.GankInfo> gankInfos) {
 
-        super(recyclerView);
-        this.gankInfos = gankInfos;
+    super(recyclerView);
+    this.gankInfos = gankInfos;
+  }
+
+
+  @Override
+  public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+    bindContext(parent.getContext());
+    return new ItemViewHolder(
+        LayoutInflater.from(getContext()).inflate(R.layout.card_item_gank, parent, false));
+  }
+
+
+  @Override
+  public void onBindViewHolder(ClickableViewHolder holder, int position) {
+
+    if (holder instanceof ItemViewHolder) {
+      ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+      Gank.GankInfo gankInfo = gankInfos.get(position);
+      itemViewHolder.mDesc.setText(gankInfo.desc);
+      itemViewHolder.mWho.setText(gankInfo.who);
+      String date = gankInfo.publishedAt.replace('T', ' ').replace('Z', ' ');
+      String time = DateUtils.friendlyTime(date);
+      itemViewHolder.mTime.setText(time);
+      if (gankInfo.type.equals("福利")) {
+        itemViewHolder.mDesc.setVisibility(View.GONE);
+        itemViewHolder.mImage.setVisibility(View.VISIBLE);
+        Glide.with(getContext())
+            .load(gankInfo.url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .placeholder(R.drawable.placeholder_image)
+            .into(itemViewHolder.mImage);
+      } else {
+        itemViewHolder.mDesc.setVisibility(View.VISIBLE);
+        itemViewHolder.mImage.setVisibility(View.GONE);
+      }
     }
 
-    @Override
-    public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    super.onBindViewHolder(holder, position);
+  }
 
-        bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.card_item_gank, parent, false));
+
+  @Override
+  public int getItemCount() {
+
+    return gankInfos == null ? 0 : gankInfos.size();
+  }
+
+
+  public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder {
+
+    public TextView mDesc;
+
+    public TextView mWho;
+
+    public TextView mTime;
+
+    public ImageView mImage;
+
+
+    public ItemViewHolder(View itemView) {
+
+      super(itemView);
+      mDesc = $(R.id.item_desc);
+      mWho = $(R.id.item_who);
+      mTime = $(R.id.item_time);
+      mImage = $(R.id.item_image);
     }
-
-    @Override
-    public void onBindViewHolder(ClickableViewHolder holder, int position)
-    {
-
-        if (holder instanceof ItemViewHolder)
-        {
-            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            Gank.GankInfo gankInfo = gankInfos.get(position);
-            itemViewHolder.mDesc.setText(gankInfo.desc);
-            itemViewHolder.mWho.setText(gankInfo.who);
-            String date = gankInfo.publishedAt.replace('T', ' ').replace('Z', ' ');
-            String time = DateUtils.friendlyTime(date);
-            itemViewHolder.mTime.setText(time);
-            if(gankInfo.type.equals("福利"))
-            {
-                 itemViewHolder.mDesc.setVisibility(View.GONE);
-                itemViewHolder.mImage.setVisibility(View.VISIBLE);
-                Glide.with(getContext())
-                        .load(gankInfo.url)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .centerCrop()
-                        .placeholder(R.drawable.placeholder_image)
-                        .into(itemViewHolder.mImage);
-            }
-            else
-            {
-                itemViewHolder.mDesc.setVisibility(View.VISIBLE);
-                itemViewHolder.mImage.setVisibility(View.GONE);
-            }
-        }
-
-        super.onBindViewHolder(holder, position);
-    }
-
-    @Override
-    public int getItemCount()
-    {
-
-        return gankInfos == null ? 0 : gankInfos.size();
-    }
-
-
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
-    {
-
-        public TextView mDesc;
-
-        public TextView mWho;
-
-        public TextView mTime;
-
-        public ImageView mImage;
-
-        public ItemViewHolder(View itemView)
-        {
-
-            super(itemView);
-            mDesc = $(R.id.item_desc);
-            mWho = $(R.id.item_who);
-            mTime = $(R.id.item_time);
-            mImage = $(R.id.item_image);
-        }
-    }
+  }
 }

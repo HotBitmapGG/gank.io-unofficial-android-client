@@ -1,10 +1,8 @@
 package com.hotbitmapgg.gank.model;
 
+public class GankPostResult {
 
-public class GankPostResult
-{
+  public boolean error;
 
-    public boolean error;
-
-    public String msg;
+  public String msg;
 }

@@ -21,16 +21,15 @@ import com.google.gson.annotations.SerializedName;
  * "type": "User",
  * "site_admin": false
  */
-public class GitHubFollowerInfo
-{
+public class GitHubFollowerInfo {
 
-    public String login;
+  public String login;
 
-    public long id;
+  public long id;
 
-    @SerializedName("avatar_url")
-    public String avatarUrl;
+  @SerializedName("avatar_url")
+  public String avatarUrl;
 
-    @SerializedName("html_url")
-    public String htlmUrl;
+  @SerializedName("html_url")
+  public String htlmUrl;
 }

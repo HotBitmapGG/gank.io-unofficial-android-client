@@ -29,7 +29,8 @@ import com.google.gson.annotations.SerializedName;
  * },
  * "private": false,
  * "html_url": "https://github.com/javiersantos/BottomDialogs",
- * "description": "An Android library that shows a customizable Material-based bottom sheet. API 11+ required.",
+ * "description": "An Android library that shows a customizable Material-based bottom sheet. API 11+
+ * required.",
  * "fork": false,
  * "url": "https://api.github.com/repos/javiersantos/BottomDialogs",
  * "forks_url": "https://api.github.com/repos/javiersantos/BottomDialogs/forks",
@@ -92,70 +93,67 @@ import com.google.gson.annotations.SerializedName;
  * "watchers": 163,
  * "default_branch": "master"
  */
-public class GitHubStarInfo
-{
+public class GitHubStarInfo {
 
+  public long id;
+
+  public String name;
+
+  //项目全名
+  @SerializedName("full_name")
+  public String fullName;
+
+  //用户详情
+  public Owenr owner;
+
+  //  项目地址
+  @SerializedName("html_url")
+  public String htmlUrl;
+
+  public String description;
+
+  //创建时间
+  @SerializedName("created_at")
+  public String createTime;
+
+  //最近提交时间
+  @SerializedName("pushed_at")
+  public String pushedTime;
+
+  //star数量
+  @SerializedName("stargazers_count")
+  public String stargazersCount;
+
+  //关注数量
+  @SerializedName("watchers_count")
+  public String watchersCount;
+
+  //fork数量
+  @SerializedName("forks_count")
+  public String forksCount;
+
+  //code类型
+  public String language;
+
+  //分支名称
+  @SerializedName("default_branch")
+  public String defaultBranch;
+
+  //用户信息
+  public class Owenr {
+
+    //用户登录名
+    public String login;
+
+    //用户id
     public long id;
 
-    public String name;
+    //用户头像
+    @SerializedName("avatar_url")
+    public String avatarUrl;
 
-    //项目全名
-    @SerializedName("full_name")
-    public String fullName;
-
-    //用户详情
-    public Owenr owner;
-
-    //  项目地址
+    //用户github地址
     @SerializedName("html_url")
     public String htmlUrl;
-
-    public String description;
-
-    //创建时间
-    @SerializedName("created_at")
-    public String createTime;
-
-    //最近提交时间
-    @SerializedName("pushed_at")
-    public String pushedTime;
-
-    //star数量
-    @SerializedName("stargazers_count")
-    public String stargazersCount;
-
-    //关注数量
-    @SerializedName("watchers_count")
-    public String watchersCount;
-
-    //fork数量
-    @SerializedName("forks_count")
-    public String forksCount;
-
-    //code类型
-    public String language;
-
-    //分支名称
-    @SerializedName("default_branch")
-    public String defaultBranch;
-
-
-    //用户信息
-    public class Owenr
-    {
-
-        //用户登录名
-        public String login;
-
-        //用户id
-        public long id;
-
-        //用户头像
-        @SerializedName("avatar_url")
-        public String avatarUrl;
-
-        //用户github地址
-        @SerializedName("html_url")
-        public String htmlUrl;
-    }
+  }
 }

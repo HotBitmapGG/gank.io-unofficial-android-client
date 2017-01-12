@@ -38,52 +38,51 @@ import java.io.Serializable;
  * "updated_at" = "2016-06-17T00:46:40Z";
  * url = "https://api.github.com/users/HotBitmapGG";
  */
-public class GitHubUserInfo implements Serializable
-{
+public class GitHubUserInfo implements Serializable {
 
-    //头像地址
-    @SerializedName("avatar_url")
-    public String avatarUrl;
+  //头像地址
+  @SerializedName("avatar_url")
+  public String avatarUrl;
 
-    // 个人简介
-    public String bio;
+  // 个人简介
+  public String bio;
 
-    // 个人博客连接
-    public String blog;
+  // 个人博客连接
+  public String blog;
 
-    //所在公司名称
-    public String company;
+  //所在公司名称
+  public String company;
 
-    // 注册时间
-    @SerializedName("created_at")
-    public String createdTime;
+  // 注册时间
+  @SerializedName("created_at")
+  public String createdTime;
 
-    // 邮箱
-    public String email;
+  // 邮箱
+  public String email;
 
-    // 关注用户的数量
-    public int followers;
+  // 关注用户的数量
+  public int followers;
 
-    //用户关注的数量
-    public int following;
+  //用户关注的数量
+  public int following;
 
-    //Github地址
-    @SerializedName("html_url")
-    public String htmlUrl;
+  //Github地址
+  @SerializedName("html_url")
+  public String htmlUrl;
 
-    //所在地
-    public String location;
+  //所在地
+  public String location;
 
-    // 昵称
-    public String name;
+  // 昵称
+  public String name;
 
-    //登录用户名
-    public String login;
+  //登录用户名
+  public String login;
 
-    //最近登录时间
-    @SerializedName("updated_at")
-    public String updatedTime;
+  //最近登录时间
+  @SerializedName("updated_at")
+  public String updatedTime;
 
-    //用户id
-    public long id;
+  //用户id
+  public long id;
 }
