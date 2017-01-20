@@ -8,14 +8,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.hotbitmapgg.gank.GankIoApp"
+        android:name="com.hotbitmapgg.gank.GankApp"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.EntryActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar">
@@ -33,9 +33,6 @@
 
 
         <!--Api接口调试界面-->
-        <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.ApiDebugActivity"
-            android:screenOrientation="portrait" />
 
         <!-- 浏览器界面-->
         <activity
@@ -73,30 +70,30 @@
 
         <!-- 妹子大图单个浏览界面-->
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.FuliFullPicActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.BigImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
 
         <!--干货提交界面-->
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.GankPostActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.SubmitGankActivity"
             android:screenOrientation="portrait" />
 
         <!--用户Github界面-->
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.GitHubUserInfoActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.GitHubUserActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBar" />
 
         <!--Github登录授权跳转界面-->
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.GitHubLoginWebActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.LoginGitHubActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <!--今日干货数据-->
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.GankToDayActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.ToDayGankActivity"
             android:screenOrientation="portrait" />
 
         <!--关于界面-->
@@ -106,7 +103,7 @@
 
         <!--搜索界面-->
         <activity
-            android:name="com.hotbitmapgg.gank.ui.activity.SearchGankListActivity"
+            android:name="com.hotbitmapgg.gank.ui.activity.SearchGankActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Search"
             android:windowSoftInputMode="stateHidden" />

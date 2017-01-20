@@ -1,14 +1,12 @@
 package com.hotbitmapgg.gank;
 
-import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmMigration;
 
 import android.app.Application;
 import android.content.Context;
 
-public class GankIoApp extends Application {
+public class GankApp extends Application {
 
   public static Context mAppContext;
 
@@ -18,17 +16,19 @@ public class GankIoApp extends Application {
 
     super.onCreate();
     mAppContext = this;
-    // 配置Realm数据库
+    initRealm();
+  }
+
+
+  /**
+   * 配置Realm数据库
+   */
+  private void initRealm() {
     RealmConfiguration configuration = new RealmConfiguration
         .Builder(this)
         .deleteRealmIfMigrationNeeded()
-        .schemaVersion(7).migration(new RealmMigration() {
+        .schemaVersion(7).migration((realm, oldVersion, newVersion) -> {
 
-          @Override
-          public void migrate(DynamicRealm realm,
-                              long oldVersion, long newVersion) {
-
-          }
         }).build();
 
     Realm.setDefaultConfiguration(configuration);

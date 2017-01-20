@@ -11,7 +11,6 @@ import com.hotbitmapgg.gank.network.RetrofitHelper;
 import com.hotbitmapgg.gank.utils.LogUtil;
 import com.hotbitmapgg.gank.utils.SnackbarUtil;
 import com.hotbitmapgg.gank.widget.LoadingDialog;
-import com.hotbitmapgg.gank.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.R;
 import com.jakewharton.rxbinding.view.RxMenuItem;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -21,9 +20,6 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import android.os.Bundle;
@@ -33,7 +29,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -45,7 +40,7 @@ import android.widget.TextView;
  * type 	干货类型 	可选参数: Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
  * debug 	当前提交为测试数据 	如果想要测试数据是否合法, 请设置 debug 为 true! 可选参数: true | false
  */
-public class GankPostActivity extends RxBaseActivity {
+public class SubmitGankActivity extends RxBaseActivity {
 
   @Bind(R.id.toolbar)
   Toolbar mToolBar;
@@ -83,7 +78,7 @@ public class GankPostActivity extends RxBaseActivity {
   @Override
   public int getLayoutId() {
 
-    return R.layout.activity_post_gank;
+    return R.layout.activity_submit_gank;
   }
 
 
@@ -93,65 +88,32 @@ public class GankPostActivity extends RxBaseActivity {
     loadingDialog = LoadingDialog.newInstance();
 
     RxTextView.textChanges(mEdUrl)
-        .map(new Func1<CharSequence, String>() {
-
-          @Override
-          public String call(CharSequence charSequence) {
-
-            return charSequence.toString();
-          }
-        })
+        .map(CharSequence::toString)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<String>() {
+        .subscribe(s -> {
 
-          @Override
-          public void call(String s) {
-
-            if (s.contains("http")) {
-              url = s;
-            }
+          if (s.contains("http")) {
+            url = s;
           }
         });
 
     RxTextView.textChanges(mEdTitle)
-        .map(new Func1<CharSequence, String>() {
-
-          @Override
-          public String call(CharSequence charSequence) {
-
-            return charSequence.toString();
-          }
-        })
+        .map(CharSequence::toString)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<String>() {
+        .subscribe(s -> {
 
-          @Override
-          public void call(String s) {
-
-            if (!TextUtils.isEmpty(s)) {
-              title = s;
-            }
+          if (!TextUtils.isEmpty(s)) {
+            title = s;
           }
         });
 
     RxTextView.textChanges(mEdWho)
-        .map(new Func1<CharSequence, String>() {
-
-          @Override
-          public String call(CharSequence charSequence) {
-
-            return charSequence.toString();
-          }
-        })
+        .map(CharSequence::toString)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<String>() {
+        .subscribe(s -> {
 
-          @Override
-          public void call(String s) {
-
-            if (!TextUtils.isEmpty(s)) {
-              who = s;
-            }
+          if (!TextUtils.isEmpty(s)) {
+            who = s;
           }
         });
   }
@@ -162,30 +124,23 @@ public class GankPostActivity extends RxBaseActivity {
 
     mToolBar.setTitle("提交干货");
     mToolBar.setNavigationIcon(R.drawable.back);
-    mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
-
-      @Override
-      public void onClick(View v) {
-
-        onBackPressed();
-      }
-    });
+    mToolBar.setNavigationOnClickListener(v -> onBackPressed());
 
     mToolBar.inflateMenu(R.menu.menu_post);
 
     RxMenuItem.clicks(mToolBar.getMenu().findItem(R.id.action_post))
-        .subscribe(new Action1<Void>() {
-
-          @Override
-          public void call(Void aVoid) {
-
-            postGank();
-          }
+        .subscribe(aVoid -> {
+          submitGank();
         });
   }
 
 
-  public void postGank() {
+  @Override public void loadData() {
+
+  }
+
+
+  public void submitGank() {
 
     if (TextUtils.isEmpty(url) || TextUtils.isEmpty(type)
         || TextUtils.isEmpty(title) || TextUtils.isEmpty(who)
@@ -212,39 +167,17 @@ public class GankPostActivity extends RxBaseActivity {
     }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
     observable
-        .compose(this.<String>bindToLifecycle())
-        .doOnSubscribe(new Action0() {
-
-          @Override
-          public void call() {
-
-            loadingDialog.show(getFragmentManager(), "loadDialogFragment");
-          }
-        })
-        .map(new Func1<String, GankPostResult>() {
-
-          @Override
-          public GankPostResult call(String s) {
-
-            return new Gson().fromJson(s, GankPostResult.class);
-          }
-        })
+        .compose(this.bindToLifecycle())
+        .doOnSubscribe(() -> loadingDialog.show(getFragmentManager(), "loadDialogFragment"))
+        .map(s -> new Gson().fromJson(s, GankPostResult.class))
         .delay(2000, TimeUnit.MILLISECONDS)
-        .subscribe(new Action1<GankPostResult>() {
+        .subscribe(gankPostResult -> {
 
-          @Override
-          public void call(GankPostResult gankPostResult) {
+          loadingDialog.dismiss();
+          SnackbarUtil.showMessage(mToolBar, gankPostResult.msg);
+        }, throwable -> {
 
-            loadingDialog.dismiss();
-            SnackbarUtil.showMessage(mToolBar, gankPostResult.msg);
-          }
-        }, new Action1<Throwable>() {
-
-          @Override
-          public void call(Throwable throwable) {
-
-            LogUtil.all(throwable.getMessage());
-          }
+          LogUtil.all(throwable.getMessage());
         });
   }
 
@@ -252,24 +185,21 @@ public class GankPostActivity extends RxBaseActivity {
   @OnClick(R.id.select_type)
   void startSelectGankType() {
 
-    mBottomSheetDialog = new BottomSheetDialog(GankPostActivity.this);
+    mBottomSheetDialog = new BottomSheetDialog(SubmitGankActivity.this);
     mBottomSheetDialog.setContentView(R.layout.layout_gank_type_bottom);
     RecyclerView mRecyclerView = (RecyclerView) mBottomSheetDialog.findViewById(R.id.recycle);
 
+    assert mRecyclerView != null;
     mRecyclerView.setHasFixedSize(true);
     mRecyclerView.setNestedScrollingEnabled(true);
     mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     GankTypeSelectAdapter mAdapter = new GankTypeSelectAdapter(mRecyclerView, types);
     mRecyclerView.setAdapter(mAdapter);
-    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+    mAdapter.setOnItemClickListener((position, holder) -> {
 
-      @Override
-      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
-
-        type = types.get(position);
-        mSelectType.setText(type);
-        mBottomSheetDialog.dismiss();
-      }
+      type = types.get(position);
+      mSelectType.setText(type);
+      mBottomSheetDialog.dismiss();
     });
 
     mBottomSheetDialog.show();

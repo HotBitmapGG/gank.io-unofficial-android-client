@@ -1,6 +1,6 @@
 package com.hotbitmapgg.gank.widget.web;
 
-import com.hotbitmapgg.gank.ui.activity.GitHubLoginWebActivity;
+import com.hotbitmapgg.gank.ui.activity.LoginGitHubActivity;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -33,7 +33,7 @@ public class GitHubLoginWebViewClient extends android.webkit.WebViewClient {
       return true;
     }
     if (url != null && url.startsWith("http")) {
-      GitHubLoginWebActivity.luancher(mActivity, url);
+      LoginGitHubActivity.luancher(mActivity, url);
       return true;
     }
     return true;

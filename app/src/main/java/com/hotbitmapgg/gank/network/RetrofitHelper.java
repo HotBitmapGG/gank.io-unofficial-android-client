@@ -1,7 +1,7 @@
 package com.hotbitmapgg.gank.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.hotbitmapgg.gank.GankIoApp;
+import com.hotbitmapgg.gank.GankApp;
 import com.hotbitmapgg.gank.model.GankPostBoby;
 
 import java.io.File;
@@ -131,7 +131,7 @@ public class RetrofitHelper {
       synchronized (RetrofitHelper.class) {
         if (mOkHttpClient == null) {
           //设置Http缓存
-          Cache cache = new Cache(new File(GankIoApp.getContext().getCacheDir(), "HttpCache"),
+          Cache cache = new Cache(new File(GankApp.getContext().getCacheDir(), "HttpCache"),
               1024 * 1024 * 100);
 
           mOkHttpClient = new OkHttpClient.Builder()

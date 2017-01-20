@@ -2,6 +2,7 @@ package com.hotbitmapgg.gank.ui.activity;
 
 import butterknife.Bind;
 import com.hotbitmapgg.gank.base.RxBaseActivity;
+import com.hotbitmapgg.gank.config.ConstantUtil;
 import com.hotbitmapgg.gank.utils.ClipboardUtils;
 import com.hotbitmapgg.gank.utils.JsHandler;
 import com.hotbitmapgg.gank.utils.SnackbarUtil;
@@ -39,10 +40,6 @@ public class WebActivity extends RxBaseActivity {
   @Bind(R.id.toolbar)
   Toolbar mToolbar;
 
-  private static final String KEY_URL = "key_url";
-
-  private static final String KEY_TITLE = "key_title";
-
   private String url, title;
 
 
@@ -61,12 +58,7 @@ public class WebActivity extends RxBaseActivity {
       parseIntent(intent);
     }
 
-    initWebSetting();
-
-    hideProgress();
-    mCommonWebView.setWebChromeClient(new CommonWebChromeClient(mBar, mCircleProgressView));
-    mCommonWebView.setWebViewClient(new CommonWebViewClient(WebActivity.this));
-    mCommonWebView.loadUrl(url);
+    loadData();
   }
 
 
@@ -79,6 +71,16 @@ public class WebActivity extends RxBaseActivity {
     if (actionBar != null) {
       actionBar.setDisplayHomeAsUpEnabled(true);
     }
+  }
+
+
+  @Override public void loadData() {
+
+    initWebSetting();
+    hideProgress();
+    mCommonWebView.setWebChromeClient(new CommonWebChromeClient(mBar, mCircleProgressView));
+    mCommonWebView.setWebViewClient(new CommonWebViewClient(WebActivity.this));
+    mCommonWebView.loadUrl(url);
   }
 
 
@@ -123,8 +125,8 @@ public class WebActivity extends RxBaseActivity {
 
   private void parseIntent(Intent intent) {
 
-    url = intent.getStringExtra(KEY_URL);
-    title = intent.getStringExtra(KEY_TITLE);
+    url = intent.getStringExtra(ConstantUtil.KEY_URL);
+    title = intent.getStringExtra(ConstantUtil.KEY_TITLE);
 
     if (TextUtils.isEmpty(url)) {
       finish();
@@ -139,21 +141,13 @@ public class WebActivity extends RxBaseActivity {
   }
 
 
-  public static boolean start(Activity activity, String url, String title) {
+  public static void launch(Activity activity, String url, String title) {
 
     Intent intent = new Intent();
     intent.setClass(activity, WebActivity.class);
-    intent.putExtra(KEY_URL, url);
-    intent.putExtra(KEY_TITLE, title);
+    intent.putExtra(ConstantUtil.KEY_URL, url);
+    intent.putExtra(ConstantUtil.KEY_TITLE, title);
     activity.startActivity(intent);
-
-    return true;
-  }
-
-
-  public static boolean start(Activity activity, String url) {
-
-    return start(activity, url, null);
   }
 
 
@@ -169,7 +163,7 @@ public class WebActivity extends RxBaseActivity {
     Intent intent = new Intent(Intent.ACTION_SEND);
     intent.setType("text/plain");
     intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-    intent.putExtra(Intent.EXTRA_TEXT, "来自「Gank.IO」的分享:" + url);
+    intent.putExtra(Intent.EXTRA_TEXT, "来自「Gank.io」的分享:" + url);
     startActivity(Intent.createChooser(intent, title));
   }
 }

@@ -1,5 +1,27 @@
 package com.hotbitmapgg.gank.ui.activity;
 
+import br.com.mauker.materialsearchview.MaterialSearchView;
+import butterknife.Bind;
+import butterknife.OnClick;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.hotbitmapgg.gank.base.RxBaseActivity;
+import com.hotbitmapgg.gank.config.ConstantUtil;
+import com.hotbitmapgg.gank.model.GitHubUserInfo;
+import com.hotbitmapgg.gank.rx.RxBus;
+import com.hotbitmapgg.gank.ui.fragment.HomeFragment;
+import com.hotbitmapgg.gank.ui.fragment.RxjavaAndNotesFragment;
+import com.hotbitmapgg.gank.utils.ACache;
+import com.hotbitmapgg.gank.utils.LogUtil;
+import com.hotbitmapgg.gank.utils.SnackbarUtil;
+import com.hotbitmapgg.gank.widget.CircleImageView;
+import com.hotbitmapgg.studyproject.R;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import rx.Subscription;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -19,33 +41,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.hotbitmapgg.gank.base.RxBaseActivity;
-import com.hotbitmapgg.gank.model.GitHubUserInfo;
-import com.hotbitmapgg.gank.ui.fragment.RxjavaAndNotesFragment;
-import com.hotbitmapgg.gank.utils.LogUtil;
-import com.hotbitmapgg.gank.utils.SnackbarUtil;
-import com.hotbitmapgg.gank.widget.CircleImageView;
-import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.gank.config.ConstantUtil;
-import com.hotbitmapgg.gank.rx.RxBus;
-import com.hotbitmapgg.gank.ui.fragment.HomeFragment;
-import com.hotbitmapgg.gank.utils.ACache;
-
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import br.com.mauker.materialsearchview.MaterialSearchView;
-import butterknife.Bind;
-import butterknife.OnClick;
-import rx.Subscription;
-import rx.functions.Action1;
 
 public class MainActivity extends RxBaseActivity implements View.OnClickListener {
 
@@ -85,8 +81,6 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
 
   private boolean isLogin = false;
 
-  private GitHubUserInfo mUserInfo;
-
   private Subscription subscribe;
 
   private long exitTime;
@@ -107,43 +101,37 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
   public void initViews(Bundle savedInstanceState) {
 
     if (mNavigationView != null) {
-      setupDrawerContent(mNavigationView);
+      setUpDrawerContent(mNavigationView);
     }
+
     homeFragment = HomeFragment.newInstance();
     rxjavaAndNotesFragment = RxjavaAndNotesFragment.newInstance();
-
     fragments = new Fragment[] { homeFragment, rxjavaAndNotesFragment };
-
-    getSupportFragmentManager().beginTransaction().replace(R.id.content, homeFragment).commit();
+    getSupportFragmentManager()
+        .beginTransaction()
+        .replace(R.id.content, homeFragment)
+        .commit();
     mFloatingActionButton.setVisibility(View.VISIBLE);
 
     subscribe = RxBus.getInstance()
         .toObserverable(String.class)
-        .subscribe(new Action1<String>() {
+        .subscribe(s -> {
 
-          @Override
-          public void call(String s) {
-
-            if (!TextUtils.isEmpty(s)) {
-              LogUtil.all(s);
-              if (s.equals(ConstantUtil.CODE_SUCCESS)) {
-                // 登录成功
-                isLogin = true;
-                setUserInfo();
-              } else if (s.equals(ConstantUtil.CODE_LOGOUT)) {
-                //退出登录
-                isLogin = false;
-                clearUserInfo();
-              }
+          if (!TextUtils.isEmpty(s)) {
+            LogUtil.all(s);
+            if (s.equals(ConstantUtil.CODE_SUCCESS)) {
+              // 登录成功
+              isLogin = true;
+              setUserInfo();
+            } else if (s.equals(ConstantUtil.CODE_LOGOUT)) {
+              //退出登录
+              isLogin = false;
+              clearUserInfo();
             }
           }
-        }, new Action1<Throwable>() {
+        }, throwable -> {
 
-          @Override
-          public void call(Throwable throwable) {
-
-            LogUtil.all("用户登录更新失败");
-          }
+          LogUtil.all("用户登录更新失败");
         });
 
     initSearchView();
@@ -186,16 +174,12 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
       }
     });
 
-    mSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    mSearchView.setOnItemClickListener((parent, view, position, id) -> {
 
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      TextView tv = (TextView) view.findViewById(R.id.tv_str);
 
-        TextView tv = (TextView) view.findViewById(R.id.tv_str);
-
-        if (tv != null) {
-          mSearchView.setQuery(tv.getText().toString(), false);
-        }
+      if (tv != null) {
+        mSearchView.setQuery(tv.getText().toString(), false);
       }
     });
   }
@@ -208,14 +192,7 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
       return;
     }
 
-    mSearchView.postDelayed(new Runnable() {
-
-      @Override
-      public void run() {
-
-        SearchGankListActivity.luancher(MainActivity.this, query);
-      }
-    }, 500);
+    mSearchView.postDelayed(() -> SearchGankActivity.luancher(MainActivity.this, query), 500);
   }
 
 
@@ -230,7 +207,7 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
   @Override
   public void initToolBar() {
 
-    mToolbar.setTitle("AndroidRank");
+    mToolbar.setTitle("Gank.io");
     setSupportActionBar(mToolbar);
     ActionBar mActionBar = getSupportActionBar();
     if (mActionBar != null) {
@@ -245,6 +222,11 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
 
     mDrawerToggle.syncState();
     mDrawerLayout.addDrawerListener(mDrawerToggle);
+  }
+
+
+  @Override public void loadData() {
+
   }
 
 
@@ -292,11 +274,11 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
     int month = Integer.parseInt(splitStrs[1]);
     int day = Integer.parseInt(splitStrs[2]);
 
-    GankToDayActivity.luanhcer(MainActivity.this, year, month, day);
+    ToDayGankActivity.launch(MainActivity.this, year, month, day);
   }
 
 
-  private void setupDrawerContent(NavigationView navigationView) {
+  private void setUpDrawerContent(NavigationView navigationView) {
 
     View headerView = navigationView.getHeaderView(0);
     mUserAvatar = (CircleImageView) headerView.findViewById(R.id.github_user_avatar);
@@ -307,35 +289,31 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
     setUserInfo();
 
     navigationView.setNavigationItemSelectedListener(
-        new NavigationView.OnNavigationItemSelectedListener() {
+        menuItem -> {
 
-          @Override
-          public boolean onNavigationItemSelected(MenuItem menuItem) {
+          switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+              changNavItem(menuItem, 0, "Gank.io", true);
+              return true;
 
-            switch (menuItem.getItemId()) {
-              case R.id.nav_home:
-                changNavItem(menuItem, 0, "Gank.Io", true);
-                return true;
+            case R.id.nav_my_focus:
+              changNavItem(menuItem, 1, "Notes", false);
+              return true;
 
-              case R.id.nav_my_focus:
-                changNavItem(menuItem, 1, "Notes", false);
-                return true;
+            case R.id.nav_about:
+              //关于我
+              startActivity(new Intent(MainActivity.this, HotBitmapGGActivity.class));
+              break;
 
-              case R.id.nav_about:
-                //关于我
-                startActivity(new Intent(MainActivity.this, HotBitmapGGActivity.class));
-                break;
+            case R.id.nav_about_app:
+              // 关于App
+              startActivity(new Intent(MainActivity.this, AboutActivity.class));
+              break;
 
-              case R.id.nav_about_app:
-                // 关于App
-                startActivity(new Intent(MainActivity.this, AboutActivity.class));
-                break;
-
-              default:
-                break;
-            }
-            return true;
+            default:
+              break;
           }
+          return true;
         });
   }
 
@@ -370,7 +348,7 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
   @OnClick(R.id.fab)
   void startPostGank() {
 
-    startActivity(new Intent(MainActivity.this, GankPostActivity.class));
+    startActivity(new Intent(MainActivity.this, SubmitGankActivity.class));
   }
 
 
@@ -379,9 +357,9 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
 
     if (v.getId() == R.id.github_user_avatar) {
       if (isLogin) {
-        startActivity(new Intent(MainActivity.this, GitHubUserInfoActivity.class));
+        startActivity(new Intent(MainActivity.this, GitHubUserActivity.class));
       } else {
-        GitHubLoginWebActivity.luancher(MainActivity.this, ConstantUtil.GITHUB_LOGIN_URL);
+        LoginGitHubActivity.launch(MainActivity.this, ConstantUtil.GITHUB_LOGIN_URL);
       }
     }
   }
@@ -389,7 +367,7 @@ public class MainActivity extends RxBaseActivity implements View.OnClickListener
 
   public void setUserInfo() {
 
-    mUserInfo = (GitHubUserInfo) ACache.get(MainActivity.this)
+    GitHubUserInfo mUserInfo = (GitHubUserInfo) ACache.get(MainActivity.this)
         .getAsObject(ConstantUtil.CACHE_USER_KEY);
 
     if (mUserInfo != null) {

@@ -45,6 +45,11 @@ public class HotBitmapGGActivity extends RxBaseActivity {
   }
 
 
+  @Override public void loadData() {
+
+  }
+
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
 

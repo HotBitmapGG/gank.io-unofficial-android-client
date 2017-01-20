@@ -1,7 +1,10 @@
 package com.hotbitmapgg.gank.ui.activity;
 
+import static com.hotbitmapgg.gank.config.ConstantUtil.EXTRA_URL;
+
 import butterknife.Bind;
 import com.hotbitmapgg.gank.base.RxBaseActivity;
+import com.hotbitmapgg.gank.config.ConstantUtil;
 import com.hotbitmapgg.gank.widget.web.LoveVideoView;
 import com.hotbitmapgg.studyproject.R;
 
@@ -13,8 +16,6 @@ public class VideoWebActivity extends RxBaseActivity {
 
   @Bind(R.id.video)
   LoveVideoView mLoveVideoView;
-
-  private static final String EXTRA_URL = "url";
 
   private String url;
 
@@ -31,16 +32,21 @@ public class VideoWebActivity extends RxBaseActivity {
 
     Intent intent = getIntent();
     if (intent != null) {
-      url = intent.getStringExtra(EXTRA_URL);
+      url = intent.getStringExtra(ConstantUtil.EXTRA_URL);
     }
 
-    mLoveVideoView.loadUrl(url);
+    loadData();
   }
 
 
   @Override
   public void initToolBar() {
 
+  }
+
+
+  @Override public void loadData() {
+    mLoveVideoView.loadUrl(url);
   }
 
 
@@ -56,7 +62,7 @@ public class VideoWebActivity extends RxBaseActivity {
 
     Intent intent = new Intent(activity, VideoWebActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    intent.putExtra(EXTRA_URL, url);
+    intent.putExtra(ConstantUtil.EXTRA_URL, url);
     activity.startActivity(intent);
   }
 }

@@ -58,4 +58,26 @@ public class ConstantUtil {
 
   //安卓面试notes数据存存储type之网络
   public static final String NOTES_TYPE_NETWORK = "network";
+
+  /**
+   * ----------------------------------------------------------
+   */
+
+  public static final String EXTRA_URL = "extra_url";
+
+  public static final String EXTRA_TITLE = "extra_title";
+
+  public static final String TRANSIT_PIC = "picture";
+
+  public static final String ARG_YEAR = "year";
+
+  public static final String ARG_MONTH = "month";
+
+  public static final String ARG_DAY = "day";
+
+  public static final String KEY_URL = "key_url";
+
+  public static final String EXTRA_TYPE = "extra_type";
+
+  public static final String KEY_TITLE = "key_title";
 }

@@ -1,10 +1,9 @@
 package com.hotbitmapgg.gank.base;
 
-import android.os.Bundle;
-
+import butterknife.ButterKnife;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
-import butterknife.ButterKnife;
+import android.os.Bundle;
 
 public abstract class RxBaseActivity extends RxAppCompatActivity {
 
@@ -36,4 +35,6 @@ public abstract class RxBaseActivity extends RxAppCompatActivity {
   public abstract void initViews(Bundle savedInstanceState);
 
   public abstract void initToolBar();
+
+  public abstract void loadData();
 }

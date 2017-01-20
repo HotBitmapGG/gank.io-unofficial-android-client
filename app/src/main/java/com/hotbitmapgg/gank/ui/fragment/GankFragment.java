@@ -1,5 +1,26 @@
 package com.hotbitmapgg.gank.ui.fragment;
 
+import butterknife.Bind;
+import com.hotbitmapgg.gank.adapter.GankAdapter;
+import com.hotbitmapgg.gank.base.RxBaseFragment;
+import com.hotbitmapgg.gank.config.ConstantUtil;
+import com.hotbitmapgg.gank.model.Gank;
+import com.hotbitmapgg.gank.network.RetrofitHelper;
+import com.hotbitmapgg.gank.ui.activity.BigImageActivity;
+import com.hotbitmapgg.gank.ui.activity.VideoWebActivity;
+import com.hotbitmapgg.gank.ui.activity.WebActivity;
+import com.hotbitmapgg.gank.utils.SnackbarUtil;
+import com.hotbitmapgg.gank.widget.recyclehelper.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.gank.widget.recyclehelper.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.gank.widget.recyclehelper.HeaderViewRecyclerAdapter;
+import com.hotbitmapgg.studyproject.R;
+import java.util.ArrayList;
+import java.util.List;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,28 +31,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.hotbitmapgg.gank.adapter.GankAdapter;
-import com.hotbitmapgg.gank.base.RxBaseFragment;
-import com.hotbitmapgg.gank.model.Gank;
-import com.hotbitmapgg.gank.ui.activity.FuliFullPicActivity;
-import com.hotbitmapgg.gank.ui.activity.VideoWebActivity;
-import com.hotbitmapgg.gank.ui.activity.WebActivity;
-import com.hotbitmapgg.gank.utils.SnackbarUtil;
-import com.hotbitmapgg.gank.widget.recyclehelper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.gank.widget.recyclehelper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.gank.widget.recyclehelper.HeaderViewRecyclerAdapter;
-import com.hotbitmapgg.studyproject.R;
-import com.hotbitmapgg.gank.network.RetrofitHelper;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.Bind;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class GankFragment extends RxBaseFragment {
 
@@ -225,12 +224,12 @@ public class GankFragment extends RxBaseFragment {
 
   public void startFuliActivity(Gank.GankInfo gankInfo, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
     //Activity跳转动画 界面共享元素的使用
-    Intent intent = FuliFullPicActivity.LuanchActivity(getActivity(), gankInfo.url, gankInfo.desc);
+    Intent intent = BigImageActivity.launch(getActivity(), gankInfo.url, gankInfo.desc);
     ActivityOptionsCompat mActivityOptionsCompat;
     if (Build.VERSION.SDK_INT >= 21) {
       mActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
           getActivity(), holder.getParentView().findViewById(R.id.item_image),
-          FuliFullPicActivity.TRANSIT_PIC);
+          ConstantUtil.TRANSIT_PIC);
     } else {
       mActivityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
           holder.getParentView().findViewById(R.id.item_image), 0, 0,

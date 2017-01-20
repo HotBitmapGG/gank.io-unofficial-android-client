@@ -7,7 +7,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -27,7 +26,7 @@ import android.widget.ImageView;
  * <p/>
  * 启动界面图片资源来自专栏App,感谢分享~
  */
-public class EntryActivity extends Activity {
+public class SplashActivity extends Activity {
 
   @Bind(R.id.iv_entry)
   ImageView mSplashImage;
@@ -62,7 +61,7 @@ public class EntryActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_entry);
+    setContentView(R.layout.activity_splash);
     ButterKnife.bind(this);
 
     Random random = new Random(SystemClock.elapsedRealtime());
@@ -70,13 +69,8 @@ public class EntryActivity extends Activity {
 
     Observable.timer(1000, TimeUnit.MILLISECONDS)
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<Long>() {
-
-          @Override
-          public void call(Long aLong) {
-
-            startAnim();
-          }
+        .subscribe(aLong -> {
+          startAnim();
         });
   }
 
@@ -95,8 +89,8 @@ public class EntryActivity extends Activity {
       @Override
       public void onAnimationEnd(Animator animation) {
 
-        startActivity(new Intent(EntryActivity.this, MainActivity.class));
-        EntryActivity.this.finish();
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        SplashActivity.this.finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
       }
     });
