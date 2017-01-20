@@ -4,25 +4,23 @@ import butterknife.Bind;
 import com.google.gson.GsonBuilder;
 import com.hotbitmapgg.gank.adapter.GitHubStarredAdapter;
 import com.hotbitmapgg.gank.base.RxBaseFragment;
+import com.hotbitmapgg.gank.config.ConstantUtil;
 import com.hotbitmapgg.gank.model.GitHubStarInfo;
 import com.hotbitmapgg.gank.model.GitHubUserInfo;
 import com.hotbitmapgg.gank.network.RetrofitHelper;
 import com.hotbitmapgg.gank.ui.activity.WebActivity;
 import com.hotbitmapgg.gank.utils.LogUtil;
 import com.hotbitmapgg.gank.widget.CircleProgressView;
-import com.hotbitmapgg.gank.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.R;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,8 +65,6 @@ public class GitHubUserDetailsFragment extends RxBaseFragment {
 
   private List<GitHubStarInfo> stars = new ArrayList<>();
 
-  private static final String KEY = "info";
-
   private GitHubUserInfo mUserInfo;
 
 
@@ -76,7 +72,7 @@ public class GitHubUserDetailsFragment extends RxBaseFragment {
 
     GitHubUserDetailsFragment mFragment = new GitHubUserDetailsFragment();
     Bundle mBundle = new Bundle();
-    mBundle.putSerializable(KEY, userInfo);
+    mBundle.putSerializable(ConstantUtil.KEY, userInfo);
     mFragment.setArguments(mBundle);
 
     return mFragment;
@@ -90,79 +86,60 @@ public class GitHubUserDetailsFragment extends RxBaseFragment {
   }
 
 
-  @Override
+  @SuppressLint("SetTextI18n") @Override
   public void initViews() {
 
-    mUserInfo = (GitHubUserInfo) getArguments().getSerializable(KEY);
+    mUserInfo = (GitHubUserInfo) getArguments().getSerializable(ConstantUtil.KEY);
 
-    mUserBio.setText(mUserInfo.bio);
-    mUserBlog.setText(mUserInfo.blog);
-    mUserCompany.setText(mUserInfo.company);
-    mUserEmail.setText(mUserInfo.email);
-    mUserLocation.setText(mUserInfo.location);
-    mUserFollowers.setText("Following :" + mUserInfo.followers);
-    mUserFollowing.setText("Followers :" + mUserInfo.following);
+    if (mUserInfo != null) {
+      mUserBio.setText(mUserInfo.bio);
+      mUserBlog.setText(mUserInfo.blog);
+      mUserCompany.setText(mUserInfo.company);
+      mUserEmail.setText(mUserInfo.email);
+      mUserLocation.setText(mUserInfo.location);
+      mUserFollowers.setText("Following :" + mUserInfo.followers);
+      mUserFollowing.setText("Followers :" + mUserInfo.following);
+    }
 
-    getGitHubUserStarred();
+    loadData();
   }
 
 
-  private void getGitHubUserStarred() {
-
+  @Override public void loadData() {
     RetrofitHelper.getGithubApi()
         .getGitHubStarred(mUserInfo.login)
-        .compose(this.<ResponseBody>bindToLifecycle())
-        .doOnSubscribe(new Action0() {
+        .compose(this.bindToLifecycle())
+        .doOnSubscribe(this::showProgress)
+        .map(responseBody -> {
 
-          @Override
-          public void call() {
-            showProgress();
-          }
-        })
-        .map(new Func1<ResponseBody, List<GitHubStarInfo>>() {
+          try {
+            GitHubStarInfo[] gitHubStarInfos = new GsonBuilder()
+                .create()
+                .fromJson(responseBody.string(), GitHubStarInfo[].class);
 
-          @Override
-          public List<GitHubStarInfo> call(ResponseBody responseBody) {
+            int length = gitHubStarInfos.length;
+            stars.addAll(Arrays.asList(gitHubStarInfos).subList(0, length));
 
-            try {
-              GitHubStarInfo[] gitHubStarInfos = new GsonBuilder()
-                  .create()
-                  .fromJson(responseBody.string(), GitHubStarInfo[].class);
-
-              int length = gitHubStarInfos.length;
-              for (int i = 0; i < length; i++) {
-                stars.add(gitHubStarInfos[i]);
-              }
-
-              return stars;
-            } catch (IOException e) {
-              e.printStackTrace();
-              return null;
-            }
+            return stars;
+          } catch (IOException e) {
+            e.printStackTrace();
+            return null;
           }
         })
         .delay(2000, TimeUnit.MILLISECONDS)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<List<GitHubStarInfo>>() {
+        .subscribe(gitHubStarInfos -> {
 
-          @Override
-          public void call(List<GitHubStarInfo> gitHubStarInfos) {
+          finishTask();
+        }, throwable -> {
 
-            finishGet();
-          }
-        }, new Action1<Throwable>() {
-
-          @Override
-          public void call(Throwable throwable) {
-
-            LogUtil.all("加载Star数据失败" + throwable.getMessage());
-          }
+          LogUtil.all("加载Star数据失败" + throwable.getMessage());
         });
   }
 
 
-  private void finishGet() {
+  private void finishTask() {
 
     mRecyclerView.setHasFixedSize(false);
     mRecyclerView.setNestedScrollingEnabled(false);
@@ -171,14 +148,10 @@ public class GitHubUserDetailsFragment extends RxBaseFragment {
     mRecyclerView.setAdapter(mAdapter);
     hideProgress();
 
-    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+    mAdapter.setOnItemClickListener((position, holder) -> {
 
-      @Override
-      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
-
-        GitHubStarInfo gitHubStarInfo = stars.get(position);
-        WebActivity.start(getActivity(), gitHubStarInfo.htmlUrl, gitHubStarInfo.fullName);
-      }
+      GitHubStarInfo gitHubStarInfo = stars.get(position);
+      WebActivity.launch(getActivity(), gitHubStarInfo.htmlUrl, gitHubStarInfo.fullName);
     });
   }
 

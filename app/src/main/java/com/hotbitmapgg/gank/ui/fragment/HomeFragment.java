@@ -29,7 +29,8 @@ public class HomeFragment extends RxBaseFragment {
   @Bind(R.id.tab_pager)
   NoScrollViewPager mViewPager;
 
-  private List<String> titles = Arrays.asList("all", "Android", "iOS", "App", "前端", "拓展资源", "休息视频",
+  private List<String> titles = Arrays.asList("all", "Android", "iOS", "App", "前端", "拓展资源",
+      "休息视频",
       "瞎推荐");
 
 
@@ -49,7 +50,7 @@ public class HomeFragment extends RxBaseFragment {
   @Override
   public void initViews() {
 
-    mViewPager.setAdapter(new TabPagerAdapter(getChildFragmentManager()));
+    mViewPager.setAdapter(new TabPagerAdapter(getChildFragmentManager(), titles));
     mViewPager.setOffscreenPageLimit(titles.size());
     mSlidingTabLayout.setViewPager(mViewPager);
     measureTabLayoutTextWidth(0);
@@ -76,6 +77,11 @@ public class HomeFragment extends RxBaseFragment {
   }
 
 
+  @Override public void loadData() {
+
+  }
+
+
   public void measureTabLayoutTextWidth(int position) {
 
     String titleName = titles.get(position);
@@ -86,11 +92,15 @@ public class HomeFragment extends RxBaseFragment {
   }
 
 
-  private class TabPagerAdapter extends FragmentStatePagerAdapter {
+  private static class TabPagerAdapter extends FragmentStatePagerAdapter {
 
-    public TabPagerAdapter(FragmentManager fm) {
+    private List<String> titles;
+
+
+    TabPagerAdapter(FragmentManager fm, List<String> titles) {
 
       super(fm);
+      this.titles = titles;
     }
 
 

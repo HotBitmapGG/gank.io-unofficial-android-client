@@ -41,9 +41,9 @@ public class AboutFragment extends PreferenceFragment
   public boolean onPreferenceClick(Preference preference) {
 
     if (preference.getKey().equals("author")) {
-      WebActivity.start(getActivity(), "https://github.com/HotBitmapGG", "HotBitmapGG");
+      WebActivity.launch(getActivity(), "https://github.com/HotBitmapGG", "HotBitmapGG");
     } else if (preference.getKey().equals("gank")) {
-      WebActivity.start(getActivity(), "http://gank.io/", "gank.io");
+      WebActivity.launch(getActivity(), "http://gank.io/", "gank.io");
     } else {
       SnackbarUtil.showMessage(getView(), "请点击作者直达我的GitHub查看更多开源项目哦~");
     }

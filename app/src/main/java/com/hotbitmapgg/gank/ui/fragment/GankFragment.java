@@ -17,8 +17,6 @@ import com.hotbitmapgg.studyproject.R;
 import java.util.ArrayList;
 import java.util.List;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import android.content.Intent;
@@ -29,7 +27,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 
 public class GankFragment extends RxBaseFragment {
@@ -40,8 +37,6 @@ public class GankFragment extends RxBaseFragment {
   @Bind(R.id.swipe_refresh)
   SwipeRefreshLayout mSwipeRefreshLayout;
 
-  private final static String EXTRA_TYPE = "type";
-
   private int pageNum = 30;
 
   private int page = 1;
@@ -49,8 +44,6 @@ public class GankFragment extends RxBaseFragment {
   private List<Gank.GankInfo> infos = new ArrayList<>();
 
   private GankAdapter mAdapter;
-
-  private LinearLayoutManager mLayoutManager;
 
   private String type;
 
@@ -65,7 +58,7 @@ public class GankFragment extends RxBaseFragment {
 
     GankFragment gankFragment = new GankFragment();
     Bundle bundle = new Bundle();
-    bundle.putString(EXTRA_TYPE, dataType);
+    bundle.putString(ConstantUtil.EXTRA_TYPE, dataType);
     gankFragment.setArguments(bundle);
 
     return gankFragment;
@@ -82,23 +75,16 @@ public class GankFragment extends RxBaseFragment {
   @Override
   public void initViews() {
 
-    type = getArguments().getString(EXTRA_TYPE);
-    showProgress();
+    type = getArguments().getString(ConstantUtil.EXTRA_TYPE);
+    initRefreshLayout();
+    initRecyclerView();
+  }
 
-    mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
-      @Override
-      public void onRefresh() {
-
-        page = 1;
-        infos.clear();
-        mIsRefresh = true;
-        getGankData();
-      }
-    });
-
+  private void initRecyclerView() {
+    setRecycleViewScroll();
     mRecyclerView.setHasFixedSize(true);
-    mLayoutManager = new LinearLayoutManager(getActivity());
+    LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
     mRecyclerView.setLayoutManager(mLayoutManager);
     mAdapter = new GankAdapter(mRecyclerView, infos);
     mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
@@ -111,83 +97,55 @@ public class GankFragment extends RxBaseFragment {
 
         page++;
         footLayout.setVisibility(View.VISIBLE);
-        getGankData();
+        loadData();
       }
     });
-    setRecycleViewScroll();
   }
 
 
-  private void showProgress() {
+  private void initRefreshLayout() {
+    mSwipeRefreshLayout.setOnRefreshListener(() -> {
+      page = 1;
+      infos.clear();
+      mIsRefresh = true;
+      loadData();
+    });
 
     mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-    mSwipeRefreshLayout.postDelayed(new Runnable() {
+    mSwipeRefreshLayout.postDelayed(() -> {
 
-      @Override
-      public void run() {
-
-        mSwipeRefreshLayout.setRefreshing(true);
-        mIsRefresh = true;
-        getGankData();
-      }
+      mSwipeRefreshLayout.setRefreshing(true);
+      mIsRefresh = true;
+      loadData();
     }, 500);
   }
 
 
-  private void getGankData() {
-
+  @Override public void loadData() {
     RetrofitHelper.getGankApi()
         .getGankDatas(type, pageNum, page)
-        .compose(this.<Gank>bindToLifecycle())
-        .filter(new Func1<Gank, Boolean>() {
-
-          @Override
-          public Boolean call(Gank gank) {
-
-            return !gank.error;
-          }
-        })
-        .map(new Func1<Gank, List<Gank.GankInfo>>() {
-
-          @Override
-          public List<Gank.GankInfo> call(Gank gank) {
-
-            return gank.results;
-          }
-        })
+        .compose(this.bindToLifecycle())
+        .filter(gank -> !gank.error)
+        .map(gank -> gank.results)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<List<Gank.GankInfo>>() {
+        .subscribe(gankInfos -> {
 
-          @Override
-          public void call(List<Gank.GankInfo> gankInfos) {
-
-            if (gankInfos.size() < pageNum) {
-              footLayout.setVisibility(View.GONE);
-            }
-            infos.addAll(gankInfos);
-            finishTask();
+          if (gankInfos.size() < pageNum) {
+            footLayout.setVisibility(View.GONE);
           }
-        }, new Action1<Throwable>() {
+          gankInfos.addAll(infos);
+          finishTask();
+        }, throwable -> {
 
-          @Override
-          public void call(Throwable throwable) {
-
-            if (footLayout != null) {
-              footLayout.setVisibility(View.GONE);
-            }
-            SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,下拉刷新重新加载!");
-            mSwipeRefreshLayout.post(new Runnable() {
-
-              @Override
-              public void run() {
-
-                mSwipeRefreshLayout.setRefreshing(false);
-              }
-            });
+          if (footLayout != null) {
+            footLayout.setVisibility(View.GONE);
           }
+          SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,下拉刷新重新加载!");
+          mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false));
         });
   }
+
 
 
   private void finishTask() {
@@ -201,28 +159,28 @@ public class GankFragment extends RxBaseFragment {
       mSwipeRefreshLayout.setRefreshing(false);
     }
     mIsRefresh = false;
-    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+    mAdapter.setOnItemClickListener((position, holder) -> {
 
-      @Override
-      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
+      Gank.GankInfo gankInfo = infos.get(position);
 
-        Gank.GankInfo gankInfo = infos.get(position);
-
-        if (gankInfo.type.equals("休息视频")) {
+      switch (gankInfo.type) {
+        case "休息视频":
 
           VideoWebActivity.launch(getActivity(), gankInfo.url);
-        } else if (gankInfo.type.equals("福利")) {
-          startFuliActivity(gankInfo, holder);
-        } else {
+          break;
+        case "福利":
+          launch(gankInfo, holder);
+          break;
+        default:
 
-          WebActivity.start(getActivity(), gankInfo.url, gankInfo.desc);
-        }
+          WebActivity.launch(getActivity(), gankInfo.url, gankInfo.desc);
+          break;
       }
     });
   }
 
 
-  public void startFuliActivity(Gank.GankInfo gankInfo, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
+  public void launch(Gank.GankInfo gankInfo, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
     //Activity跳转动画 界面共享元素的使用
     Intent intent = BigImageActivity.launch(getActivity(), gankInfo.url, gankInfo.desc);
     ActivityOptionsCompat mActivityOptionsCompat;
@@ -252,17 +210,6 @@ public class GankFragment extends RxBaseFragment {
 
   public void setRecycleViewScroll() {
 
-    mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
-
-      @Override
-      public boolean onTouch(View v, MotionEvent event) {
-
-        if (mIsRefresh) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    });
+    mRecyclerView.setOnTouchListener((v, event) -> mIsRefresh);
   }
 }

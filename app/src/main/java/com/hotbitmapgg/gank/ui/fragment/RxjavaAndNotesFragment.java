@@ -45,6 +45,11 @@ public class RxjavaAndNotesFragment extends RxBaseFragment {
   }
 
 
+  @Override public void loadData() {
+
+  }
+
+
   @OnClick(R.id.btn_1)
   void startRxJavaOperator() {
 
@@ -62,7 +67,7 @@ public class RxjavaAndNotesFragment extends RxBaseFragment {
   @OnClick(R.id.btn_3)
   void startGityuanBlog() {
 
-    WebActivity.start(getActivity(), GIT_YUAN_BLOG_URL, GIT_YUAN_BLOG_TITLE);
+    WebActivity.launch(getActivity(), GIT_YUAN_BLOG_URL, GIT_YUAN_BLOG_TITLE);
   }
 
 
@@ -97,7 +102,7 @@ public class RxjavaAndNotesFragment extends RxBaseFragment {
   @OnClick(R.id.btn_8)
   void startAndroidInterviewQA() {
 
-    WebActivity.start(getActivity(), JACKYANDROID_ANDROIDINTERVIEW_URL,
+    WebActivity.launch(getActivity(), JACKYANDROID_ANDROIDINTERVIEW_URL,
         JACKYANDROID_ANDROIDINTERVIEW_TITLE);
   }
 }

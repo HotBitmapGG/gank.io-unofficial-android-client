@@ -80,4 +80,6 @@ public class ConstantUtil {
   public static final String EXTRA_TYPE = "extra_type";
 
   public static final String KEY_TITLE = "key_title";
+
+  public static final String KEY = "info";
 }

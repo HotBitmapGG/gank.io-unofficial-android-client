@@ -1,5 +1,7 @@
 package com.hotbitmapgg.gank.ui.fragment;
 
+import static com.hotbitmapgg.gank.config.ConstantUtil.KEY;
+
 import butterknife.Bind;
 import com.google.gson.GsonBuilder;
 import com.hotbitmapgg.gank.adapter.GitHubFollowInfoAdapter;
@@ -9,15 +11,12 @@ import com.hotbitmapgg.gank.model.GitHubUserInfo;
 import com.hotbitmapgg.gank.network.RetrofitHelper;
 import com.hotbitmapgg.gank.ui.activity.WebActivity;
 import com.hotbitmapgg.gank.utils.LogUtil;
-import com.hotbitmapgg.gank.widget.recyclehelper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.studyproject.R;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import android.os.Bundle;
@@ -32,9 +31,8 @@ public class GitHubFollowingFragment extends RxBaseFragment {
   @Bind(R.id.recycle)
   RecyclerView mRecyclerView;
 
-  private static final String KEY = "info";
-
   private List<GitHubFollowerInfo> followerInfos = new ArrayList<>();
+  private GitHubUserInfo mUserInfo;
 
 
   public static GitHubFollowingFragment newInstance(GitHubUserInfo userInfo) {
@@ -58,67 +56,54 @@ public class GitHubFollowingFragment extends RxBaseFragment {
   @Override
   public void initViews() {
 
-    GitHubUserInfo mUserInfo = (GitHubUserInfo) getArguments().getSerializable(KEY);
+    mUserInfo = (GitHubUserInfo) getArguments().getSerializable(KEY);
+    loadData();
+  }
+
+
+  @Override public void loadData() {
     RetrofitHelper.getGithubApi()
         .getGitHubFolloweing(mUserInfo.login)
-        .compose(this.<ResponseBody>bindToLifecycle())
-        .map(new Func1<ResponseBody, List<GitHubFollowerInfo>>() {
+        .compose(this.bindToLifecycle())
+        .map(responseBody -> {
 
-          @Override
-          public List<GitHubFollowerInfo> call(ResponseBody responseBody) {
+          try {
+            GitHubFollowerInfo[] gitHubFollowerInfos = new GsonBuilder()
+                .create()
+                .fromJson(responseBody.string(), GitHubFollowerInfo[].class);
 
-            try {
-              GitHubFollowerInfo[] gitHubFollowerInfos = new GsonBuilder()
-                  .create()
-                  .fromJson(responseBody.string(), GitHubFollowerInfo[].class);
+            int length = gitHubFollowerInfos.length;
+            followerInfos.addAll(Arrays.asList(gitHubFollowerInfos).subList(0, length));
 
-              int length = gitHubFollowerInfos.length;
-              for (int i = 0; i < length; i++) {
-                followerInfos.add(gitHubFollowerInfos[i]);
-              }
-
-              return followerInfos;
-            } catch (IOException e) {
-              e.printStackTrace();
-              return null;
-            }
+            return followerInfos;
+          } catch (IOException e) {
+            e.printStackTrace();
+            return null;
           }
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<List<GitHubFollowerInfo>>() {
+        .subscribe(gitHubFollowerInfos -> {
 
-          @Override
-          public void call(List<GitHubFollowerInfo> gitHubFollowerInfos) {
+          finishTask();
+        }, throwable -> {
 
-            finishGet();
-          }
-        }, new Action1<Throwable>() {
-
-          @Override
-          public void call(Throwable throwable) {
-
-            LogUtil.all("加载用户关注的人数据失败");
-          }
+          LogUtil.all("加载用户关注的人数据失败");
         });
   }
 
 
-  private void finishGet() {
+  private void finishTask() {
 
     mRecyclerView.setHasFixedSize(true);
     mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     GitHubFollowInfoAdapter mAdapter = new GitHubFollowInfoAdapter(mRecyclerView, followerInfos);
     mRecyclerView.setAdapter(mAdapter);
 
-    mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener() {
+    mAdapter.setOnItemClickListener((position, holder) -> {
 
-      @Override
-      public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder) {
-
-        GitHubFollowerInfo gitHubFollowerInfo = followerInfos.get(position);
-        WebActivity.start(getActivity(), gitHubFollowerInfo.htlmUrl, gitHubFollowerInfo.login);
-      }
+      GitHubFollowerInfo gitHubFollowerInfo = followerInfos.get(position);
+      WebActivity.launch(getActivity(), gitHubFollowerInfo.htlmUrl, gitHubFollowerInfo.login);
     });
   }
 }
